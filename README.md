@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Buy-From-Egypt Recommendation System
 
 ## Overview
@@ -39,8 +38,8 @@ The recommendation system uses three primary data sources:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/YoussefAbdelmaksod1/Buy-From-Egypt.git
-cd Buy-From-Egypt
+git clone https://github.com/Buy-From-Egypt/Buy-From-Egypt-AI-models.git
+cd Buy-From-Egypt-AI-models
 ```
 
 2. Install dependencies:
@@ -118,4 +117,3 @@ The chatbot API will be available at `http://localhost:8080`
 - `GET /region/{region_name}` - Get information about a specific Egyptian region 
 =======
 # AI-models
->>>>>>> 20bd31281714d170585dbeb5654d3d11be0bfada
