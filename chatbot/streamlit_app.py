@@ -59,6 +59,8 @@ def reset_conversation() -> None:
                 timeout=5
             )
         st.session_state.messages = []
+        # Generate a new session ID
+        st.session_state.session_id = str(uuid.uuid4())
         st.success("Conversation reset successfully!")
     except Exception as e:
         st.error(f"Error resetting conversation: {e}")
@@ -88,7 +90,13 @@ def send_message(message: str) -> Dict[str, Any]:
             response_time = time.time() - start_time
             
             if response.status_code == 200:
-                return response.json()
+                response_data = response.json()
+                
+                # Make sure we update the session ID for future requests
+                if "session_id" in response_data:
+                    st.session_state.session_id = response_data["session_id"]
+                    
+                return response_data
             else:
                 st.error(f"Error: {response.status_code} - {response.text}")
                 return {

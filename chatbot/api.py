@@ -159,6 +159,9 @@ async def chat(request: ChatRequest, bot: Chatbot = Depends(get_chatbot)):
                 detail="No message provided in the request"
             )
         
+        # Log the session ID for debugging
+        logger.info(f"Processing chat request with session_id: {request.session_id or 'new session'}")
+        
         # Get response from chatbot
         response = await bot.get_response(
             query=request.message,
@@ -166,6 +169,9 @@ async def chat(request: ChatRequest, bot: Chatbot = Depends(get_chatbot)):
             business_context=request.business_context,
             session_id=request.session_id
         )
+        
+        # Log the response session ID
+        logger.info(f"Chat response generated with session_id: {response['session_id']}")
         
         return response
         
@@ -403,6 +409,9 @@ async def send_message(request: ChatRequest, bot: Chatbot = Depends(get_chatbot)
         # Generate a request ID
         request_id = str(uuid.uuid4())
         
+        # Log the session ID for debugging
+        logger.info(f"Processing send request with session_id: {request.session_id or 'new session'}, request_id: {request_id}")
+        
         # Store the request in the queue
         message_queue[request_id] = {
             "request": request.dict(),
@@ -414,7 +423,7 @@ async def send_message(request: ChatRequest, bot: Chatbot = Depends(get_chatbot)
         import asyncio
         asyncio.create_task(process_message(request_id, bot))
         
-        return {"request_id": request_id, "status": "pending"}
+        return {"request_id": request_id, "status": "pending", "session_id": request.session_id}
         
     except Exception as e:
         logger.error(f"Error in send endpoint: {e}")
@@ -475,6 +484,9 @@ async def process_message(request_id: str, bot: Chatbot):
         # Get the request from the queue
         request_data = message_queue[request_id]["request"]
         
+        # Log the session ID for debugging
+        logger.info(f"Processing message {request_id} with session_id: {request_data.get('session_id') or 'new session'}")
+        
         # Get response from chatbot
         response = await bot.get_response(
             query=request_data["message"],
@@ -482,6 +494,9 @@ async def process_message(request_id: str, bot: Chatbot):
             business_context=request_data["business_context"],
             session_id=request_data["session_id"]
         )
+        
+        # Log the response session ID
+        logger.info(f"Message {request_id} processed with session_id: {response['session_id']}")
         
         # Update the queue
         message_queue[request_id]["status"] = "completed"

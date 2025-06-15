@@ -6,6 +6,7 @@ from typing import Dict, List, Any, Optional, Union
 import google.generativeai as genai
 from dotenv import load_dotenv
 from knowledge import EGYPTIAN_KNOWLEDGE
+import re
 
 # Load environment variables
 load_dotenv()
@@ -22,9 +23,10 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Configure the Gemini API
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+# Set API key directly since we can't use .env file
+GOOGLE_API_KEY = "AIzaSyDCTrudTetYrvxtICEAafDK2BnraKiRoEg"
 # Force fallback mode to avoid API issues
-USE_FALLBACK_MODE = True
+USE_FALLBACK_MODE = False
 if not GOOGLE_API_KEY:
     logger.warning("No GOOGLE_API_KEY found in environment. Please set a valid API key.")
     logger.warning("You can get a Gemini API key from https://aistudio.google.com/")
@@ -54,10 +56,10 @@ class Chatbot:
                 
                 # Try to get the best available model
                 model_priority = [
-                    'gemini-pro',
-                    'gemini-1.0-pro',
                     'gemini-1.5-pro',
                     'gemini-1.5-flash',
+                    'gemini-1.0-pro',
+                    'gemini-pro',
                 ]
                 
                 for model_name in model_priority:
@@ -71,9 +73,12 @@ class Chatbot:
                                 "max_output_tokens": 1024,
                             }
                         )
-                        self.api_available = True
-                        logger.info(f"Successfully initialized model: {model_name}")
-                        break
+                        # Test the model with a simple query to ensure it works
+                        test_response = self.model.generate_content("Hello")
+                        if test_response:
+                            self.api_available = True
+                            logger.info(f"Successfully initialized model: {model_name}")
+                            break
                     except Exception as e:
                         logger.warning(f"Could not initialize {model_name}: {e}")
                         continue
@@ -82,6 +87,12 @@ class Chatbot:
                     logger.error("Failed to initialize any Gemini model")
             except Exception as e:
                 logger.error(f"Error configuring Gemini API: {e}")
+    
+    def is_arabic(self, text):
+        """Check if the text contains Arabic characters"""
+        # Arabic Unicode range
+        arabic_pattern = re.compile(r'[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]+')
+        return bool(arabic_pattern.search(text))
     
     def generate_system_prompt(self, user_type=None, business_context=None):
         """
@@ -106,6 +117,8 @@ For example, if asked about technology trends, discuss how they impact Egyptian 
 If asked about global events, discuss their implications for Egyptian trade and economy.
 
 Always maintain a professional, friendly tone appropriate for business users.
+
+If you detect Arabic language in the query, respond with: "I currently focus on English language business inquiries. Please ask your question in English for the most accurate information about Egyptian business and economy."
 """
         
         if user_type == "buyer":
@@ -309,6 +322,9 @@ Provide guidance on reaching international buyers, pricing strategies, and manag
             import uuid
             session_id = str(uuid.uuid4())
         
+        # Check if the query is in Arabic
+        is_arabic_query = self.is_arabic(query)
+        
         # Search knowledge base for relevant information
         knowledge_results = self.search_knowledge_base(query)
         relevant_info = knowledge_results["relevant_info"]
@@ -323,6 +339,20 @@ Provide guidance on reaching international buyers, pricing strategies, and manag
         
         # Add user message to conversation
         conversation.append({"role": "user", "content": query})
+        
+        # Handle Arabic queries with a specific response
+        if is_arabic_query:
+            response_text = "Welcome to Buy from Egypt. I currently focus on English language business inquiries. Please ask your question in English for the most accurate information about Egyptian business and economy."
+            conversation.append({"role": "assistant", "content": response_text})
+            
+            processing_time = time.time() - start_time
+            
+            return {
+                "response": response_text,
+                "sources": None,
+                "session_id": session_id,
+                "processing_time": processing_time
+            }
         
         # If API is available, use Gemini to generate a response
         if self.api_available and self.model:
@@ -369,16 +399,23 @@ Provide guidance on reaching international buyers, pricing strategies, and manag
             except Exception as e:
                 logger.error(f"Error generating response with Gemini: {e}")
                 # Fall back to knowledge-based response
-                return self._generate_fallback_response(query, relevant_info, sources, session_id, start_time)
+                return self._generate_fallback_response(query, relevant_info, sources, session_id, start_time, conversation)
         else:
             # Use knowledge-based response if API is not available
-            return self._generate_fallback_response(query, relevant_info, sources, session_id, start_time)
+            return self._generate_fallback_response(query, relevant_info, sources, session_id, start_time, conversation)
     
-    def _generate_fallback_response(self, query, relevant_info, sources, session_id, start_time):
-        """Generate a fallback response based on the knowledge base."""
+    def _generate_fallback_response(self, query, relevant_info, sources, session_id, start_time, conversation=None):
+        """Generate a fallback response based on the knowledge base and conversation history."""
+        # Check if we have conversation history to use for context
+        has_context = conversation and len(conversation) > 1
+        
         if not relevant_info:
             # More helpful default response for general questions
-            response_text = "Welcome to Buy from Egypt. I'm your AI assistant for Egyptian business and economy information. "
+            response_text = "Welcome to Buy from Egypt. "
+            
+            if has_context:
+                # Add context from previous conversation
+                response_text += "Based on our conversation, "
             
             # Try to provide a helpful response even without specific knowledge
             if "how" in query.lower() and "help" in query.lower():
@@ -401,7 +438,12 @@ Provide guidance on reaching international buyers, pricing strategies, and manag
                 response_text += "Please feel free to ask about specific industries, economic indicators, business challenges, or how to use our platform."
         else:
             response_text = "Welcome to Buy from Egypt. "
-            response_text += "\n\n".join(relevant_info[:3])  # Limit to top 3 pieces of information
+            
+            if has_context:
+                # Add context from previous conversation
+                response_text += "Based on our conversation, here's relevant information: "
+            
+            response_text += "\n\n" + "\n\n".join(relevant_info[:3])  # Limit to top 3 pieces of information
             
             if len(relevant_info) > 3:
                 response_text += "\n\nI have additional information available if you'd like to know more specific details."
