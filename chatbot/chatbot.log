@@ -1,0 +1,73 @@
+2025-06-15 21:24:22,523 - api - INFO - Initializing Buy from Egypt chatbot...
+2025-06-15 21:24:22,524 - egypt_chatbot - INFO - Successfully initialized model: gemini-2.5-flash
+2025-06-15 21:24:22,524 - api - INFO - Chatbot initialized successfully
+2025-06-15 21:25:13,132 - api - INFO - Request to / completed in 0.0006s
+2025-06-15 21:25:21,139 - egypt_chatbot - ERROR - Error generating response with Gemini: 404 models/gemini-2.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-06-15 21:25:21,140 - api - INFO - Request to /chat completed in 0.4565s
+2025-06-15 21:25:30,593 - api - INFO - Request to / completed in 0.0003s
+2025-06-15 21:25:39,779 - api - INFO - Request to /health completed in 0.0009s
+2025-06-15 21:25:42,448 - api - INFO - Request to / completed in 0.0003s
+2025-06-15 21:25:42,453 - api - INFO - Request to /chat completed in 0.0008s
+2025-06-15 21:25:45,197 - api - INFO - Request to /industries completed in 0.0005s
+2025-06-15 21:26:00,208 - egypt_chatbot - ERROR - Error generating response with Gemini: 404 models/gemini-2.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-06-15 21:26:00,208 - api - INFO - Request to /chat completed in 0.1123s
+2025-06-15 21:27:16,628 - api - INFO - Initializing Buy from Egypt chatbot...
+2025-06-15 21:27:16,628 - egypt_chatbot - INFO - Successfully initialized model: gemini-2.5-flash
+2025-06-15 21:27:16,628 - api - INFO - Chatbot initialized successfully
+2025-06-15 21:27:31,428 - api - INFO - Request to / completed in 0.0004s
+2025-06-15 21:27:37,775 - egypt_chatbot - ERROR - Error generating response with Gemini: 404 models/gemini-2.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-06-15 21:27:37,775 - api - INFO - Request to /chat completed in 0.4153s
+2025-06-15 21:27:37,776 - api - INFO - Request to / completed in 0.0003s
+2025-06-15 21:27:38,101 - api - INFO - Request to / completed in 0.0006s
+2025-06-15 21:27:38,309 - egypt_chatbot - ERROR - Error generating response with Gemini: 404 models/gemini-2.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-06-15 21:27:38,310 - api - INFO - Request to /chat completed in 0.2035s
+2025-06-15 21:29:32,141 - api - INFO - Initializing Buy from Egypt chatbot...
+2025-06-15 21:29:32,141 - egypt_chatbot - INFO - Successfully initialized model: gemini-2.5-flash
+2025-06-15 21:29:32,141 - api - INFO - Chatbot initialized successfully
+2025-06-15 21:30:30,797 - api - INFO - Initializing Buy from Egypt chatbot...
+2025-06-15 21:30:30,798 - egypt_chatbot - INFO - Successfully initialized model: gemini-2.5-flash
+2025-06-15 21:30:30,798 - api - INFO - Chatbot initialized successfully
+2025-06-15 21:30:41,868 - api - INFO - Initializing Buy from Egypt chatbot...
+2025-06-15 21:30:41,901 - egypt_chatbot - INFO - Successfully initialized model: gemini-2.5-flash
+2025-06-15 21:30:41,901 - api - INFO - Chatbot initialized successfully
+2025-06-15 21:30:45,230 - egypt_chatbot - ERROR - Error generating response with Gemini: 404 models/gemini-2.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-06-15 21:30:45,230 - api - INFO - Request to /chat completed in 0.6797s
+2025-06-15 21:30:59,211 - egypt_chatbot - ERROR - Error generating response with Gemini: 404 models/gemini-2.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-06-15 21:30:59,212 - api - INFO - Request to /chat completed in 0.1281s
+2025-06-15 21:31:07,495 - egypt_chatbot - ERROR - Error generating response with Gemini: 404 models/gemini-2.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-06-15 21:31:07,496 - api - INFO - Request to /chat completed in 0.1136s
+2025-06-15 21:31:40,453 - api - INFO - Initializing Buy from Egypt chatbot...
+2025-06-15 21:31:40,454 - egypt_chatbot - INFO - Successfully initialized model: gemini-2.5-flash
+2025-06-15 21:31:40,455 - api - INFO - Chatbot initialized successfully
+2025-06-15 21:31:54,656 - api - INFO - Initializing Buy from Egypt chatbot...
+2025-06-15 21:31:54,657 - egypt_chatbot - INFO - Successfully initialized model: gemini-2.5-flash
+2025-06-15 21:31:54,657 - api - INFO - Chatbot initialized successfully
+2025-06-15 21:32:00,336 - egypt_chatbot - ERROR - Error generating response with Gemini: 404 models/gemini-2.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-06-15 21:32:00,336 - api - INFO - Request to /chat completed in 0.5190s
+2025-06-15 21:32:07,441 - egypt_chatbot - ERROR - Error generating response with Gemini: 404 models/gemini-2.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-06-15 21:32:07,441 - api - INFO - Request to /chat completed in 0.1635s
+2025-06-15 21:33:59,362 - api - INFO - Initializing Buy from Egypt chatbot...
+2025-06-15 21:33:59,362 - egypt_chatbot - INFO - Successfully initialized model: gemini-pro
+2025-06-15 21:33:59,362 - api - INFO - Chatbot initialized successfully
+2025-06-15 21:34:12,016 - api - INFO - Initializing Buy from Egypt chatbot...
+2025-06-15 21:34:12,016 - egypt_chatbot - INFO - Successfully initialized model: gemini-pro
+2025-06-15 21:34:12,016 - api - INFO - Chatbot initialized successfully
+2025-06-15 21:34:21,460 - egypt_chatbot - ERROR - Error generating response with Gemini: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-06-15 21:34:21,461 - api - INFO - Request to /chat completed in 0.4026s
+2025-06-15 21:34:36,085 - egypt_chatbot - ERROR - Error generating response with Gemini: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-06-15 21:34:36,086 - api - INFO - Request to /chat completed in 0.1014s
+2025-06-15 21:35:19,238 - api - INFO - Initializing Buy from Egypt chatbot...
+2025-06-15 21:35:19,239 - egypt_chatbot - INFO - Using fallback mode - skipping API initialization
+2025-06-15 21:35:19,239 - api - INFO - Chatbot initialized successfully
+2025-06-15 21:35:37,054 - api - INFO - Initializing Buy from Egypt chatbot...
+2025-06-15 21:35:37,054 - egypt_chatbot - INFO - Using fallback mode - skipping API initialization
+2025-06-15 21:35:37,054 - api - INFO - Chatbot initialized successfully
+2025-06-15 21:35:53,309 - api - INFO - Request to /chat completed in 0.0036s
+2025-06-15 21:37:06,845 - api - INFO - Initializing Buy from Egypt chatbot...
+2025-06-15 21:37:06,846 - egypt_chatbot - INFO - Using fallback mode - skipping API initialization
+2025-06-15 21:37:06,847 - api - INFO - Chatbot initialized successfully
+2025-06-15 21:37:23,222 - api - INFO - Initializing Buy from Egypt chatbot...
+2025-06-15 21:37:23,223 - egypt_chatbot - INFO - Using fallback mode - skipping API initialization
+2025-06-15 21:37:23,223 - api - INFO - Chatbot initialized successfully
+2025-06-15 21:37:37,307 - api - INFO - Request to /chat completed in 0.0131s
+2025-06-15 21:37:48,288 - api - INFO - Request to /chat completed in 0.0032s
