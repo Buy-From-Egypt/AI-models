@@ -23,6 +23,16 @@ class ProductRecommendation(BaseModel):
     Score: float
     EgyptRelevance: Optional[float] = None
 
+class PostRecommendation(BaseModel):
+    PostID: int
+    CompanyName: str
+    PostTitle: str
+    Industry: str
+    Score: float
+    RecommendationType: Optional[str] = None
+    Location: Optional[str] = None
+    Engagement: Optional[int] = None
+
 class EgyptianContext(BaseModel):
     gdp_growth: Optional[float] = None
     inflation: Optional[float] = None
@@ -37,6 +47,11 @@ class EgyptianContext(BaseModel):
 class CustomerRecommendationResponse(BaseModel):
     user_id: str
     recommended_products: List[ProductRecommendation]
+    egyptian_context: Optional[EgyptianContext] = None
+
+class PostRecommendationResponse(BaseModel):
+    user_id: str
+    recommended_posts: List[PostRecommendation]
     egyptian_context: Optional[EgyptianContext] = None
 
 class BusinessPartnerRecommendation(BaseModel):
@@ -92,6 +107,19 @@ class SyncResponse(BaseModel):
     success: bool
     message: str
     syncedItem: Optional[Dict[str, Any]] = None
+
+class UserInteraction(BaseModel):
+    user_id: str = Field(..., description="The user ID")
+    post_id: int = Field(..., description="The post ID being interacted with")
+    interaction_type: str = Field(..., description="Type of interaction: view, like, comment, rate, share")
+    interaction_value: Optional[float] = Field(None, description="Value for rating interactions (1-5)")
+    time_spent: Optional[int] = Field(None, description="Time spent viewing in seconds")
+    timestamp: Optional[str] = Field(None, description="ISO timestamp of interaction")
+
+class InteractionResponse(BaseModel):
+    success: bool
+    message: str
+    interaction_id: Optional[str] = None
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -237,6 +265,48 @@ async def recommend_for_customer(
     
     except Exception as e:
         logger.error(f"Error generating recommendations for customer {customer_id}: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/recommend/posts/{user_id}", 
+         response_model=PostRecommendationResponse,
+         tags=["Post Recommendations"])
+async def recommend_posts_for_user(
+    user_id: str = Path(..., description="The unique user ID"),
+    num_recommendations: int = Query(10, description="Number of post recommendations to return", ge=1, le=100),
+    include_egyptian_context: bool = Query(True, description="Whether to include Egyptian economic context in response")
+):
+    """
+    Get post recommendations for a specific user based on their preferences and interaction history.
+    
+    - **user_id**: The unique user ID
+    - **num_recommendations**: Number of post recommendations to return (default: 10)
+    - **include_egyptian_context**: Whether to include Egyptian context data in response
+    
+    This endpoint uses advanced collaborative filtering and content-based filtering
+    to recommend relevant company posts to users based on their preferences and behavior.
+    """
+    global recommendation_engine
+    
+    try:
+        # Generate post recommendations
+        recommendations = recommendation_engine.recommend_posts_for_user(
+            user_id, num_recommendations=num_recommendations
+        )
+        
+        # Format response
+        response = {
+            "user_id": user_id,
+            "recommended_posts": recommendations
+        }
+        
+        # Add Egyptian context if requested
+        if include_egyptian_context:
+            response["egyptian_context"] = get_egyptian_context()
+        
+        return response
+    
+    except Exception as e:
+        logger.error(f"Error generating post recommendations for user {user_id}: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/recommend/business/{business_name}", 
@@ -572,6 +642,75 @@ async def sync_order(
     
     except Exception as e:
         logger.error(f"Error syncing order: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+class UserInteraction(BaseModel):
+    user_id: str = Field(..., description="The user ID")
+    post_id: int = Field(..., description="The post ID being interacted with")
+    interaction_type: str = Field(..., description="Type of interaction: view, like, comment, rate, share")
+    interaction_value: Optional[float] = Field(None, description="Value for rating interactions (1-5)")
+    time_spent: Optional[int] = Field(None, description="Time spent viewing in seconds")
+    timestamp: Optional[str] = Field(None, description="ISO timestamp of interaction")
+
+class InteractionResponse(BaseModel):
+    success: bool
+    message: str
+    interaction_id: Optional[str] = None
+
+@app.post("/interactions/track", 
+         response_model=InteractionResponse,
+         tags=["User Interactions"])
+async def track_user_interaction(
+    interaction: UserInteraction = Body(..., description="User interaction data to track")
+):
+    """
+    Track a user interaction with a company post for real-time recommendation improvement.
+    
+    - **user_id**: The unique user ID
+    - **post_id**: The ID of the post being interacted with
+    - **interaction_type**: Type of interaction (view, like, comment, rate, share)
+    - **interaction_value**: Optional rating value (1-5) for rating interactions
+    - **time_spent**: Time spent viewing the post in seconds
+    - **timestamp**: ISO timestamp of the interaction (defaults to current time)
+    
+    This data is used to improve future recommendations for the user and similar users.
+    """
+    try:
+        # For now, we'll just log the interaction
+        # In a production system, this would be stored in a database
+        # and used to retrain models periodically
+        
+        logger.info(f"Tracked interaction: User {interaction.user_id} {interaction.interaction_type} post {interaction.post_id}")
+        
+        # Validate interaction type
+        valid_interactions = ["view", "like", "comment", "rate", "share"]
+        if interaction.interaction_type not in valid_interactions:
+            raise HTTPException(
+                status_code=400, 
+                detail=f"Invalid interaction type. Must be one of: {valid_interactions}"
+            )
+        
+        # Validate rating value if provided
+        if interaction.interaction_type == "rate" and interaction.interaction_value:
+            if not (1 <= interaction.interaction_value <= 5):
+                raise HTTPException(
+                    status_code=400,
+                    detail="Rating value must be between 1 and 5"
+                )
+        
+        # Generate interaction ID (in production, this would be from database)
+        interaction_id = f"{interaction.user_id}_{interaction.post_id}_{interaction.interaction_type}_{datetime.now().timestamp()}"
+        
+        return InteractionResponse(
+            success=True,
+            message=f"Successfully tracked {interaction.interaction_type} interaction",
+            interaction_id=interaction_id
+        )
+    
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error tracking user interaction: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/admin/retrain", 

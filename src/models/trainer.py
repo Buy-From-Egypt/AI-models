@@ -4,6 +4,7 @@ import os
 import logging
 import pickle
 import joblib
+import json
 from pathlib import Path
 from datetime import datetime
 import torch
@@ -45,165 +46,204 @@ else:
 
 def load_data():
     """
-    Load the processed data required for model training.
+    Load the processed data required for post recommendation model training.
     """
-    logger.info("Loading processed data...")
+    logger.info("Loading processed data for post recommendation system...")
     
     try:
-        # Since processed data may not exist yet, we'll work with the raw data
-        # and perform simpler processing
+        # Load user preferences
+        user_preferences = pd.read_csv(PROCESSED_DIR / "user_preferences.csv")
         
-        # Load business data
+        # Load company posts
+        company_posts = pd.read_csv(PROCESSED_DIR / "company_posts.csv")
+        
+        # Load user-post interactions
+        user_post_interactions = pd.read_csv(PROCESSED_DIR / "user_post_interactions.csv")
+        
+        # Load user-post interaction matrix
+        user_post_matrix = pd.read_csv(PROCESSED_DIR / "user_post_matrix.csv", index_col=0)
+        binary_matrix = pd.read_csv(PROCESSED_DIR / "binary_user_post_matrix.csv", index_col=0)
+        
+        # Load business features (enhanced Egyptian data)
         business_features = pd.read_csv(DATA_DIR / "enhanced_egypt_import_export_v2.csv")
         
-        # For retail data, we'll use a subset for demo purposes
-        try:
-            retail_data = pd.read_csv(DATA_DIR / "data.csv", encoding='ISO-8859-1', nrows=10000)
-            retail_data = retail_data.dropna(subset=['CustomerID'])
-            products = retail_data[['StockCode', 'Description']].drop_duplicates()
-        except Exception as e:
-            logger.warning(f"Error loading retail data: {e}")
-            # Create dummy retail data if real data is not available
-            retail_data = pd.DataFrame({
-                'CustomerID': np.random.randint(1000, 2000, 1000),
-                'StockCode': np.random.randint(10000, 20000, 1000),
-                'Description': [f"Product {i}" for i in range(1000)],
-                'Quantity': np.random.randint(1, 10, 1000),
-                'UnitPrice': np.random.uniform(1, 100, 1000)
-            })
-            products = retail_data[['StockCode', 'Description']].drop_duplicates()
-        
-        # Create a simple binary user-item matrix
-        user_item_df = pd.crosstab(
-            index=retail_data['CustomerID'], 
-            columns=retail_data['StockCode'],
-            values=retail_data['Quantity'],
-            aggfunc='sum'
-        ).fillna(0)
-        
-        binary_matrix = (user_item_df > 0).astype(int)
-        
-        # Create a simple representation of economic data
+        # Create economic context
         economic_data = pd.DataFrame({
             'gdp_growth_annual_pct': [4.35],
             'inflation_consumer_prices_annual_pct': [5.04],
-            'population_growth_annual_pct': [1.73]
+            'population_growth_annual_pct': [1.73],
+            'tourism_sensitivity': [0.8],
+            'ramadan_factor': [1.2]
         })
         
         # Save processed data for future use
         os.makedirs(PROCESSED_DIR, exist_ok=True)
         
-        user_item_df.to_csv(PROCESSED_DIR / "user_item_matrix.csv")
-        binary_matrix.to_csv(PROCESSED_DIR / "binary_interaction_matrix.csv")
-        
-        logger.info("Data loaded successfully.")
+        logger.info("Post recommendation data loaded successfully.")
         
         return {
-            'user_item_matrix': user_item_df,
+            'user_preferences': user_preferences,
+            'company_posts': company_posts,
+            'user_post_interactions': user_post_interactions,
+            'user_post_matrix': user_post_matrix,
             'binary_matrix': binary_matrix,
             'business_features': business_features,
-            'products': products,
-            'economic_data': economic_data,
-            'retail_data': retail_data
+            'economic_data': economic_data
         }
     
     except Exception as e:
-        logger.error(f"Error loading data: {e}")
-        raise
+        logger.error(f"Error loading post recommendation data: {e}")
+        # Create dummy data if files don't exist
+        return create_dummy_post_data()
+
+def create_dummy_post_data():
+    """Create dummy data if processed files don't exist"""
+    logger.warning("Creating dummy data for post recommendation system...")
+    
+    # Dummy user preferences
+    user_preferences = pd.DataFrame({
+        'UserID': ['1000', '1001', '1002'],
+        'PreferredIndustries': ['Electronics', 'Agriculture & Food', 'Textiles & Garments'],
+        'PreferredSupplierType': ['Small Businesses', 'Medium Enterprises', 'Large Corporations'],
+        'PreferredOrderQuantity': ['Small orders', 'Medium orders', 'Large orders']
+    })
+    
+    # Dummy company posts
+    company_posts = pd.DataFrame({
+        'PostID': [1, 2, 3],
+        'CompanyName': ['Tech Egypt', 'Food Corp', 'Textile Co'],
+        'Industry': ['Electronics', 'Agriculture & Food', 'Textiles & Garments'],
+        'PostTitle': ['Latest Electronics', 'Fresh Produce', 'Quality Fabrics'],
+        'Engagement': [100, 200, 150]
+    })
+    
+    # Dummy interactions
+    user_post_interactions = pd.DataFrame({
+        'UserID': ['1000', '1001', '1002'],
+        'PostID': [1, 2, 3],
+        'InteractionScore': [0.8, 0.9, 0.7]
+    })
+    
+    # Dummy matrices
+    user_post_matrix = pd.DataFrame([[0.8, 0, 0], [0, 0.9, 0], [0, 0, 0.7]], 
+                                   index=['1000', '1001', '1002'], columns=[1, 2, 3])
+    binary_matrix = pd.DataFrame([[1, 0, 0], [0, 1, 0], [0, 0, 1]], 
+                                index=['1000', '1001', '1002'], columns=[1, 2, 3])
+    
+    # Business features
+    business_features = pd.DataFrame({
+        'Business Name': ['Tech Egypt', 'Food Corp', 'Textile Co'],
+        'Category': ['Electronics', 'Agriculture', 'Textiles'],
+        'Trade Type': ['Exporter', 'Importer', 'Both'],
+        'Business Size': ['Small', 'Medium', 'Large']
+    })
+    
+    economic_data = pd.DataFrame({'gdp_growth_annual_pct': [4.35]})
+    
+    return {
+        'user_preferences': user_preferences,
+        'company_posts': company_posts,
+        'user_post_interactions': user_post_interactions,
+        'user_post_matrix': user_post_matrix,
+        'binary_matrix': binary_matrix,
+        'business_features': business_features,
+        'economic_data': economic_data
+    }
 
 def train_collaborative_filtering(data):
     """
-    Train collaborative filtering models with PyTorch or using Implicit ALS if available.
+    Train collaborative filtering models for user-post recommendations with PyTorch.
     """
-    logger.info("Training collaborative filtering model...")
+    logger.info("Training collaborative filtering model for post recommendations...")
     
     try:
-        # Get user-item matrix
-        user_item_df = data['user_item_matrix']
+        # Get user-post matrix
+        user_post_df = data['user_post_matrix']
         
         # Create mappings between IDs and indices
-        user_ids = user_item_df.index.tolist()
-        item_ids = user_item_df.columns.tolist()
+        user_ids = user_post_df.index.tolist()
+        post_ids = user_post_df.columns.tolist()
         
-        user_id_map = {user_id: i for i, user_id in enumerate(user_ids)}
-        item_id_map = {item_id: i for i, item_id in enumerate(item_ids)}
+        user_id_map = {str(user_id): i for i, user_id in enumerate(user_ids)}
+        post_id_map = {int(post_id): i for i, post_id in enumerate(post_ids)}
         
-        reverse_user_map = {i: user_id for user_id, i in user_id_map.items()}
-        reverse_item_map = {i: item_id for item_id, i in item_id_map.items()}
+        reverse_user_map = {i: str(user_id) for user_id, i in user_id_map.items()}
+        reverse_post_map = {i: int(post_id) for post_id, i in post_id_map.items()}
         
-        # Train model
-        if has_implicit:
-            # Use Implicit ALS
-            sparse_user_item = csr_matrix(user_item_df.values)
+        # Convert to PyTorch tensor
+        user_post_tensor = torch.tensor(user_post_df.values, dtype=torch.float32)
+        
+        # Define matrix factorization model
+        n_users, n_posts = user_post_tensor.shape
+        n_factors = 32  # Reduced for smaller dataset
+        
+        logger.info(f"Training on {n_users} users and {n_posts} posts with {n_factors} factors")
+        
+        # Initialize user and post embeddings
+        user_factors = torch.randn(n_users, n_factors, requires_grad=True)
+        post_factors = torch.randn(n_factors, n_posts, requires_grad=True)
+        
+        if USE_CUDA and torch.cuda.is_available():
+            logger.info("Moving tensors to GPU")
+            try:
+                user_post_tensor = user_post_tensor.cuda()
+                # Reinitialize factors on GPU to maintain leaf status
+                user_factors = torch.randn(n_users, n_factors, requires_grad=True, device='cuda')
+                post_factors = torch.randn(n_factors, n_posts, requires_grad=True, device='cuda')
+            except Exception as e:
+                logger.warning(f"Error moving tensors to GPU: {e}")
+                # Fall back to CPU
+                user_factors = torch.randn(n_users, n_factors, requires_grad=True)
+                post_factors = torch.randn(n_factors, n_posts, requires_grad=True)
+        
+        # Training loop
+        optimizer = torch.optim.Adam([user_factors, post_factors], lr=0.01, weight_decay=0.001)
+        
+        best_loss = float('inf')
+        patience = 5
+        patience_counter = 0
+        
+        for epoch in range(50):
+            # Forward pass: compute predicted ratings
+            predicted_ratings = torch.matmul(user_factors, post_factors)
             
-            # Try to train ALS model safely with and without GPU
-            use_implicit_gpu = False
-            if USE_CUDA:
-                try:
-                    logger.info("Attempting to train ALS model with GPU acceleration")
-                    # Try with 'use_gpu' parameter
-                    model = AlternatingLeastSquares(factors=64, regularization=0.1, iterations=50, use_gpu=True)
-                    use_implicit_gpu = True
-                except (TypeError, ValueError) as e:
-                    logger.warning(f"GPU acceleration not available for Implicit ALS: {e}")
-                    use_implicit_gpu = False
+            # Only consider non-zero entries for loss calculation
+            mask = (user_post_tensor > 0).float()
             
-            if not use_implicit_gpu:
-                logger.info("Training ALS model on CPU")
-                model = AlternatingLeastSquares(factors=64, regularization=0.1, iterations=50)
-                
-            # Train the model
-            model.fit(sparse_user_item)
-        else:
-            # Simple PyTorch matrix factorization
-            logger.info("Using PyTorch matrix factorization")
-            user_item_tensor = torch.tensor(user_item_df.values, dtype=torch.float32)
+            # Calculate loss (MSE on non-zero entries)
+            if torch.sum(mask) > 0:
+                loss = torch.sum(mask * (user_post_tensor - predicted_ratings) ** 2) / torch.sum(mask)
+            else:
+                loss = torch.sum((user_post_tensor - predicted_ratings) ** 2) / (n_users * n_posts)
             
-            # Define simple matrix factorization model
-            n_users, n_items = user_item_tensor.shape
-            n_factors = 64
+            # Add L2 regularization
+            l2_reg = 0.01 * (torch.norm(user_factors) + torch.norm(post_factors))
+            loss += l2_reg
             
-            # Initialize user and item embeddings
-            user_factors = torch.randn(n_users, n_factors, requires_grad=True)
-            item_factors = torch.randn(n_factors, n_items, requires_grad=True)
+            # Backward pass
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
             
-            if USE_CUDA:
-                logger.info("Moving tensors to GPU")
-                try:
-                    user_item_tensor = user_item_tensor.cuda()
-                    user_factors = user_factors.cuda()
-                    item_factors = item_factors.cuda()
-                except Exception as e:
-                    logger.warning(f"Error moving tensors to GPU: {e}")
-                    # Fall back to CPU
-                    user_factors = torch.randn(n_users, n_factors, requires_grad=True)
-                    item_factors = torch.randn(n_factors, n_items, requires_grad=True)
+            if epoch % 10 == 0:
+                logger.info(f"Epoch {epoch+1}/50, Loss: {loss.item():.4f}")
             
-            # Simple training loop
-            optimizer = torch.optim.Adam([user_factors, item_factors], lr=0.01)
-            
-            for epoch in range(10):
-                # Forward pass: compute predicted ratings
-                predicted_ratings = torch.matmul(user_factors, item_factors)
-                
-                # Only consider non-zero entries for loss calculation
-                mask = (user_item_tensor > 0).float()
-                
-                # Calculate loss (MSE on non-zero entries)
-                loss = torch.sum(mask * (user_item_tensor - predicted_ratings) ** 2) / torch.sum(mask)
-                
-                # Backward pass
-                optimizer.zero_grad()
-                loss.backward()
-                optimizer.step()
-                
-                logger.info(f"Epoch {epoch+1}/10, Loss: {loss.item():.4f}")
-            
-            # Store the learned factors as the model
-            model = {
-                'user_factors': user_factors.detach().cpu().numpy(),
-                'item_factors': item_factors.detach().cpu().numpy()
-            }
+            # Early stopping
+            if loss.item() < best_loss:
+                best_loss = loss.item()
+                patience_counter = 0
+            else:
+                patience_counter += 1
+                if patience_counter >= patience:
+                    logger.info(f"Early stopping at epoch {epoch+1}")
+                    break
+        
+        # Store the learned factors as the model
+        model = {
+            'user_factors': user_factors.detach().cpu().numpy(),
+            'post_factors': post_factors.detach().cpu().numpy(),
+            'final_loss': best_loss
+        }
         
         # Save model and mappings
         with open(MODELS_DIR / "cf_model.pkl", "wb") as f:
@@ -212,18 +252,18 @@ def train_collaborative_filtering(data):
         with open(MODELS_DIR / "user_id_map.pkl", "wb") as f:
             pickle.dump(user_id_map, f)
         
-        with open(MODELS_DIR / "item_id_map.pkl", "wb") as f:
-            pickle.dump(item_id_map, f)
+        with open(MODELS_DIR / "post_id_map.pkl", "wb") as f:
+            pickle.dump(post_id_map, f)
         
         with open(MODELS_DIR / "reverse_user_map.pkl", "wb") as f:
             pickle.dump(reverse_user_map, f)
         
-        with open(MODELS_DIR / "reverse_item_map.pkl", "wb") as f:
-            pickle.dump(reverse_item_map, f)
+        with open(MODELS_DIR / "reverse_post_map.pkl", "wb") as f:
+            pickle.dump(reverse_post_map, f)
         
-        logger.info("Collaborative filtering model trained and saved.")
+        logger.info(f"Collaborative filtering model trained and saved. Final loss: {best_loss:.4f}")
         
-        return model, user_id_map, item_id_map, reverse_user_map, reverse_item_map
+        return model, user_id_map, post_id_map, reverse_user_map, reverse_post_map
     
     except Exception as e:
         logger.error(f"Error training collaborative filtering model: {e}")
@@ -1163,69 +1203,287 @@ def train_hybrid_recommendation_model(data):
 
 def main():
     """
-    Main entry point for model training.
-    Trains the recommendation models using processed data.
+    Main entry point for post recommendation model training.
+    Trains the post recommendation models using processed data.
     """
-    logger.info("Starting model training with CUDA acceleration if available...")
+    logger.info("Starting post recommendation model training...")
     
     try:
         # Load data
         data = load_data()
         
-        # Train hybrid recommendation model
-        hybrid_model = train_hybrid_recommendation_model(data)
+        # Train hybrid post recommendation model
+        hybrid_model = train_hybrid_post_recommendation_model(data)
         
-        # Evaluate the model on all available data
-        logger.info("Evaluating hybrid recommendation model...")
+        # Evaluate the model
+        logger.info("Evaluating hybrid post recommendation model...")
         
         # Evaluate collaborative filtering component
-        cf_metrics = evaluate_collaborative_filtering(
-            hybrid_model['collaborative_filtering'],
-            data['user_item_matrix'],
-            test_size=0.2,
-            k=10
+        cf_metrics = evaluate_post_collaborative_filtering(
+            hybrid_model['collaborative_filtering']['model'],
+            data['user_post_matrix'],
+            hybrid_model['collaborative_filtering']['user_id_map'],
+            hybrid_model['collaborative_filtering']['post_id_map']
         )
-        logger.info(f"Collaborative filtering evaluation metrics: {cf_metrics}")
+        logger.info(f"Post collaborative filtering metrics: {cf_metrics}")
         
-        # Evaluate business recommendation component
-        business_metrics = evaluate_business_recommendations(
+        # Evaluate company recommendation component
+        company_metrics = evaluate_company_recommendations(
             hybrid_model['content_based']['business_similarity'],
-            data['business_features'],
-            k=5
+            data['business_features']
         )
-        logger.info(f"Business recommendation evaluation metrics: {business_metrics}")
+        logger.info(f"Company recommendation metrics: {company_metrics}")
         
-        # Evaluate hybrid recommendations
-        # This is a custom metric combining collaborative and content-based performance
-        hybrid_score = (
-            cf_metrics.get('f1@10', 0) * 0.5 +
-            business_metrics.get('f1@5', 0) * 0.3 +
-            (1 - min(cf_metrics.get('rmse', 100) / 100, 1)) * 0.2  # Normalize RMSE to 0-1 range
-        )
-        logger.info(f"Hybrid recommendation score: {hybrid_score:.4f}")
+        # Calculate hybrid score
+        hybrid_score = (cf_metrics['f1@10'] + company_metrics['f1@5']) / 2
         
-        # Save metrics for monitoring
-        all_metrics = {
-            'collaborative_filtering': cf_metrics,
-            'business_recommendation': business_metrics,
+        # Save evaluation metrics
+        evaluation_results = {
+            'post_collaborative_filtering': cf_metrics,
+            'company_recommendation': company_metrics,
             'hybrid_score': hybrid_score,
             'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         }
         
-        # Create metrics directory if it doesn't exist
-        metrics_dir = Path("models/metrics")
-        metrics_dir.mkdir(exist_ok=True, parents=True)
+        # Ensure metrics directory exists
+        metrics_dir = MODELS_DIR / "metrics"
+        metrics_dir.mkdir(exist_ok=True)
         
-        # Save metrics as JSON
-        with open(metrics_dir / "evaluation_metrics.json", 'w') as f:
-            import json
-            json.dump(all_metrics, f, indent=2)
+        with open(metrics_dir / "evaluation_metrics.json", "w") as f:
+            json.dump(evaluation_results, f, indent=2)
         
-        logger.info("All models trained and evaluated successfully.")
+        logger.info(f"Post recommendation model training completed! Hybrid Score: {hybrid_score:.4f}")
+        return hybrid_model, evaluation_results
         
     except Exception as e:
-        logger.error(f"Error in model training: {e}")
+        logger.error(f"Error in post recommendation model training: {e}")
         raise
+
+def train_hybrid_post_recommendation_model(data):
+    """
+    Train the hybrid post recommendation model combining collaborative filtering and content-based filtering.
+    """
+    logger.info("Training hybrid post recommendation model...")
+    
+    try:
+        # Train collaborative filtering for user-post interactions
+        cf_model, user_id_map, post_id_map, reverse_user_map, reverse_post_map = train_collaborative_filtering(data)
+        
+        # Train content-based filtering for businesses
+        business_similarity, business_id_map, business_idx_map = train_content_based_business(data)
+        
+        # Create business-post affinity mapping
+        business_post_affinity = create_business_post_affinity(data)
+        
+        # Train economic context model
+        economic_model = train_economic_context_model(data)
+        
+        # Combine models
+        hybrid_model = {
+            'collaborative_filtering': {
+                'model': cf_model,
+                'user_id_map': user_id_map,
+                'post_id_map': post_id_map,
+                'reverse_user_map': reverse_user_map,
+                'reverse_post_map': reverse_post_map
+            },
+            'content_based': {
+                'business_similarity': business_similarity,
+                'business_id_map': business_id_map,
+                'business_idx_map': business_idx_map,
+                'business_post_affinity': business_post_affinity
+            },
+            'economic_context': economic_model
+        }
+        
+        # Save hybrid model info
+        model_info = {
+            'model_type': 'hybrid_post_recommendation',
+            'components': ['collaborative_filtering', 'content_based_business', 'economic_context'],
+            'training_date': datetime.now().isoformat(),
+            'data_size': {
+                'users': len(data['user_preferences']),
+                'posts': len(data['company_posts']),
+                'interactions': len(data['user_post_interactions']),
+                'businesses': len(data['business_features'])
+            }
+        }
+        
+        with open(MODELS_DIR / "model_info.json", "w") as f:
+            json.dump(model_info, f, indent=2)
+        
+        logger.info("Hybrid post recommendation model training completed.")
+        return hybrid_model
+        
+    except Exception as e:
+        logger.error(f"Error training hybrid post recommendation model: {e}")
+        raise
+
+def create_business_post_affinity(data):
+    """
+    Create mapping between businesses and their posts with affinity scores.
+    """
+    logger.info("Creating business-post affinity mapping...")
+    
+    try:
+        company_posts = data['company_posts']
+        business_post_affinity = {}
+        
+        for company_name in company_posts['CompanyName'].unique():
+            company_posts_filtered = company_posts[company_posts['CompanyName'] == company_name]
+            
+            posts_info = []
+            for _, post in company_posts_filtered.iterrows():
+                post_info = {
+                    'PostID': int(post['PostID']),
+                    'PostTitle': post['PostTitle'],
+                    'Industry': post['Industry'],
+                    'Engagement': float(post['Engagement']),
+                    'QualityScore': float(post.get('QualityScore', 4.0))
+                }
+                posts_info.append(post_info)
+            
+            business_post_affinity[company_name] = posts_info
+        
+        # Save business-post affinity
+        with open(MODELS_DIR / "business_post_affinity.pkl", "wb") as f:
+            pickle.dump(business_post_affinity, f)
+        
+        logger.info(f"Created business-post affinity for {len(business_post_affinity)} companies")
+        return business_post_affinity
+        
+    except Exception as e:
+        logger.error(f"Error creating business-post affinity: {e}")
+        raise
+
+def evaluate_post_collaborative_filtering(cf_model, user_post_matrix, user_id_map, post_id_map, k=10):
+    """
+    Evaluate the post collaborative filtering model.
+    """
+    logger.info("Evaluating post collaborative filtering model...")
+    
+    try:
+        # Split data for evaluation
+        train_matrix = user_post_matrix.copy()
+        test_matrix = user_post_matrix.copy()
+        
+        # Randomly mask 20% of interactions for testing
+        n_users, n_posts = train_matrix.shape
+        n_test = int(0.2 * n_users * n_posts)
+        
+        np.random.seed(42)
+        test_indices = np.random.choice(n_users * n_posts, n_test, replace=False)
+        
+        for idx in test_indices:
+            user_idx = idx // n_posts
+            post_idx = idx % n_posts
+            if train_matrix.iloc[user_idx, post_idx] > 0:
+                test_matrix.iloc[user_idx, post_idx] = train_matrix.iloc[user_idx, post_idx]
+                train_matrix.iloc[user_idx, post_idx] = 0
+        
+        # Calculate predictions
+        user_factors = cf_model['user_factors']
+        post_factors = cf_model['post_factors']
+        predictions = np.dot(user_factors, post_factors)
+        
+        # Calculate RMSE
+        test_mask = (test_matrix > 0).values
+        if np.sum(test_mask) > 0:
+            rmse = np.sqrt(np.mean((test_matrix.values[test_mask] - predictions[test_mask]) ** 2))
+        else:
+            rmse = 0
+        
+        # Calculate precision and recall at k
+        precision_scores = []
+        recall_scores = []
+        
+        for user_idx in range(min(10, n_users)):  # Evaluate on subset for speed
+            user_true = (user_post_matrix.iloc[user_idx] > 0).values
+            user_pred = predictions[user_idx]
+            
+            if np.sum(user_true) > 0:
+                # Get top k recommendations
+                top_k_indices = np.argsort(user_pred)[-k:]
+                
+                # Calculate precision and recall
+                relevant_recommended = np.sum(user_true[top_k_indices])
+                precision = relevant_recommended / k if k > 0 else 0
+                recall = relevant_recommended / np.sum(user_true) if np.sum(user_true) > 0 else 0
+                
+                precision_scores.append(precision)
+                recall_scores.append(recall)
+        
+        avg_precision = np.mean(precision_scores) if precision_scores else 0
+        avg_recall = np.mean(recall_scores) if recall_scores else 0
+        f1_score = 2 * avg_precision * avg_recall / (avg_precision + avg_recall) if (avg_precision + avg_recall) > 0 else 0
+        
+        metrics = {
+            'rmse': float(rmse),
+            f'precision@{k}': float(avg_precision),
+            f'recall@{k}': float(avg_recall),
+            f'f1@{k}': float(f1_score)
+        }
+        
+        logger.info(f"Post CF evaluation completed: {metrics}")
+        return metrics
+        
+    except Exception as e:
+        logger.error(f"Error evaluating post collaborative filtering: {e}")
+        return {'rmse': 0, f'precision@{k}': 0, f'recall@{k}': 0, f'f1@{k}': 0}
+
+def evaluate_company_recommendations(business_similarity, business_features, k=5):
+    """
+    Evaluate company recommendation performance.
+    """
+    logger.info("Evaluating company recommendations...")
+    
+    try:
+        # Simple evaluation based on category similarity
+        categories = business_features['Category'].unique()
+        precision_scores = []
+        recall_scores = []
+        
+        for i, business in business_features.iterrows():
+            if i >= len(business_similarity):
+                break
+                
+            # Get similar businesses
+            similarities = business_similarity[i]
+            top_k_indices = np.argsort(similarities)[-k-1:-1]  # Exclude self
+            
+            # Check if recommended businesses are in same category
+            business_category = business['Category']
+            recommended_categories = business_features.iloc[top_k_indices]['Category'].values
+            
+            relevant_recommended = np.sum(recommended_categories == business_category)
+            same_category_count = np.sum(business_features['Category'] == business_category) - 1  # Exclude self
+            
+            precision = relevant_recommended / k if k > 0 else 0
+            recall = relevant_recommended / same_category_count if same_category_count > 0 else 0
+            
+            precision_scores.append(precision)
+            recall_scores.append(recall)
+        
+        avg_precision = np.mean(precision_scores) if precision_scores else 0
+        avg_recall = np.mean(recall_scores) if recall_scores else 0
+        f1_score = 2 * avg_precision * avg_recall / (avg_precision + avg_recall) if (avg_precision + avg_recall) > 0 else 0
+        
+        # Category coverage
+        category_coverage = len(categories) / len(business_features) if len(business_features) > 0 else 0
+        
+        metrics = {
+            f'precision@{k}': float(avg_precision),
+            f'recall@{k}': float(avg_recall),
+            f'f1@{k}': float(f1_score),
+            'category_coverage': float(category_coverage)
+        }
+        
+        logger.info(f"Company recommendation evaluation completed: {metrics}")
+        return metrics
+        
+    except Exception as e:
+        logger.error(f"Error evaluating company recommendations: {e}")
+        return {f'precision@{k}': 0, f'recall@{k}': 0, f'f1@{k}': 0, 'category_coverage': 0}
 
 if __name__ == "__main__":
     main() 

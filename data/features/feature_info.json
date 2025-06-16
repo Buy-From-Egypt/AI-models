@@ -1,0 +1,46 @@
+{
+  "extraction_date": "2025-06-16T15:06:50.076615",
+  "num_users": 1000,
+  "num_posts": 692,
+  "num_interactions": 414270.0,
+  "feature_types": {
+    "user_features": [
+      "avg_rating",
+      "rating_std",
+      "total_ratings",
+      "min_rating",
+      "max_rating",
+      "rating_2_count",
+      "rating_3_count",
+      "rating_4_count",
+      "rating_5_count",
+      "avg_time_spent",
+      "time_spent_std",
+      "total_time_spent",
+      "max_time_spent",
+      "session_count",
+      "total_likes",
+      "total_shares",
+      "total_comments",
+      "like_rate",
+      "share_rate",
+      "comment_rate",
+      "num_preferred_industries",
+      "unique_industries_explored",
+      "browse_diversity_score",
+      "prefers_large_corp",
+      "prefers_startup",
+      "prefers_bulk_orders",
+      "prefers_sea_freight",
+      "receives_alerts"
+    ],
+    "post_features": [
+      "industry_encoded",
+      "num_interactions",
+      "avg_interaction_score",
+      "unique_users",
+      "engagement_score",
+      "post_popularity"
+    ]
+  }
+}

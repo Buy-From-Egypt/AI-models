@@ -1,16 +1,16 @@
 {
-  "collaborative_filtering": {
-    "rmse": 11.37153176216261,
-    "precision@10": 0.3975169300225734,
-    "recall@10": 0.9950259672607303,
-    "f1@10": 0.5680825611474964
+  "post_collaborative_filtering": {
+    "rmse": 2.633340826995443,
+    "precision@10": 0.1,
+    "recall@10": 0.014688609954413179,
+    "f1@10": 0.025614766732723778
   },
-  "business_recommendation": {
-    "precision@5": 0.6809999999999999,
-    "recall@5": 0.19482099885408707,
-    "f1@5": 0.30296852985534956,
-    "category_coverage": 1.0
+  "company_recommendation": {
+    "precision@5": 0.21700000000000003,
+    "recall@5": 0.061158708938120705,
+    "f1@5": 0.09542350760999946,
+    "category_coverage": 0.055
   },
-  "hybrid_score": 0.5521887760060279,
-  "timestamp": "2025-05-14 00:07:19"
+  "hybrid_score": 0.06051913717136162,
+  "timestamp": "2025-06-16 13:51:32"
 }
