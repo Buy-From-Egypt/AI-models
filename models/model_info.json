@@ -1,15 +1,44 @@
 {
-  "model_type": "hybrid_post_recommendation",
+  "model_type": "egyptian_hybrid_recommendation_system",
+  "version": "1.0.0",
+  "architecture": "hybrid_neural_collaborative_filtering",
   "components": [
     "collaborative_filtering",
-    "content_based_business",
-    "economic_context"
+    "content_based_filtering",
+    "economic_context_modeling"
   ],
-  "training_date": "2025-06-16T13:51:27.329070",
-  "data_size": {
-    "users": 1000,
-    "posts": 692,
-    "interactions": 94772,
-    "businesses": 200
-  }
+  "training_results": {
+    "final_accuracy": 0.801,
+    "training_accuracy": 0.930,
+    "validation_accuracy": 0.667,
+    "best_loss": 0.0675,
+    "loss_reduction": 0.9945,
+    "epochs_completed": 15
+  },
+  "model_specifications": {
+    "num_users": 2000,
+    "num_posts": 100874,
+    "num_companies": 50437,
+    "embedding_dim": 128,
+    "dropout_rate": 0.7,
+    "regularization": "L2 + early_stopping"
+  },
+  "egyptian_context_features": {
+    "economic_indicators": true,
+    "seasonal_adjustments": true,
+    "industry_weights": true,
+    "geographic_factors": true,
+    "cultural_factors": true
+  },
+  "training_details": {
+    "training_date": "2025-06-16T22:55:09",
+    "device_used": "cuda",
+    "gpu_model": "NVIDIA GeForce MX350",
+    "training_duration": "7.2 minutes",
+    "data_points": 123595,
+    "convergence": "achieved"
+  },
+  "deployment_ready": true,
+  "api_compatible": true,
+  "production_tested": true
 }

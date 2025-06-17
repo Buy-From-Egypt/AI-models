@@ -1,0 +1,101 @@
+{
+  "companies": {
+    "total": 50437,
+    "by_industry": {
+      "Technology": 17162,
+      "Other": 6966,
+      "Construction & Real Estate": 5693,
+      "Retail & Commerce": 4608,
+      "Manufacturing": 4130,
+      "Financial Services": 2606,
+      "Education": 2594,
+      "Agriculture & Food": 1684,
+      "Healthcare & Pharmaceuticals": 1486,
+      "Tourism & Hospitality": 1096,
+      "Energy & Utilities": 1053,
+      "Textiles & Garments": 798,
+      "Transportation & Logistics": 561
+    },
+    "by_size": {
+      "Small": 35055,
+      "Medium": 11733,
+      "Large": 2924,
+      "Unknown": 417,
+      "Very Large": 308
+    },
+    "by_city": {
+      "cairo": 24709,
+      "Unknown City": 7672,
+      "giza": 3976,
+      "new cairo": 3790,
+      "alexandria": 3495,
+      "6th of october city": 1222,
+      "10th of ramadan city": 385,
+      "na\u015fr": 270,
+      "al man\u015f\u016brah": 258,
+      "heliopolis": 252
+    }
+  },
+  "posts": {
+    "total": 100874,
+    "by_industry": {
+      "Technology": 34324,
+      "Other": 13932,
+      "Construction & Real Estate": 11386,
+      "Retail & Commerce": 9216,
+      "Manufacturing": 8260,
+      "Financial Services": 5212,
+      "Education": 5188,
+      "Agriculture & Food": 3368,
+      "Healthcare & Pharmaceuticals": 2972,
+      "Tourism & Hospitality": 2192,
+      "Energy & Utilities": 2106,
+      "Textiles & Garments": 1596,
+      "Transportation & Logistics": 1122
+    },
+    "avg_engagement": 291.5876836449432
+  },
+  "users": {
+    "total": 2000,
+    "active_users": 1498,
+    "by_city": {
+      "Zagazig": 191,
+      "Port Said": 190,
+      "Damanhur": 184,
+      "Tanta": 180,
+      "Cairo": 175,
+      "Ismailia": 169,
+      "Alexandria": 161,
+      "Giza": 157,
+      "Mansoura": 156,
+      "Aswan": 154,
+      "Suez": 151,
+      "Luxor": 132
+    },
+    "by_occupation": {
+      "Sales": 234,
+      "Teacher": 211,
+      "Manager": 210,
+      "Marketing": 202,
+      "Business Owner": 196,
+      "Doctor": 192,
+      "Engineer": 192,
+      "Entrepreneur": 188,
+      "Other": 188,
+      "Student": 187
+    }
+  },
+  "interactions": {
+    "total": 82397,
+    "by_type": {
+      "view": 57850,
+      "like": 12355,
+      "rate": 4072,
+      "comment": 4047,
+      "share": 2493,
+      "save": 1580
+    },
+    "avg_time_spent": 80.4042865638312,
+    "avg_relevance": 0.9205223202827333
+  }
+}

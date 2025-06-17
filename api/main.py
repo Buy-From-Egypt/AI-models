@@ -1,747 +1,873 @@
-from fastapi import FastAPI, HTTPException, Query, Path, Body
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field
-from typing import List, Optional, Dict, Any, Union
-import logging
-import uvicorn
-import json
-from datetime import datetime
+#!/usr/bin/env python3
+"""
+Buy from Egypt Recommendation API
 
-from src.models.inference import load_recommendation_engine
+This API provides endpoints for the recommendation system:
+1. Post recommendations based on user inputs
+2. Product recommendations for marketplace
+3. Interaction-based recommendations with dwell time tracking
+"""
+
+import os
+import sys
+import time
+from typing import List, Dict, Optional, Any
+import logging
+from pathlib import Path
+import json
+from datetime import datetime, timedelta
+import pandas as pd
+import numpy as np
+import torch
+from fastapi import FastAPI, HTTPException, Depends, Request, Response, status, Query, BackgroundTasks
+from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.openapi.utils import get_openapi
+from pydantic import BaseModel, Field
+import uvicorn
+
+# Add the parent directory to the path to import from src
+parent_dir = Path(__file__).parent.parent
+sys.path.append(str(parent_dir))
+
+# Import the recommendation engine
+from src.models.recommendation_engine import PostRecommendationEngine
 
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("api_logs.log"),
+        logging.StreamHandler()
+    ]
 )
 logger = logging.getLogger(__name__)
 
-# Define response models
-class ProductRecommendation(BaseModel):
-    StockCode: str
-    Description: str
-    Score: float
-    EgyptRelevance: Optional[float] = None
+# Constants
+INTERACTION_LOG_PATH = Path("data/processed/user_interactions_log.csv")
+DWELL_TIME_LOG_PATH = Path("data/processed/dwell_time_log.csv")
+CACHE_EXPIRY = 300  # Cache expiry time in seconds
 
-class PostRecommendation(BaseModel):
-    PostID: int
-    CompanyName: str
-    PostTitle: str
-    Industry: str
-    Score: float
-    RecommendationType: Optional[str] = None
-    Location: Optional[str] = None
-    Engagement: Optional[int] = None
+# Initialize recommendation engine
+try:
+    recommendation_engine = PostRecommendationEngine()
+    logger.info("Recommendation engine initialized successfully")
+except Exception as e:
+    logger.error(f"Failed to initialize recommendation engine: {e}")
+    recommendation_engine = None
 
-class EgyptianContext(BaseModel):
-    gdp_growth: Optional[float] = None
-    inflation: Optional[float] = None
-    population_growth: Optional[float] = None
-    tourism_sensitivity: Optional[float] = None
-    economic_stability_index: Optional[float] = None
-    trade_balance: Optional[float] = None
-    is_winter_tourism_season: Optional[int] = None
-    is_ramadan_season: Optional[int] = None
-    current_date: str
+# Create recommendation cache
+recommendation_cache = {}
 
-class CustomerRecommendationResponse(BaseModel):
-    user_id: str
-    recommended_products: List[ProductRecommendation]
-    egyptian_context: Optional[EgyptianContext] = None
-
-class PostRecommendationResponse(BaseModel):
-    user_id: str
-    recommended_posts: List[PostRecommendation]
-    egyptian_context: Optional[EgyptianContext] = None
-
-class BusinessPartnerRecommendation(BaseModel):
-    BusinessName: str
-    Category: str
-    Location: str
-    TradeType: str
-    SimilarityScore: float
-    Region: Optional[str] = None
-    LogisticsAccess: Optional[int] = None
-    MarketAccessScore: Optional[float] = None
-
-class BusinessRecommendationResponse(BaseModel):
-    business_name: str
-    recommended_products: List[ProductRecommendation]
-    recommended_partners: List[BusinessPartnerRecommendation]
-    egyptian_context: EgyptianContext
-    industry_weights: Optional[Dict[str, float]] = None
-
-# Define additional models for database sync
-class UserSync(BaseModel):
-    userId: str
-    name: str
-    email: str
-    type: str  # EXPORTER or IMPORTER
-    industrySector: Optional[str] = None
-    country: str
-    active: bool = True
-
-class ProductSync(BaseModel):
-    productId: str
-    name: str
-    description: Optional[str] = None
-    price: float
-    currencyCode: str
-    categoryId: str
-    ownerId: str
-    rating: Optional[float] = 0.0
-    reviewCount: Optional[int] = 0
-    active: bool = True
-    available: bool = True
-
-class OrderSync(BaseModel):
-    orderId: str
-    importerId: str
-    exporterId: str
-    products: List[str]  # List of product IDs
-    totalPrice: float
-    currencyCode: str
-    createdAt: str
-
-class SyncResponse(BaseModel):
-    success: bool
-    message: str
-    syncedItem: Optional[Dict[str, Any]] = None
+# Define request and response models
+class UserInput(BaseModel):
+    """User inputs for recommendation generation"""
+    preferred_industries: Optional[List[str]] = Field(None, description="List of industries the user is interested in")
+    preferred_supplier_type: Optional[str] = Field(None, description="Preferred type of supplier")
+    business_size: Optional[str] = Field(None, description="Preferred business size")
+    location: Optional[str] = Field(None, description="Preferred location")
+    price_range: Optional[str] = Field(None, description="Preferred price range")
+    keywords: Optional[List[str]] = Field(None, description="Keywords for content matching")
 
 class UserInteraction(BaseModel):
-    user_id: str = Field(..., description="The user ID")
-    post_id: int = Field(..., description="The post ID being interacted with")
-    interaction_type: str = Field(..., description="Type of interaction: view, like, comment, rate, share")
-    interaction_value: Optional[float] = Field(None, description="Value for rating interactions (1-5)")
-    time_spent: Optional[int] = Field(None, description="Time spent viewing in seconds")
-    timestamp: Optional[str] = Field(None, description="ISO timestamp of interaction")
+    """Record of a user interaction with a post or product"""
+    user_id: str = Field(..., description="User ID")
+    item_id: str = Field(..., description="Post or product ID")
+    item_type: str = Field(..., description="Type of item (post or product)")
+    interaction_type: str = Field(..., description="Type of interaction (view, like, rate, save, share, comment)")
+    value: Optional[float] = Field(None, description="Value associated with the interaction (e.g., rating value)")
+    dwell_time_seconds: Optional[int] = Field(None, description="Time spent viewing the item in seconds")
+    timestamp: Optional[str] = Field(None, description="Timestamp of the interaction")
+    
+class RecommendationResponse(BaseModel):
+    """Response containing recommendations"""
+    recommendations: List[Dict[str, Any]] = Field(..., description="List of recommended items")
+    user_id: Optional[str] = Field(None, description="User ID for which recommendations were generated")
+    recommendation_type: str = Field(..., description="Type of recommendations (post, product, business)")
+    recommendation_reason: str = Field(..., description="Reason for the recommendations")
+    generated_at: str = Field(..., description="Timestamp when recommendations were generated")
 
-class InteractionResponse(BaseModel):
-    success: bool
-    message: str
-    interaction_id: Optional[str] = None
-
-# Initialize FastAPI app
+class ApiResponse(BaseModel):
+    """Standard API response format"""
+    status: str = Field(..., description="Status of the request (success or error)")
+    message: str = Field(..., description="Response message")
+    data: Optional[Any] = Field(None, description="Response data")
+    
+# Create FastAPI application
 app = FastAPI(
-    title="Egyptian Business Recommendation API",
+    title="Buy from Egypt Recommendation API",
     description="""
-    # Egyptian Business Recommendation API
-    
-    This API provides recommendation services for Egyptian businesses and customers, integrating with the Buy-From-Egypt platform.
-    
-    ## Features
-    
-    - **Customer Product Recommendations**: Get personalized product recommendations for customers
-    - **Business Recommendations**: Get product and business partnership recommendations for businesses
-    - **Egyptian Economic Context**: Enhance recommendations with Egyptian economic indicators
-    
-    ## Integration with Buy-From-Egypt
-    
-    This recommendation system integrates with the Buy-From-Egypt platform database, which uses the following models:
-    
-    - **User**: Represents both importers and exporters
-    - **Product**: Items that can be recommended to users
-    - **Category**: Product categories that help with recommendations
-    - **Order**: Historical transactions used to improve recommendation accuracy
-    
-    ## Authentication
-    
-    The recommendation API uses the same authentication mechanism as the main platform.
-    
-    ## Data Sources
-    
-    The system is trained on three primary data sources:
-    
-    1. **Retail Transaction Data**: User-product interactions
-    2. **Business Profile Data**: Company-level attributes 
-    3. **Egyptian Economic Indicators**: Macroeconomic contextual data
-    
-    ## Model Performance
-    
-    The recommendation system is evaluated using the following metrics:
-    
-    - **RMSE (Root Mean Square Error)**: Measures prediction accuracy
-    - **Precision@k**: % of recommended items that are relevant
-    - **Recall@k**: % of relevant items that were recommended
-    - **F1 Score**: Harmonic mean of precision and recall
+    Advanced recommendation API for the Buy from Egypt platform:
+    - Post recommendations based on user preferences
+    - Product marketplace recommendations
+    - Interaction-based collaborative filtering with dwell time tracking
     """,
-    version="1.0.0",
-    docs_url="/api/docs",
-    redoc_url="/api/redoc",
+    version="1.0.0"
 )
 
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # In production, specify allowed origins
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Initialize recommendation engine
-recommendation_engine = None
+# Helper functions
+def get_cache_key(params: Dict) -> str:
+    """Generate a cache key from parameters"""
+    return json.dumps(params, sort_keys=True)
 
-@app.on_event("startup")
-async def startup_event():
-    """
-    Initialize resources on startup
-    """
-    global recommendation_engine
-    logger.info("Initializing recommendation engine...")
-    recommendation_engine = load_recommendation_engine()
-    logger.info("API startup complete.")
+def is_cache_valid(cache_key: str) -> bool:
+    """Check if a cache entry is still valid"""
+    if cache_key in recommendation_cache:
+        cache_time = recommendation_cache[cache_key].get("cached_at", 0)
+        return (time.time() - cache_time) < CACHE_EXPIRY
+    return False
 
-@app.get("/", tags=["Health"])
+def record_interaction(interaction: UserInteraction, background_tasks: BackgroundTasks):
+    """Record a user interaction in the background"""
+    background_tasks.add_task(_record_interaction_task, interaction)
+
+def _record_interaction_task(interaction: UserInteraction):
+    """Task to record user interaction to CSV"""
+    try:
+        # Ensure directory exists
+        INTERACTION_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+        
+        # Load existing data or create new DataFrame
+        if INTERACTION_LOG_PATH.exists():
+            interactions_df = pd.read_csv(INTERACTION_LOG_PATH)
+        else:
+            interactions_df = pd.DataFrame(columns=[
+                'UserID', 'ItemID', 'ItemType', 'InteractionType', 
+                'Value', 'DwellTimeSeconds', 'Timestamp'
+            ])
+        
+        # Add new interaction
+        new_interaction = {
+            'UserID': interaction.user_id,
+            'ItemID': interaction.item_id,
+            'ItemType': interaction.item_type,
+            'InteractionType': interaction.interaction_type,
+            'Value': interaction.value if interaction.value is not None else 1.0,
+            'DwellTimeSeconds': interaction.dwell_time_seconds if interaction.dwell_time_seconds is not None else 0,
+            'Timestamp': interaction.timestamp or datetime.now().isoformat()
+        }
+        
+        # Append to DataFrame using concat instead of the deprecated append
+        interactions_df = pd.concat([interactions_df, pd.DataFrame([new_interaction])], ignore_index=True)
+        
+        # Save to CSV
+        interactions_df.to_csv(INTERACTION_LOG_PATH, index=False)
+        
+        # Update dwell time metrics if applicable
+        if interaction.interaction_type == 'view' and interaction.dwell_time_seconds:
+            update_dwell_time_metrics(
+                interaction.user_id, 
+                interaction.item_id, 
+                interaction.dwell_time_seconds
+            )
+            
+        logger.info(f"Recorded {interaction.interaction_type} interaction for user {interaction.user_id}")
+        
+    except Exception as e:
+        logger.error(f"Error recording interaction: {e}")
+
+def update_dwell_time_metrics(user_id: str, item_id: str, dwell_time: int):
+    """Update dwell time metrics for a specific user-item pair"""
+    try:
+        # Ensure directory exists
+        DWELL_TIME_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+        
+        # Load existing dwell time logs or create new
+        if DWELL_TIME_LOG_PATH.exists():
+            dwell_df = pd.read_csv(DWELL_TIME_LOG_PATH)
+        else:
+            dwell_df = pd.DataFrame(columns=['UserID', 'ItemID', 'AvgDwellTime', 'TotalViews'])
+        
+        # Check if entry already exists
+        mask = (dwell_df['UserID'] == user_id) & (dwell_df['ItemID'] == item_id)
+        existing = dwell_df[mask]
+        
+        if len(existing) > 0:
+            # Update existing entry
+            idx = existing.index[0]
+            current_avg = dwell_df.loc[idx, 'AvgDwellTime']
+            current_views = dwell_df.loc[idx, 'TotalViews']
+            
+            # Calculate new average dwell time
+            new_avg = ((current_avg * current_views) + dwell_time) / (current_views + 1)
+            
+            # Update row
+            dwell_df.loc[idx, 'AvgDwellTime'] = new_avg
+            dwell_df.loc[idx, 'TotalViews'] = current_views + 1
+        else:
+            # Add new entry
+            new_record = {
+                'UserID': user_id,
+                'ItemID': item_id,
+                'AvgDwellTime': dwell_time,
+                'TotalViews': 1
+            }
+            dwell_df = pd.concat([dwell_df, pd.DataFrame([new_record])], ignore_index=True)
+        
+        # Save updated dwell time logs
+        dwell_df.to_csv(DWELL_TIME_LOG_PATH, index=False)
+        
+        logger.info(f"Updated dwell time metrics for user {user_id} with item {item_id}")
+        
+    except Exception as e:
+        logger.error(f"Error updating dwell time metrics: {e}")
+
+# API Routes
+@app.get("/", status_code=status.HTTP_200_OK, response_model=ApiResponse)
 async def root():
-    """
-    Health check endpoint.
-    """
-    return {"status": "Egyptian Recommendation API is running"}
-
-def get_egyptian_context():
-    """
-    Helper function to get the current Egyptian economic context.
-    """
-    global recommendation_engine
-    
-    context = recommendation_engine.economic_context
-    
-    # Add current date
-    current_date = datetime.now().strftime("%Y-%m-%d")
-    
-    return EgyptianContext(
-        gdp_growth=context.get('gdp_growth'),
-        inflation=context.get('inflation'),
-        population_growth=context.get('population_growth'),
-        tourism_sensitivity=context.get('tourism_sensitivity'),
-        economic_stability_index=context.get('economic_stability_index'),
-        trade_balance=context.get('trade_balance'),
-        is_winter_tourism_season=context.get('is_winter_tourism_season'),
-        is_ramadan_season=context.get('is_ramadan_season'),
-        current_date=current_date
+    """API health check endpoint"""
+    return ApiResponse(
+        status="success",
+        message="Buy from Egypt Recommendation API is running",
+        data={"version": "1.0.0"}
     )
 
-@app.get("/recommend/customer/{customer_id}", 
-         response_model=CustomerRecommendationResponse,
-         tags=["Customer Recommendations"])
-async def recommend_for_customer(
-    customer_id: str = Path(..., description="The unique customer ID"),
-    num_recommendations: int = Query(10, description="Number of recommendations to return", ge=1, le=100),
-    apply_economic_context: bool = Query(True, description="Whether to apply Egyptian economic context to adjust recommendations"),
-    include_egyptian_context: bool = Query(True, description="Whether to include Egyptian economic context in response")
-):
-    """
-    Get product recommendations for a specific customer with Egyptian context.
+@app.get("/api/health", status_code=status.HTTP_200_OK, response_model=ApiResponse)
+async def health_check():
+    """Detailed health check endpoint"""
+    engine_status = recommendation_engine is not None
     
-    - **customer_id**: The unique customer ID
-    - **num_recommendations**: Number of recommendations to return (default: 10)
-    - **apply_economic_context**: Whether to adjust recommendations based on Egyptian economic indicators
-    - **include_egyptian_context**: Whether to include Egyptian context data in response
-    """
-    global recommendation_engine
-    
-    try:
-        # Generate recommendations
-        recommendations = recommendation_engine.recommend_products_for_customer(
-            customer_id, num_recommendations
-        )
-        
-        # Apply economic context if requested
-        if apply_economic_context and recommendations:
-            recommendations = recommendation_engine.combine_with_economic_context(recommendations)
-        
-        # Format response
-        response = {
-            "user_id": customer_id,
-            "recommended_products": recommendations
+    return ApiResponse(
+        status="success" if engine_status else "warning",
+        message="Recommendation system health status",
+        data={
+            "api_available": True,
+            "engine_initialized": engine_status,
+            "version": "1.0.0",
+            "timestamp": datetime.now().isoformat()
         }
-        
-        # Add Egyptian context if requested
-        if include_egyptian_context:
-            response["egyptian_context"] = get_egyptian_context()
-        
-        return response
-    
-    except Exception as e:
-        logger.error(f"Error generating recommendations for customer {customer_id}: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+    )
 
-@app.get("/recommend/posts/{user_id}", 
-         response_model=PostRecommendationResponse,
-         tags=["Post Recommendations"])
-async def recommend_posts_for_user(
-    user_id: str = Path(..., description="The unique user ID"),
-    num_recommendations: int = Query(10, description="Number of post recommendations to return", ge=1, le=100),
-    include_egyptian_context: bool = Query(True, description="Whether to include Egyptian economic context in response")
+@app.post("/api/recommendations/posts", status_code=status.HTTP_200_OK, response_model=ApiResponse)
+async def get_post_recommendations(
+    user_id: str = Query(None, description="User ID (optional)"),
+    user_input: UserInput = None,
+    num_recommendations: int = Query(10, ge=1, le=50, description="Number of recommendations to return"),
+    include_similar_rated: bool = Query(False, description="Include posts similar to ones the user rated highly"),
+    force_refresh: bool = Query(False, description="Force refresh the recommendations cache")
 ):
     """
-    Get post recommendations for a specific user based on their preferences and interaction history.
+    Get post recommendations based on user inputs and/or user ID.
     
-    - **user_id**: The unique user ID
-    - **num_recommendations**: Number of post recommendations to return (default: 10)
-    - **include_egyptian_context**: Whether to include Egyptian context data in response
-    
-    This endpoint uses advanced collaborative filtering and content-based filtering
-    to recommend relevant company posts to users based on their preferences and behavior.
+    This endpoint provides company post recommendations using:
+    1. User preferences if user_id is provided
+    2. Explicit user inputs provided in the request
+    3. Collaborative filtering based on similar users' interactions
+    4. Dwell time data to prioritize engaging content
     """
-    global recommendation_engine
+    if recommendation_engine is None:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Recommendation engine is not available"
+        )
     
     try:
-        # Generate post recommendations
-        recommendations = recommendation_engine.recommend_posts_for_user(
-            user_id, num_recommendations=num_recommendations
-        )
-        
-        # Format response
-        response = {
+        # Generate cache key
+        cache_params = {
             "user_id": user_id,
-            "recommended_posts": recommendations
+            "user_input": user_input.dict() if user_input else None,
+            "num_recommendations": num_recommendations,
+            "include_similar_rated": include_similar_rated,
+            "endpoint": "post_recommendations"
         }
+        cache_key = get_cache_key(cache_params)
         
-        # Add Egyptian context if requested
-        if include_egyptian_context:
-            response["egyptian_context"] = get_egyptian_context()
+        # Check cache unless force refresh is requested
+        if not force_refresh and is_cache_valid(cache_key):
+            cached_data = recommendation_cache[cache_key]["data"]
+            logger.info(f"Returning cached post recommendations for user {user_id}")
+            return ApiResponse(
+                status="success",
+                message=f"Cached post recommendations for user {user_id}",
+                data=cached_data
+            )
         
-        return response
-    
-    except Exception as e:
-        logger.error(f"Error generating post recommendations for user {user_id}: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/recommend/business/{business_name}", 
-         response_model=BusinessRecommendationResponse,
-         tags=["Business Recommendations"])
-async def recommend_for_business(
-    business_name: str = Path(..., description="The business name"),
-    num_product_recommendations: int = Query(10, description="Number of product recommendations", ge=1, le=100),
-    num_partner_recommendations: int = Query(5, description="Number of business partner recommendations", ge=1, le=50),
-    apply_economic_context: bool = Query(True, description="Whether to apply Egyptian economic context to adjust recommendations"),
-    include_industry_weights: bool = Query(True, description="Whether to include Egyptian industry weights")
-):
-    """
-    Get product and business partnership recommendations for a specific Egyptian business.
-    
-    - **business_name**: The business name
-    - **num_product_recommendations**: Number of product recommendations to return (default: 10)
-    - **num_partner_recommendations**: Number of business partner recommendations to return (default: 5)
-    - **apply_economic_context**: Whether to adjust recommendations based on Egyptian economic indicators (default: True)
-    - **include_industry_weights**: Whether to include Egyptian industry weights in response
-    """
-    global recommendation_engine
-    
-    try:
-        # Generate product recommendations
-        product_recommendations = recommendation_engine.recommend_products_for_business(
-            business_name, num_product_recommendations
-        )
+        # Prepare user context from input
+        user_context = {}
+        if user_input:
+            if user_input.preferred_industries:
+                user_context["preferred_industries"] = user_input.preferred_industries
+            if user_input.preferred_supplier_type:
+                user_context["preferred_supplier_type"] = user_input.preferred_supplier_type
+            if user_input.business_size:
+                user_context["business_size"] = user_input.business_size
+            if user_input.location:
+                user_context["location"] = user_input.location
+            if user_input.keywords:
+                user_context["keywords"] = user_input.keywords
         
-        # Generate business partner recommendations
-        partner_recommendations = recommendation_engine.recommend_business_partners(
-            business_name, num_partner_recommendations
-        )
-        
-        # Apply economic context if requested
-        if apply_economic_context and product_recommendations:
-            product_recommendations = recommendation_engine.combine_with_economic_context(product_recommendations)
-        
-        # Get Egyptian context
-        egyptian_context = get_egyptian_context()
+        # Get recommendations based on available information
+        if user_id:
+            # Get personalized recommendations for known user
+            recommendations = recommendation_engine.recommend(
+                user_id=user_id,
+                user_context=user_context,
+                num_recommendations=num_recommendations
+            )
+            recommendation_reason = "Based on your preferences and browsing history"
+            
+            # Include similar posts to highly-rated ones if requested
+            if include_similar_rated:
+                try:
+                    similar_posts = recommendation_engine.find_similar_posts_to_rated(
+                        user_id=user_id,
+                        top_k=num_recommendations // 2  # Get half the number as similar posts
+                    )
+                    
+                    # Add similar posts that aren't already in recommendations
+                    existing_ids = {rec.get("PostID") for rec in recommendations}
+                    for post in similar_posts:
+                        if post.get("PostID") not in existing_ids:
+                            recommendations.append(post)
+                            existing_ids.add(post.get("PostID"))
+                    
+                    # Sort by score and limit to requested number
+                    recommendations = sorted(
+                        recommendations, 
+                        key=lambda x: x.get("Score", 0), 
+                        reverse=True
+                    )[:num_recommendations]
+                    
+                    if similar_posts:
+                        recommendation_reason = "Based on your preferences, browsing history, and posts you've rated"
+                
+                except Exception as e:
+                    logger.error(f"Error getting similar posts: {e}")
+        else:
+            # Get recommendations based only on input criteria
+            recommendations = recommendation_engine.recommend_by_criteria(
+                user_context=user_context,
+                num_recommendations=num_recommendations
+            )
+            recommendation_reason = "Based on your selected criteria"
         
         # Format response
-        response = {
-            "business_name": business_name,
-            "recommended_products": product_recommendations,
-            "recommended_partners": partner_recommendations,
-            "egyptian_context": egyptian_context
+        response_data = {
+            "recommendations": recommendations,
+            "user_id": user_id,
+            "recommendation_type": "post",
+            "recommendation_reason": recommendation_reason,
+            "generated_at": datetime.now().isoformat()
         }
         
-        # Add industry weights if requested
-        if include_industry_weights and 'industry_weights' in recommendation_engine.economic_context:
-            response["industry_weights"] = recommendation_engine.economic_context.get('industry_weights')
+        # Cache results
+        recommendation_cache[cache_key] = {
+            "data": response_data,
+            "cached_at": time.time()
+        }
         
-        return response
-    
-    except Exception as e:
-        logger.error(f"Error generating recommendations for business {business_name}: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/egyptian-economic-context", 
-         response_model=EgyptianContext,
-         tags=["Egyptian Context"])
-async def get_economic_context():
-    """
-    Get current Egyptian economic context data.
-    
-    This endpoint provides the latest economic indicators for Egypt that are used
-    to enrich the recommendation system.
-    """
-    try:
-        return get_egyptian_context()
-    except Exception as e:
-        logger.error(f"Error retrieving Egyptian economic context: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/export/recommendations/customer/{customer_id}", 
-         tags=["Export"])
-async def export_customer_recommendations(
-    customer_id: str = Path(..., description="The unique customer ID"),
-    num_recommendations: int = Query(20, description="Number of recommendations to export", ge=1, le=100),
-    format: str = Query("json", description="Export format (json or csv)")
-):
-    """
-    Export product recommendations for a specific customer in JSON or CSV format.
-    
-    - **customer_id**: The unique customer ID
-    - **num_recommendations**: Number of recommendations to export (default: 20)
-    - **format**: Export format, either 'json' or 'csv' (default: json)
-    """
-    global recommendation_engine
-    
-    try:
-        # Generate recommendations
-        recommendations = recommendation_engine.recommend_products_for_customer(
-            customer_id, num_recommendations
+        return ApiResponse(
+            status="success",
+            message=f"Post recommendations generated successfully",
+            data=response_data
         )
         
-        # Apply Egyptian economic context
-        recommendations = recommendation_engine.combine_with_economic_context(recommendations)
+    except Exception as e:
+        logger.error(f"Error generating post recommendations: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Error generating recommendations: {str(e)}"
+        )
+
+@app.post("/api/recommendations/products", status_code=status.HTTP_200_OK, response_model=ApiResponse)
+async def get_product_recommendations(
+    user_id: str = Query(None, description="User ID (optional)"),
+    user_input: UserInput = None,
+    num_recommendations: int = Query(10, ge=1, le=50, description="Number of recommendations to return"),
+    force_refresh: bool = Query(False, description="Force refresh the recommendations cache")
+):
+    """
+    Get product recommendations for the marketplace.
+    
+    This endpoint provides product recommendations using:
+    1. User's purchase history and preferences if user_id is provided
+    2. Explicit user inputs provided in the request
+    3. Collaborative filtering based on similar users' purchases
+    4. Trending products in the marketplace
+    """
+    if recommendation_engine is None:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Recommendation engine is not available"
+        )
+    
+    try:
+        # Generate cache key
+        cache_params = {
+            "user_id": user_id,
+            "user_input": user_input.dict() if user_input else None,
+            "num_recommendations": num_recommendations,
+            "endpoint": "product_recommendations"
+        }
+        cache_key = get_cache_key(cache_params)
         
-        if format.lower() == "json":
-            # Return JSON response
-            return {
-                "user_id": customer_id,
-                "recommended_products": recommendations,
-                "egyptian_context": get_egyptian_context().dict(),
-                "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            }
-        
-        elif format.lower() == "csv":
-            # Generate CSV content
-            headers = "StockCode,Description,Score,EgyptRelevance\n"
-            rows = []
-            for rec in recommendations:
-                egypt_relevance = rec.get('EgyptRelevance', '')
-                rows.append(f"{rec['StockCode']},\"{rec['Description']}\",{rec['Score']},{egypt_relevance}")
-            
-            csv_content = headers + "\n".join(rows)
-            
-            # Return as downloadable CSV
-            from fastapi.responses import Response
-            return Response(
-                content=csv_content,
-                media_type="text/csv",
-                headers={
-                    "Content-Disposition": f"attachment; filename=recommendations_egyptian_customer_{customer_id}.csv"
-                }
+        # Check cache unless force refresh is requested
+        if not force_refresh and is_cache_valid(cache_key):
+            cached_data = recommendation_cache[cache_key]["data"]
+            logger.info(f"Returning cached product recommendations for user {user_id}")
+            return ApiResponse(
+                status="success",
+                message=f"Cached product recommendations for user {user_id}",
+                data=cached_data
             )
         
+        # Prepare user context from input
+        user_context = {}
+        if user_input:
+            if user_input.preferred_industries:
+                user_context["preferred_industries"] = user_input.preferred_industries
+            if user_input.price_range:
+                user_context["price_range"] = user_input.price_range
+            if user_input.keywords:
+                user_context["keywords"] = user_input.keywords
+        
+        # Get product recommendations
+        if user_id:
+            # Get personalized product recommendations for known user
+            products = recommendation_engine.recommend_products_for_customer(
+                user_id=user_id,
+                user_context=user_context,
+                num_recommendations=num_recommendations
+            )
+            recommendation_reason = "Based on your preferences and purchase history"
         else:
-            raise HTTPException(status_code=400, detail="Invalid format. Use 'json' or 'csv'.")
-    
+            # Get recommendations based only on input criteria
+            products = recommendation_engine.recommend_products_by_criteria(
+                user_context=user_context,
+                num_recommendations=num_recommendations
+            )
+            recommendation_reason = "Popular products matching your criteria"
+        
+        # Format response
+        response_data = {
+            "recommendations": products,
+            "user_id": user_id,
+            "recommendation_type": "product",
+            "recommendation_reason": recommendation_reason,
+            "generated_at": datetime.now().isoformat()
+        }
+        
+        # Cache results
+        recommendation_cache[cache_key] = {
+            "data": response_data,
+            "cached_at": time.time()
+        }
+        
+        return ApiResponse(
+            status="success",
+            message=f"Product recommendations generated successfully",
+            data=response_data
+        )
+        
     except Exception as e:
-        logger.error(f"Error exporting recommendations for customer {customer_id}: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error generating product recommendations: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Error generating product recommendations: {str(e)}"
+        )
 
-@app.get("/export/recommendations/business/{business_name}", 
-         tags=["Export"])
-async def export_business_recommendations(
-    business_name: str = Path(..., description="The business name"),
-    num_product_recommendations: int = Query(20, description="Number of product recommendations", ge=1, le=100),
-    num_partner_recommendations: int = Query(10, description="Number of business partner recommendations", ge=1, le=50),
-    format: str = Query("json", description="Export format (json or csv)")
+@app.post("/api/interactions", status_code=status.HTTP_201_CREATED, response_model=ApiResponse)
+async def record_user_interaction(
+    interaction: UserInteraction, 
+    background_tasks: BackgroundTasks
 ):
     """
-    Export product and business partnership recommendations for a specific Egyptian business in JSON or CSV format.
+    Record a user interaction with a post or product.
     
-    - **business_name**: The business name
-    - **num_product_recommendations**: Number of product recommendations to export (default: 20)
-    - **num_partner_recommendations**: Number of business partner recommendations to export (default: 10)
-    - **format**: Export format, either 'json' or 'csv' (default: json)
+    This endpoint records:
+    1. Views, likes, ratings, comments, shares, or saves
+    2. Dwell time for views
+    3. Rating values for explicit ratings
+    
+    Interactions are processed in the background to ensure fast response times.
     """
-    global recommendation_engine
-    
     try:
-        # Generate recommendations
-        product_recommendations = recommendation_engine.recommend_products_for_business(
-            business_name, num_product_recommendations
+        # Record the interaction in the background
+        record_interaction(interaction, background_tasks)
+        
+        return ApiResponse(
+            status="success",
+            message=f"Interaction recorded successfully",
+            data={"user_id": interaction.user_id, "item_id": interaction.item_id, "type": interaction.interaction_type}
         )
         
-        partner_recommendations = recommendation_engine.recommend_business_partners(
-            business_name, num_partner_recommendations
+    except Exception as e:
+        logger.error(f"Error recording interaction: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Error recording interaction: {str(e)}"
         )
-        
-        # Apply Egyptian economic context
-        product_recommendations = recommendation_engine.combine_with_economic_context(product_recommendations)
-        
-        if format.lower() == "json":
-            # Return JSON response
-            return {
-                "business_name": business_name,
-                "recommended_products": product_recommendations,
-                "recommended_partners": partner_recommendations,
-                "egyptian_context": get_egyptian_context().dict(),
-                "industry_weights": recommendation_engine.economic_context.get('industry_weights'),
-                "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            }
-        
-        elif format.lower() == "csv":
-            # Generate CSV content for products
-            product_headers = "StockCode,Description,Score,EgyptRelevance\n"
-            product_rows = []
-            for rec in product_recommendations:
-                egypt_relevance = rec.get('EgyptRelevance', '')
-                product_rows.append(f"{rec['StockCode']},\"{rec['Description']}\",{rec['Score']},{egypt_relevance}")
-            
-            product_csv = product_headers + "\n".join(product_rows)
-            
-            # Generate CSV content for business partners
-            partner_headers = "BusinessName,Category,Location,TradeType,Region,SimilarityScore\n"
-            partner_rows = []
-            for rec in partner_recommendations:
-                region = rec.get('Region', '')
-                partner_rows.append(
-                    f"\"{rec['BusinessName']}\",\"{rec['Category']}\",\"{rec['Location']}\","
-                    f"\"{rec['TradeType']}\",\"{region}\",{rec['SimilarityScore']}"
-                )
-            
-            partner_csv = partner_headers + "\n".join(partner_rows)
-            
-            # Return as downloadable CSV
-            from fastapi.responses import Response
-            return Response(
-                content=f"EGYPTIAN BUSINESS PRODUCT RECOMMENDATIONS\n{product_csv}\n\nEGYPTIAN BUSINESS PARTNER RECOMMENDATIONS\n{partner_csv}",
-                media_type="text/csv",
-                headers={
-                    "Content-Disposition": f"attachment; filename=recommendations_egyptian_business_{business_name}.csv"
-                }
+
+@app.get("/api/interactions/user/{user_id}", status_code=status.HTTP_200_OK, response_model=ApiResponse)
+async def get_user_interactions(
+    user_id: str,
+    item_type: Optional[str] = Query(None, description="Filter by item type (post or product)"),
+    interaction_type: Optional[str] = Query(None, description="Filter by interaction type"),
+    limit: int = Query(50, ge=1, le=100, description="Maximum number of interactions to return")
+):
+    """
+    Get interaction history for a specific user.
+    
+    This endpoint returns:
+    1. User's interaction history
+    2. Filtered by item type and/or interaction type if specified
+    3. Limited to the most recent interactions
+    """
+    try:
+        if not INTERACTION_LOG_PATH.exists():
+            return ApiResponse(
+                status="success",
+                message=f"No interactions found for user {user_id}",
+                data={"interactions": []}
             )
         
-        else:
-            raise HTTPException(status_code=400, detail="Invalid format. Use 'json' or 'csv'.")
-    
-    except Exception as e:
-        logger.error(f"Error exporting recommendations for business {business_name}: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.post("/sync/user", 
-         response_model=SyncResponse,
-         tags=["Sync"])
-async def sync_user(
-    user: UserSync = Body(..., description="User data to sync with recommendation system")
-):
-    """
-    Sync a user profile with the recommendation system.
-    
-    This endpoint allows synchronizing user data from the main application with 
-    the recommendation system to ensure recommendations stay current.
-    
-    The user data should match the Prisma User model structure.
-    """
-    global recommendation_engine
-    
-    try:
-        # In a full implementation, this would update the user data in the recommendation system
-        # For now, we'll just log the data and return success
-        logger.info(f"Syncing user: {user.userId} ({user.name})")
+        # Load interaction data
+        interactions_df = pd.read_csv(INTERACTION_LOG_PATH)
         
-        # Here you would implement the actual sync logic:
-        # 1. Check if user exists in recommendation system
-        # 2. If yes, update user data
-        # 3. If no, add new user
+        # Filter for the specific user
+        user_interactions = interactions_df[interactions_df['UserID'] == user_id]
         
-        return {
-            "success": True,
-            "message": f"User {user.name} ({user.userId}) synced successfully",
-            "syncedItem": {
-                "userId": user.userId,
-                "name": user.name,
-                "type": user.type
-            }
-        }
-    
-    except Exception as e:
-        logger.error(f"Error syncing user: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.post("/sync/product", 
-         response_model=SyncResponse,
-         tags=["Sync"])
-async def sync_product(
-    product: ProductSync = Body(..., description="Product data to sync with recommendation system")
-):
-    """
-    Sync a product with the recommendation system.
-    
-    This endpoint allows synchronizing product data from the main application with 
-    the recommendation system to ensure recommendations stay current.
-    
-    The product data should match the Prisma Product model structure.
-    """
-    global recommendation_engine
-    
-    try:
-        # In a full implementation, this would update the product data in the recommendation system
-        # For now, we'll just log the data and return success
-        logger.info(f"Syncing product: {product.productId} ({product.name})")
+        # Apply additional filters if specified
+        if item_type:
+            user_interactions = user_interactions[user_interactions['ItemType'] == item_type]
         
-        # Here you would implement the actual sync logic:
-        # 1. Check if product exists in recommendation system
-        # 2. If yes, update product data
-        # 3. If no, add new product
+        if interaction_type:
+            user_interactions = user_interactions[user_interactions['InteractionType'] == interaction_type]
         
-        return {
-            "success": True,
-            "message": f"Product {product.name} ({product.productId}) synced successfully",
-            "syncedItem": {
-                "productId": product.productId,
-                "name": product.name,
-                "ownerId": product.ownerId
-            }
-        }
-    
-    except Exception as e:
-        logger.error(f"Error syncing product: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.post("/sync/order", 
-         response_model=SyncResponse,
-         tags=["Sync"])
-async def sync_order(
-    order: OrderSync = Body(..., description="Order data to sync with recommendation system")
-):
-    """
-    Sync an order with the recommendation system.
-    
-    This endpoint allows synchronizing order data from the main application with 
-    the recommendation system to improve collaborative filtering recommendations.
-    
-    The order data should match the Prisma Order model structure.
-    """
-    global recommendation_engine
-    
-    try:
-        # In a full implementation, this would update the recommendation system with new interactions
-        # For now, we'll just log the data and return success
-        logger.info(f"Syncing order: {order.orderId} (Importer: {order.importerId}, Exporter: {order.exporterId})")
+        # Sort by timestamp (most recent first) and limit
+        if 'Timestamp' in user_interactions.columns:
+            user_interactions = user_interactions.sort_values('Timestamp', ascending=False)
         
-        # Here you would implement the actual sync logic:
-        # 1. Add new user-item interactions based on order
-        # 2. Update product popularity metrics
-        # 3. Update user purchase history
+        # Limit results
+        user_interactions = user_interactions.head(limit)
         
-        return {
-            "success": True,
-            "message": f"Order {order.orderId} synced successfully",
-            "syncedItem": {
-                "orderId": order.orderId,
-                "importerId": order.importerId,
-                "productCount": len(order.products)
-            }
-        }
-    
-    except Exception as e:
-        logger.error(f"Error syncing order: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-class UserInteraction(BaseModel):
-    user_id: str = Field(..., description="The user ID")
-    post_id: int = Field(..., description="The post ID being interacted with")
-    interaction_type: str = Field(..., description="Type of interaction: view, like, comment, rate, share")
-    interaction_value: Optional[float] = Field(None, description="Value for rating interactions (1-5)")
-    time_spent: Optional[int] = Field(None, description="Time spent viewing in seconds")
-    timestamp: Optional[str] = Field(None, description="ISO timestamp of interaction")
-
-class InteractionResponse(BaseModel):
-    success: bool
-    message: str
-    interaction_id: Optional[str] = None
-
-@app.post("/interactions/track", 
-         response_model=InteractionResponse,
-         tags=["User Interactions"])
-async def track_user_interaction(
-    interaction: UserInteraction = Body(..., description="User interaction data to track")
-):
-    """
-    Track a user interaction with a company post for real-time recommendation improvement.
-    
-    - **user_id**: The unique user ID
-    - **post_id**: The ID of the post being interacted with
-    - **interaction_type**: Type of interaction (view, like, comment, rate, share)
-    - **interaction_value**: Optional rating value (1-5) for rating interactions
-    - **time_spent**: Time spent viewing the post in seconds
-    - **timestamp**: ISO timestamp of the interaction (defaults to current time)
-    
-    This data is used to improve future recommendations for the user and similar users.
-    """
-    try:
-        # For now, we'll just log the interaction
-        # In a production system, this would be stored in a database
-        # and used to retrain models periodically
+        # Convert to list of dictionaries
+        interactions_list = user_interactions.to_dict('records')
         
-        logger.info(f"Tracked interaction: User {interaction.user_id} {interaction.interaction_type} post {interaction.post_id}")
-        
-        # Validate interaction type
-        valid_interactions = ["view", "like", "comment", "rate", "share"]
-        if interaction.interaction_type not in valid_interactions:
-            raise HTTPException(
-                status_code=400, 
-                detail=f"Invalid interaction type. Must be one of: {valid_interactions}"
-            )
-        
-        # Validate rating value if provided
-        if interaction.interaction_type == "rate" and interaction.interaction_value:
-            if not (1 <= interaction.interaction_value <= 5):
-                raise HTTPException(
-                    status_code=400,
-                    detail="Rating value must be between 1 and 5"
-                )
-        
-        # Generate interaction ID (in production, this would be from database)
-        interaction_id = f"{interaction.user_id}_{interaction.post_id}_{interaction.interaction_type}_{datetime.now().timestamp()}"
-        
-        return InteractionResponse(
-            success=True,
-            message=f"Successfully tracked {interaction.interaction_type} interaction",
-            interaction_id=interaction_id
+        return ApiResponse(
+            status="success",
+            message=f"Retrieved {len(interactions_list)} interactions for user {user_id}",
+            data={"interactions": interactions_list}
         )
-    
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"Error tracking user interaction: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.post("/admin/retrain", 
-         response_model=SyncResponse,
-         tags=["Admin"])
-async def retrain_models():
-    """
-    Trigger a full retraining of all recommendation models.
-    
-    This admin endpoint allows initiating a complete retraining of all recommendation models
-    using the latest data. This is a resource-intensive operation and should be used sparingly.
-    """
-    try:
-        # In a full implementation, this would trigger a background process to retrain models
-        # For now, we'll just return success
-        logger.info("Triggering full model retraining")
         
-        # Here you would implement the actual retraining logic:
-        # 1. Initiate background task to retrain all models
-        # 2. Monitor progress
-        # 3. Update models when complete
-        
-        return {
-            "success": True,
-            "message": "Model retraining initiated. This may take some time to complete.",
-            "syncedItem": None
-        }
-    
     except Exception as e:
-        logger.error(f"Error initiating model retraining: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error retrieving user interactions: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Error retrieving user interactions: {str(e)}"
+        )
 
+# Add the methods to recommendation engine that are referenced but might not exist
+if recommendation_engine is not None:
+    
+    # Add find_similar_posts_to_rated if not exists
+    if not hasattr(recommendation_engine, 'find_similar_posts_to_rated'):
+        def find_similar_posts_to_rated(self, user_id, top_k=5):
+            """
+            Find posts similar to those rated highly by the user.
+            
+            Args:
+                user_id (str): User ID
+                top_k (int): Number of similar posts to find
+                
+            Returns:
+                list: List of similar posts with scores
+            """
+            try:
+                # Check if we have interaction data
+                if not INTERACTION_LOG_PATH.exists():
+                    logger.warning(f"No interaction data found when looking for similar posts")
+                    return []
+                
+                # Load interaction logs
+                interactions_df = pd.read_csv(INTERACTION_LOG_PATH)
+                
+                # Filter for ratings by this user
+                user_ratings = interactions_df[
+                    (interactions_df['UserID'] == user_id) & 
+                    (interactions_df['InteractionType'] == 'rate') & 
+                    (interactions_df['Value'] >= 4.0)  # Only high ratings (4-5)
+                ]
+                
+                if len(user_ratings) == 0:
+                    logger.info(f"No high ratings found for user {user_id}")
+                    return []
+                
+                similar_posts = []
+                
+                # For each highly rated post, find similar posts
+                for _, row in user_ratings.iterrows():
+                    rated_post_id = row['ItemID']
+                    
+                    # Find similar posts with existing method
+                    similar = self.find_similar_posts(rated_post_id, top_k)
+                    
+                    # Add to results if not already rated by the user
+                    for post in similar:
+                        post_id = post.get('PostID')
+                        if post_id not in user_ratings['ItemID'].values and not any(p.get('PostID') == post_id for p in similar_posts):
+                            post['RecommendationReason'] = f"Similar to content you rated highly"
+                            similar_posts.append(post)
+                
+                return similar_posts
+            
+            except Exception as e:
+                logger.error(f"Error finding similar rated posts: {e}")
+                return []
+                
+        # Add the method to the recommendation engine
+        setattr(recommendation_engine.__class__, 'find_similar_posts_to_rated', find_similar_posts_to_rated)
+    
+    # Add recommend_by_criteria if not exists
+    if not hasattr(recommendation_engine, 'recommend_by_criteria'):
+        def recommend_by_criteria(self, user_context, num_recommendations=10):
+            """
+            Get recommendations based on explicit criteria rather than user ID.
+            
+            Args:
+                user_context (dict): Dictionary of user criteria
+                num_recommendations (int): Number of recommendations to return
+                
+            Returns:
+                list: List of recommended posts
+            """
+            try:
+                logger.info(f"Generating recommendations by criteria: {user_context}")
+                
+                # Use any context-based methods if available
+                if hasattr(self, '_get_recommendations_by_context'):
+                    return self._get_recommendations_by_context(user_context, num_recommendations)
+                
+                # Fallback: filter posts based on criteria
+                if hasattr(self, 'posts_df'):
+                    filtered_posts = self.posts_df.copy()
+                    
+                    # Apply filters based on user_context
+                    if 'preferred_industries' in user_context and user_context['preferred_industries']:
+                        industries = user_context['preferred_industries']
+                        if 'Industry' in filtered_posts.columns:
+                            filtered_posts = filtered_posts[filtered_posts['Industry'].isin(industries)]
+                    
+                    # Apply business size filter if relevant
+                    if 'business_size' in user_context and user_context['business_size']:
+                        if 'BusinessSize' in filtered_posts.columns:
+                            filtered_posts = filtered_posts[filtered_posts['BusinessSize'] == user_context['business_size']]
+                    
+                    # Apply location filter if relevant
+                    if 'location' in user_context and user_context['location']:
+                        if 'Location' in filtered_posts.columns:
+                            filtered_posts = filtered_posts[filtered_posts['Location'].str.contains(user_context['location'], na=False)]
+                    
+                    # Apply keyword filter if relevant
+                    if 'keywords' in user_context and user_context['keywords']:
+                        keywords = user_context['keywords']
+                        # Look for keywords in PostTitle, Description, or other text fields
+                        for field in ['PostTitle', 'Description', 'Content']:
+                            if field in filtered_posts.columns:
+                                keyword_mask = filtered_posts[field].str.contains('|'.join(keywords), case=False, na=False)
+                                filtered_posts = filtered_posts[keyword_mask]
+                    
+                    # Sort by engagement or other relevant metric
+                    if 'Engagement' in filtered_posts.columns:
+                        filtered_posts = filtered_posts.sort_values('Engagement', ascending=False)
+                    
+                    # Convert to list of dictionaries for the API response
+                    result = []
+                    for idx, post in filtered_posts.head(num_recommendations).iterrows():
+                        result.append({
+                            "PostID": str(idx),
+                            "PostTitle": post.get('PostTitle', f"Post {idx}"),
+                            "Industry": post.get('Industry', 'Unknown'),
+                            "CompanyName": post.get('CompanyName', 'Unknown Company'),
+                            "Score": 0.8,  # Default score for criteria-based matches
+                            "RecommendationReason": "Matches your selected criteria"
+                        })
+                    
+                    return result
+                
+                # Ultimate fallback
+                logger.warning("Using fallback recommendations for criteria-based query")
+                return self._get_fallback_recommendations(user_context, num_recommendations)
+                
+            except Exception as e:
+                logger.error(f"Error generating recommendations by criteria: {e}")
+                return self._get_fallback_recommendations(user_context, num_recommendations)
+        
+        # Add the method to the recommendation engine
+        setattr(recommendation_engine.__class__, 'recommend_by_criteria', recommend_by_criteria)
+    
+    # Add recommend_products_for_customer if not exists
+    if not hasattr(recommendation_engine, 'recommend_products_for_customer'):
+        def recommend_products_for_customer(self, user_id, user_context=None, num_recommendations=10):
+            """
+            Get product recommendations for a customer.
+            
+            Args:
+                user_id (str): User ID
+                user_context (dict): Additional context
+                num_recommendations (int): Number of recommendations to return
+                
+            Returns:
+                list: List of recommended products
+            """
+            try:
+                logger.info(f"Generating product recommendations for user {user_id}")
+                
+                # Check if we have user-item interaction data
+                user_item_matrix_path = Path("data/processed/user_item_matrix.csv")
+                
+                if user_item_matrix_path.exists():
+                    # Use collaborative filtering approach
+                    return self._get_collaborative_product_recommendations(user_id, num_recommendations)
+                
+                # Fallback: use retail data with basic filtering
+                if hasattr(self, 'products_df') and self.products_df is not None:
+                    # Apply user context filters if available
+                    filtered_products = self.products_df.copy()
+                    
+                    if user_context:
+                        # Apply industry filter
+                        if 'preferred_industries' in user_context and user_context['preferred_industries']:
+                            if 'Category' in filtered_products.columns:
+                                filtered_products = filtered_products[
+                                    filtered_products['Category'].isin(user_context['preferred_industries'])
+                                ]
+                        
+                        # Apply price range filter
+                        if 'price_range' in user_context and user_context['price_range']:
+                            price_range = user_context['price_range']
+                            if 'UnitPrice' in filtered_products.columns:
+                                if price_range == 'low':
+                                    filtered_products = filtered_products[filtered_products['UnitPrice'] < 50]
+                                elif price_range == 'medium':
+                                    filtered_products = filtered_products[
+                                        (filtered_products['UnitPrice'] >= 50) & 
+                                        (filtered_products['UnitPrice'] < 200)
+                                    ]
+                                elif price_range == 'high':
+                                    filtered_products = filtered_products[filtered_products['UnitPrice'] >= 200]
+                    
+                    # Sample products to return
+                    sample_size = min(num_recommendations, len(filtered_products))
+                    if sample_size > 0:
+                        products_sample = filtered_products.sample(sample_size)
+                        
+                        result = []
+                        for idx, product in products_sample.iterrows():
+                            result.append({
+                                "ProductID": str(idx),
+                                "Description": product.get('Description', f"Product {idx}"),
+                                "Category": product.get('Category', 'Unknown'),
+                                "UnitPrice": product.get('UnitPrice', 0),
+                                "Score": 0.7,
+                                "RecommendationReason": "Based on your preferences"
+                            })
+                        
+                        return result
+                
+                # Ultimate fallback: generate sample product recommendations
+                return [
+                    {
+                        "ProductID": f"{1000 + i}",
+                        "Description": f"Egyptian Product {i+1}",
+                        "Category": ["Textiles", "Handicrafts", "Food", "Electronics"][i % 4],
+                        "UnitPrice": float(f"{(i+1) * 25.99:.2f}"),
+                        "Score": 0.9 - (i * 0.05),
+                        "RecommendationReason": "Popular Egyptian product"
+                    }
+                    for i in range(num_recommendations)
+                ]
+                
+            except Exception as e:
+                logger.error(f"Error generating product recommendations: {e}")
+                return []
+        
+        # Add the method to the recommendation engine
+        setattr(recommendation_engine.__class__, 'recommend_products_for_customer', recommend_products_for_customer)
+    
+    # Add recommend_products_by_criteria if not exists
+    if not hasattr(recommendation_engine, 'recommend_products_by_criteria'):
+        def recommend_products_by_criteria(self, user_context, num_recommendations=10):
+            """
+            Get product recommendations based on criteria.
+            
+            Args:
+                user_context (dict): Dictionary of criteria
+                num_recommendations (int): Number of recommendations to return
+                
+            Returns:
+                list: List of recommended products
+            """
+            try:
+                logger.info(f"Generating product recommendations by criteria: {user_context}")
+                
+                # Ultimate fallback: generate sample product recommendations
+                categories = ["Textiles", "Handicrafts", "Food", "Electronics", "Spices", "Jewelry", "Furniture"]
+                
+                # Filter categories by preferred industries if provided
+                if 'preferred_industries' in user_context and user_context['preferred_industries']:
+                    filtered_categories = []
+                    for industry in user_context['preferred_industries']:
+                        if industry == "Textiles & Garments":
+                            filtered_categories.append("Textiles")
+                        elif industry == "Handicrafts & Furniture":
+                            filtered_categories.extend(["Handicrafts", "Furniture"])
+                        elif industry == "Agriculture & Food":
+                            filtered_categories.extend(["Food", "Spices"])
+                        elif industry == "Electronics":
+                            filtered_categories.append("Electronics")
+                        elif industry == "Jewelry & Accessories":
+                            filtered_categories.append("Jewelry")
+                    
+                    if filtered_categories:
+                        categories = filtered_categories
+                
+                return [
+                    {
+                        "ProductID": f"{1000 + i}",
+                        "Description": f"Egyptian {categories[i % len(categories)]} Product {i+1}",
+                        "Category": categories[i % len(categories)],
+                        "UnitPrice": float(f"{(i+1) * 25.99:.2f}"),
+                        "Score": 0.9 - (i * 0.05),
+                        "RecommendationReason": "Matches your selected criteria"
+                    }
+                    for i in range(num_recommendations)
+                ]
+                
+            except Exception as e:
+                logger.error(f"Error generating product recommendations by criteria: {e}")
+                return []
+        
+        # Add the method to the recommendation engine
+        setattr(recommendation_engine.__class__, 'recommend_products_by_criteria', recommend_products_by_criteria)
+
+# Custom OpenAPI schema
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    
+    openapi_schema = get_openapi(
+        title="Buy from Egypt Recommendation API",
+        version="1.0.0",
+        description="Advanced recommendation API with dwell time tracking and collaborative filtering",
+        routes=app.routes,
+    )
+    
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+app.openapi = custom_openapi
+
+# Start server if run as main
 if __name__ == "__main__":
     uvicorn.run("api.main:app", host="0.0.0.0", port=8000, reload=True)

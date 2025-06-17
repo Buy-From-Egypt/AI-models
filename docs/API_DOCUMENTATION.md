@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Buy-From-Egypt Recommendation API provides personalized recommendations for Egyptian businesses and customers, leveraging machine learning models that incorporate collaborative filtering, content-based filtering, and Egyptian-specific economic context.
+The Buy-From-Egypt Recommendation API provides personalized recommendations for Egyptian businesses and customers, leveraging machine learning models that incorporate collaborative filtering, content-based filtering, and dwell time tracking.
 
 ## Base URL
 
@@ -27,97 +27,127 @@ GET /
 **Response:**
 ```json
 {
-  "status": "Egyptian Recommendation API is running"
-}
-```
-
-### Customer Recommendations
-
-```
-GET /recommend/customer/{customer_id}
-```
-
-**Description:** Get personalized product recommendations for a specific customer.
-
-**Path Parameters:**
-- `customer_id` - The unique customer identifier
-
-**Query Parameters:**
-- `num_recommendations` (optional, integer, default: 10) - Number of recommendations to return (min: 1, max: 100)
-- `apply_economic_context` (optional, boolean, default: true) - Whether to adjust recommendations based on Egyptian economic indicators
-- `include_egyptian_context` (optional, boolean, default: true) - Whether to include economic context data in the response
-
-**Response:**
-```json
-{
-  "user_id": "12395",
-  "recommended_products": [
-    {
-      "StockCode": "21977",
-      "Description": "PACK OF 60 PINK PAISLEY CAKE CASES",
-      "Score": 0.95,
-      "EgyptRelevance": 0.8
-    },
-    {
-      "StockCode": "22632",
-      "Description": "HAND WARMER RED POLKA DOT",
-      "Score": 0.87,
-      "EgyptRelevance": 0.5
-    }
-  ],
-  "egyptian_context": {
-    "gdp_growth": 4.35,
-    "inflation": 5.04,
-    "population_growth": 1.73,
-    "tourism_sensitivity": 0.85,
-    "economic_stability_index": 0.65,
-    "trade_balance": -0.12,
-    "is_winter_tourism_season": 1,
-    "is_ramadan_season": 0,
-    "current_date": "2025-05-03"
+  "status": "success",
+  "message": "Buy from Egypt Recommendation API is running",
+  "data": {
+    "version": "1.0.0"
   }
 }
 ```
 
-### Business Recommendations
-
 ```
-GET /recommend/business/{business_name}
+GET /api/health
 ```
 
-**Description:** Get product and business partnership recommendations for a specific business.
-
-**Path Parameters:**
-- `business_name` - The name of the business
-
-**Query Parameters:**
-- `num_product_recommendations` (optional, integer, default: 10) - Number of product recommendations (min: 1, max: 100)
-- `num_partner_recommendations` (optional, integer, default: 5) - Number of business partner recommendations (min: 1, max: 50)
-- `apply_economic_context` (optional, boolean, default: true) - Whether to adjust recommendations based on Egyptian economic indicators
-- `include_industry_weights` (optional, boolean, default: true) - Whether to include Egyptian industry weights in the response
+**Description:** Detailed health check for the API and recommendation engine.
 
 **Response:**
 ```json
 {
-  "business_name": "Egyptian Imports",
-  "recommended_products": [
-    {
-      "StockCode": "47567B",
-      "Description": "TEA TIME KITCHEN APRON",
-      "Score": 0.42,
-      "EgyptRelevance": 0.04
-    }
-  ],
-  "recommended_partners": [
-    {
-      "BusinessName": "Sahara Enterprises",
-      "Category": "Agriculture",
-      "Location": "Cairo, Egypt",
-      "TradeType": "Importer",
-      "SimilarityScore": 0.95,
-      "Region": "Greater Cairo",
-      "LogisticsAccess": 4,
-      "MarketAccessScore": 3
+  "status": "success",
+  "message": "Recommendation system health status",
+  "data": {
+    "api_available": true,
+    "engine_initialized": true,
+    "version": "1.0.0",
+    "timestamp": "2023-05-10T12:30:45.123456"
+  }
+}
+```
+
+### Post Recommendations
+
+```
+POST /api/recommendations/posts
+```
+
+**Description:** Get personalized post recommendations for users.
+
+**Query Parameters:**
+- `user_id` (optional, string) - User ID for personalized recommendations
+- `num_recommendations` (optional, integer, default: 10) - Number of recommendations to return (min: 1, max: 50)
+- `include_similar_rated` (optional, boolean, default: false) - Include posts similar to ones the user rated highly
+- `force_refresh` (optional, boolean, default: false) - Force refresh the recommendations cache
+
+**Request Body:**
+```json
+{
+  "preferred_industries": ["Textiles", "Handicrafts"],
+  "preferred_supplier_type": "Manufacturer",
+  "business_size": "Small",
+  "location": "Cairo",
+  "keywords": ["handmade", "traditional"]
+}
+```
+
+**Response:**
+```json
+{
+  "status": "success",
+  "message": "Post recommendations generated successfully",
+  "data": {
+    "recommendations": [
+      {
+        "PostID": "123",
+        "PostTitle": "Traditional Egyptian Textiles",
+        "Industry": "Textiles",
+        "CompanyName": "Cairo Crafts",
+        "Score": 0.95,
+        "RecommendationReason": "Based on your preferences and browsing history"
+      }
+    ],
+    "user_id": "user_123",
+    "recommendation_type": "post",
+    "recommendation_reason": "Based on your preferences and browsing history",
+    "generated_at": "2023-05-10T12:30:45.123456"
+  }
+}
+```
+
+### Product Recommendations
+
+```
+POST /api/recommendations/products
+```
+
+**Description:** Get personalized product recommendations for marketplace.
+
+**Query Parameters:**
+- `user_id` (optional, string) - User ID for personalized recommendations
+- `num_recommendations` (optional, integer, default: 10) - Number of recommendations to return (min: 1, max: 50)
+- `force_refresh` (optional, boolean, default: false) - Force refresh the recommendations cache
+
+**Request Body:**
+```json
+{
+  "preferred_industries": ["Food", "Handicrafts"],
+  "price_range": "medium",
+  "keywords": ["spices", "traditional"]
+}
+```
+
+**Response:**
+```json
+{
+  "status": "success",
+  "message": "Product recommendations generated successfully",
+  "data": {
+    "recommendations": [
+      {
+        "ProductID": "1001",
+        "Description": "Egyptian Food Product 1",
+        "Category": "Food",
+        "UnitPrice": 25.99,
+        "Score": 0.9,
+        "RecommendationReason": "Matches your selected criteria"
+      }
+    ],
+    "user_id": "user_123",
+    "recommendation_type": "product",
+    "recommendation_reason": "Based on your preferences and purchase history",
+    "generated_at": "2023-05-10T12:30:45.123456"
+  }
+}
     }
   ],
   "egyptian_context": {

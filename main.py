@@ -1,72 +1,90 @@
 #!/usr/bin/env python3
-import argparse
-import logging
+import pandas as pd
+import numpy as np
 import os
 import sys
 from pathlib import Path
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
-
-def process_data():
-    """Run the data processing pipeline."""
-    from src.data_processing.prepare_data import main as prepare_data_main
-    logger.info("Starting data processing...")
-    prepare_data_main()
-    logger.info("Data processing completed.")
-
-def train_models():
-    """Train the recommendation models."""
-    from src.models.train_models import main as train_models_main
-    logger.info("Starting model training...")
-    train_models_main()
-    logger.info("Model training completed.")
-
-def run_api():
-    """Run the API server."""
-    import uvicorn
-    logger.info("Starting API server...")
-    uvicorn.run("api.main:app", host="0.0.0.0", port=8000, reload=True)
+# Add src to Python path for imports
+src_path = Path(__file__).parent / "src"
+sys.path.append(str(src_path))
 
 def main():
-    """Main entry point for the recommendation system."""
-    parser = argparse.ArgumentParser(description='Egypt Business Recommendation System')
-    parser.add_argument('--process', action='store_true', help='Process data')
-    parser.add_argument('--train', action='store_true', help='Train models')
-    parser.add_argument('--api', action='store_true', help='Run API server')
-    parser.add_argument('--all', action='store_true', help='Run the entire pipeline (process, train, API)')
+    """
+    Main entry point for the Egyptian recommendation system.
+    Provides a quick overview and system check.
+    """
+    print("🇪🇬 Egyptian Business Hybrid Recommendation System")
+    print("=" * 60)
+    print("🎯 Advanced AI-powered B2B recommendations for Egyptian market")
+    print()
     
-    args = parser.parse_args()
+    # Check system requirements
+    print("🔍 System Requirements Check:")
     
-    # Check if any action was specified, otherwise show help
-    if not (args.process or args.train or args.api or args.all):
-        parser.print_help()
+    # Check if we have the required data
+    data_dir = Path("data")
+    if not data_dir.exists():
+        print("❌ Data directory not found")
         return
+    else:
+        print("✅ Data directory found")
     
-    try:
-        # Create necessary directories
-        os.makedirs('data/processed', exist_ok=True)
-        os.makedirs('models', exist_ok=True)
-        
-        # Execute requested actions
-        if args.all or args.process:
-            process_data()
-        
-        if args.all or args.train:
-            train_models()
-        
-        if args.all or args.api:
-            run_api()
+    # Check for processed data
+    processed_dir = data_dir / "processed"
+    if processed_dir.exists():
+        files = list(processed_dir.glob("*.csv"))
+        print(f"✅ Found {len(files)} processed data files")
+    else:
+        print("⚠️  No processed data found - run data processing first")
     
-    except Exception as e:
-        logger.error(f"Error: {e}")
-        return 1
+    # Check for trained models
+    models_dir = Path("models")
+    if models_dir.exists():
+        model_files = list(models_dir.glob("*.pth"))
+        if model_files:
+            print(f"✅ Found {len(model_files)} trained model(s)")
+        else:
+            print("⚠️  No trained models found - run training first")
+    else:
+        print("⚠️  Models directory not found")
     
-    return 0
+    print()
+    print("🚀 Available Commands:")
+    print("  📊 Data Processing:    python -m src.data_processing.data_processor")
+    print("  🎯 Model Training:     python src/train.py")
+    print("  🔮 Generate Predictions: python src/predict.py --user-id 1000")
+    print("  🤝 Business Partners:   python src/predict.py --business-name 'Company Name'")
+    print()
+    
+    # Quick system test if models are available
+    if models_dir.exists() and list(models_dir.glob("*.pth")):
+        try:
+            print("🧪 Quick System Test:")
+            from src.models.recommendation_engine import PostRecommendationEngine
+            
+            engine = PostRecommendationEngine()
+            print("✅ Recommendation engine loaded successfully")
+            
+            # Test with sample data
+            print("📋 Sample recommendation test:")
+            try:
+                recommendations = engine.recommend_products_for_customer("1000", 3)
+                if recommendations:
+                    for i, rec in enumerate(recommendations[:2], 1):
+                        print(f"  {i}. {rec['Description'][:35]}... (Score: {rec['Score']:.3f})")
+                    print("✅ Product recommendations working")
+                else:
+                    print("⚠️  No recommendations generated (check data)")
+            except Exception as e:
+                print(f"⚠️  Recommendation test failed: {e}")
+                
+        except Exception as e:
+            print(f"⚠️  System test failed: {e}")
+    
+    print()
+    print("🎉 Egyptian Business Recommendation System Ready!")
+    print("📖 See README.md for detailed usage instructions")
 
 if __name__ == "__main__":
-    sys.exit(main()) 
+    main()

@@ -1,6 +1,6 @@
-# Buy-From-Egypt API Integration Guide for Backend Developers
+# Buy-From-Egypt API Integration Guide
 
-This guide provides detailed information for backend developers on how to integrate with the Buy-From-Egypt recommendation system and chatbot APIs.
+This guide provides detailed information for developers on how to integrate with the Buy-From-Egypt recommendation system API.
 
 ## Table of Contents
 
@@ -8,37 +8,26 @@ This guide provides detailed information for backend developers on how to integr
 2. [Authentication](#authentication)
 3. [Recommendation API](#recommendation-api)
    - [API Base URL](#api-base-url)
-   - [Endpoints](#endpoints)
+   - [Core Endpoints](#core-endpoints)
    - [Data Models](#data-models)
    - [Example Requests](#example-requests)
-4. [Chatbot API](#chatbot-api)
-   - [API Base URL](#chatbot-api-base-url)
-   - [Endpoints](#chatbot-endpoints)
-   - [Data Models](#chatbot-data-models)
-   - [Example Requests](#chatbot-example-requests)
-5. [Data Synchronization](#data-synchronization)
-6. [Error Handling](#error-handling)
+4. [Integration Best Practices](#integration-best-practices)
+5. [Error Handling](#error-handling)
+6. [Performance Considerations](#performance-considerations)
 7. [Deployment Notes](#deployment-notes)
 
 ## Overview
 
-The Buy-From-Egypt platform consists of two main API components:
+The Buy-From-Egypt recommendation system API provides developers with access to an advanced recommendation engine specifically designed for Egyptian businesses and products. The system leverages:
 
-1. **Recommendation API**: Provides personalized product and business recommendations for Egyptian customers and businesses, leveraging machine learning algorithms and Egyptian economic context.
-
-2. **Business Chatbot API**: Provides an AI assistant specializing in Egyptian business knowledge, answering questions about industries, regions, and economic factors.
-
-These APIs can be used independently or together to enhance your Egyptian e-commerce or business platform.
+1. **Collaborative Filtering**: Recommends items based on user interaction patterns
+2. **Content-Based Filtering**: Uses business and product metadata to find relevant matches
+3. **Dwell Time Analysis**: Considers user engagement time to identify compelling content
+4. **Hybrid Approach**: Combines multiple methods for optimal recommendations
 
 ## Authentication
 
-Both APIs currently use simple API key authentication via header:
-
-```
-X-API-Key: your_api_key_here
-```
-
-Contact the Buy-From-Egypt team for API key provisioning. In production, the APIs will support OAuth2 authentication.
+Currently, no authentication is required for development. In production, the API will integrate with the main platform's authentication mechanism.
 
 ## Recommendation API
 
@@ -47,7 +36,7 @@ Contact the Buy-From-Egypt team for API key provisioning. In production, the API
 Development: `http://localhost:8000`  
 Production: `https://api.buyfromegypt.com/recommendations`
 
-### Endpoints
+### Core Endpoints
 
 #### Health Check
 
@@ -58,73 +47,315 @@ GET /
 **Response:**
 ```json
 {
-  "status": "Egyptian Recommendation API is running"
-}
-```
+### Core Endpoints
 
-#### Get Customer Recommendations
+#### API Health Check
 
 ```
-GET /recommend/customer/{customer_id}
+GET /
+GET /api/health
 ```
 
-**Parameters:**
-- `customer_id` (path): The ID of the customer to get recommendations for
+**Description:** Verify if the API is running and check the status of the recommendation engine.
 
 **Response:**
 ```json
 {
-  "user_id": "10001",
-  "recommended_products": [
-    {
-      "StockCode": "EGY00063",
-      "Description": "Food Processing Equipment",
-      "UnitPrice": 239.99,
-      "confidence_score": 0.92
-    },
-    ...
-  ],
-  "recommended_categories": [
-    {
-      "category": "Food Processing",
-      "confidence_score": 0.87
-    },
-    ...
-  ]
+  "status": "success",
+  "message": "Buy from Egypt Recommendation API is running",
+  "data": {
+    "version": "1.0.0"
+  }
 }
 ```
 
-#### Get Business Recommendations
+#### Post Recommendations
 
 ```
-GET /recommend/business/{business_name}
+POST /api/recommendations/posts
 ```
 
-**Parameters:**
-- `business_name` (path): The name of the business to get recommendations for
-- `limit` (query, optional): Maximum number of recommendations to return (default: 5)
+**Description:** Get personalized post recommendations for users.
+
+**Query Parameters:**
+- `user_id` (optional): User ID for personalized recommendations
+- `num_recommendations` (optional, default: 10): Number of recommendations
+- `include_similar_rated` (optional, default: false): Include posts similar to ones rated highly
+- `force_refresh` (optional, default: false): Force refresh the recommendations cache
+
+**Request Body:**
+```json
+{
+  "preferred_industries": ["Textiles", "Handicrafts"],
+  "preferred_supplier_type": "Manufacturer",
+  "business_size": "Small",
+  "location": "Cairo",
+  "keywords": ["handmade", "traditional"]
+}
+```
 
 **Response:**
 ```json
 {
-  "business_name": "International Fruits Agriculture Egypt",
-  "recommended_products": [],
-  "recommended_businesses": [
-    {
-      "business_name": "Cairo Packaging Solutions",
-      "industry": "Packaging",
-      "match_score": 0.95,
-      "reason": "Complementary business that handles packaging of agricultural exports"
-    },
-    ...
-  ]
+  "status": "success",
+  "message": "Post recommendations generated successfully",
+  "data": {
+    "recommendations": [
+      {
+        "PostID": "123",
+        "PostTitle": "Traditional Egyptian Textiles",
+        "Industry": "Textiles",
+        "CompanyName": "Cairo Crafts",
+        "Score": 0.95,
+        "RecommendationReason": "Based on your preferences and browsing history"
+      }
+    ],
+    "user_id": "user_123",
+    "recommendation_type": "post",
+    "recommendation_reason": "Based on your preferences and browsing history",
+    "generated_at": "2023-05-10T12:30:45.123456"
+  }
 }
 ```
 
-#### Get Egyptian Economic Context
+#### Product Recommendations
 
 ```
-GET /egyptian-economic-context
+POST /api/recommendations/products
+```
+
+**Description:** Get personalized product recommendations for marketplace.
+
+**Query Parameters:**
+- `user_id` (optional): User ID for personalized recommendations
+- `num_recommendations` (optional, default: 10): Number of recommendations
+- `force_refresh` (optional, default: false): Force refresh the recommendations cache
+
+**Request Body:**
+```json
+{
+  "preferred_industries": ["Food", "Handicrafts"],
+  "price_range": "medium",
+  "keywords": ["spices", "traditional"]
+}
+```
+
+**Response:**
+```json
+{
+  "status": "success",
+  "message": "Product recommendations generated successfully",
+  "data": {
+    "recommendations": [
+      {
+        "ProductID": "1001",
+        "Description": "Egyptian Food Product 1",
+        "Category": "Food",
+        "UnitPrice": 25.99,
+        "Score": 0.9,
+        "RecommendationReason": "Matches your selected criteria"
+      }
+    ],
+    "user_id": "user_123",
+    "recommendation_type": "product",
+    "recommendation_reason": "Based on your preferences and purchase history",
+    "generated_at": "2023-05-10T12:30:45.123456"
+  }
+}
+```
+
+#### Record User Interactions
+
+```
+POST /api/interactions
+```
+
+**Description:** Record a user interaction with a post or product.
+
+**Request Body:**
+```json
+{
+  "user_id": "user_123",
+  "item_id": "post_456",
+  "item_type": "post",
+  "interaction_type": "view",
+  "value": 1.0,
+  "dwell_time_seconds": 45,
+  "timestamp": "2023-05-10T12:30:45.123456"
+}
+```
+
+**Response:**
+```json
+{
+  "status": "success",
+  "message": "Interaction recorded successfully",
+  "data": {
+    "user_id": "user_123",
+    "item_id": "post_456",
+    "type": "view"
+  }
+}
+```
+
+#### Get User Interaction History
+
+```
+GET /api/interactions/user/{user_id}
+```
+
+**Description:** Get interaction history for a specific user.
+
+**Path Parameters:**
+- `user_id`: The unique user identifier
+
+**Query Parameters:**
+- `item_type` (optional): Filter by item type (post or product)
+- `interaction_type` (optional): Filter by interaction type
+- `limit` (optional, default: 50): Maximum number of interactions to return
+
+**Response:**
+```json
+{
+  "status": "success",
+  "message": "Retrieved 2 interactions for user user_123",
+  "data": {
+    "interactions": [
+      {
+        "UserID": "user_123",
+        "ItemID": "post_456",
+        "ItemType": "post",
+        "InteractionType": "view",
+        "Value": 1.0,
+        "DwellTimeSeconds": 45,
+        "Timestamp": "2023-05-10T12:30:45.123456"
+      }
+    ]
+  }
+}
+```
+
+### Data Models
+
+#### UserInput Model
+
+The `UserInput` model is used to pass user preferences for recommendation requests:
+
+```json
+{
+  "preferred_industries": ["Textiles", "Handicrafts"],
+  "preferred_supplier_type": "Manufacturer",
+  "business_size": "Small",
+  "location": "Cairo", 
+  "price_range": "medium", 
+  "keywords": ["handmade", "traditional"]
+}
+```
+
+#### UserInteraction Model
+
+The `UserInteraction` model is used to record user interactions:
+
+```json
+{
+  "user_id": "user_123",  
+  "item_id": "post_456",  
+  "item_type": "post",  // or "product"
+  "interaction_type": "view",  // "view", "like", "rate", "save", "share", "comment"
+  "value": 1.0,  // optional, value for ratings
+  "dwell_time_seconds": 45,  // optional, time spent viewing
+  "timestamp": "2023-05-10T12:30:45.123456"  // optional, defaults to current time
+}
+```
+
+## Integration Best Practices
+
+### Recommendation Implementation
+
+1. **Progressive Enhancement**:
+   - Start with basic recommendations without user IDs
+   - Enhance with user IDs for personalized recommendations once users are logged in
+   - Further enhance with explicit user preferences and interaction tracking
+
+2. **Client-Side Implementation**:
+   - Cache recommendations for better performance
+   - Update recommendations after significant user interactions
+   - Implement client-side fallbacks for offline usage
+
+3. **Server-Side Implementation**:
+   - Batch recommendations for multiple users when possible
+   - Cache recommendations server-side
+   - Implement retry logic with exponential backoff
+
+### Interaction Tracking Implementation
+
+1. **Timing and Frequency**:
+   - Record views after minimum engagement time (e.g., 5+ seconds)
+   - Batch interaction records to reduce API calls
+   - Track dwell time accurately on both mobile and desktop
+
+2. **Privacy Considerations**:
+   - Inform users about data collection
+   - Allow users to opt out of personalized recommendations
+   - Follow data protection regulations
+
+## Error Handling
+
+The API uses standard HTTP status codes:
+
+- 200 OK: Successful request
+- 400 Bad Request: Invalid input data
+- 404 Not Found: Resource not found
+- 500 Internal Server Error: Server-side error
+- 503 Service Unavailable: Recommendation engine unavailable
+
+Error responses follow the format:
+
+```json
+{
+  "status_code": 400,
+  "detail": "Error message describing the issue"
+}
+```
+
+## Performance Considerations
+
+- Use the force_refresh parameter sparingly to leverage the built-in caching
+- Implement client-side caching for recommendations
+- Batch interaction records when possible
+- Consider using debouncing for dwell time tracking
+
+## Deployment Notes
+
+### Development Environment
+
+```bash
+# Start the API server locally
+cd /path/to/buy-from-egypt-api
+python -m api.main
+```
+
+The API will be available at http://localhost:8000
+
+### Production Deployment
+
+For production deployment, consider:
+
+1. Using a proper WSGI server like Gunicorn
+2. Setting up proper authentication
+3. Implementing rate limiting
+4. Using a reverse proxy like Nginx
+
+Example production start command:
+
+```bash
+gunicorn api.main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
+```
+        "Timestamp": "2023-05-10T12:30:45.123456"
+      }
+    ]
+  }
+}
 ```
 
 **Response:**

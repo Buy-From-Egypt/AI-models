@@ -37,20 +37,25 @@ ENV/
 *~
 
 # Data files (large datasets)
+# Raw data files
 data/*.csv
 data/*.xlsx
 data/*.json
+# Keep processed data that's needed for the recommendations
 !data/processed/
-data/processed/*.csv
-!data/processed/README.md
+!data/processed/*.csv
+!data/processed/*.json
 
 # Model files (large)
 models/*.pkl
 models/*.joblib
 models/*.npy
-models/*.pt
-models/*.pth
-!models/README.md
+# Include trained model for GitHub
+!models/hybrid_recommendation_model.pth
+!models/model_info.json
+!models/training_logs.json
+!models/metrics/
+!models/metrics/*
 
 # Logs
 *.log
@@ -65,3 +70,15 @@ Thumbs.db
 
 # Cache
 .cache/
+
+# Test files
+test_*.py
+analyze_*.py
+*_test.py
+temp_*.py
+quick_*.py
+
+# Large data files
+*.csv.gz
+*.tar.gz
+data/free_company_dataset.csv

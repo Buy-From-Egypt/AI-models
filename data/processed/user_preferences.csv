@@ -1,0 +1,1001 @@
+UserID,PreferredIndustries,PreferredSupplierType,PreferredOrderQuantity,PreferredShippingMethod,ReceiveAlerts,RegistrationDate
+1000,"Petroleum & Energy,Handicrafts & Furniture,Agriculture & Food",Large Corporations,Medium orders,Land Transport,True,2024-07-20 13:48:23.057520
+1001,"Electronics,Handicrafts & Furniture,Agriculture & Food",Startups,Bulk orders,Sea Freight,False,2024-12-06 13:48:23.057827
+1002,Chemicals & Fertilizers,Small Businesses,Small orders,Land Transport,True,2024-12-28 13:48:23.058013
+1003,"Agriculture & Food,Petroleum & Energy,Textiles & Garments",Startups,Small orders,Land Transport,True,2024-08-13 13:48:23.058204
+1004,"Chemicals & Fertilizers,Electronics,Handicrafts & Furniture",Medium Enterprises,Medium orders,Sea Freight,True,2024-07-05 13:48:23.058368
+1005,Agriculture & Food,Small Businesses,Bulk orders,Land Transport,True,2024-11-22 13:48:23.058523
+1006,Agriculture & Food,Medium Enterprises,Medium orders,Express Delivery,False,2024-12-07 13:48:23.058678
+1007,"Agriculture & Food,Chemicals & Fertilizers",Medium Enterprises,Large orders,Express Delivery,True,2024-11-13 13:48:23.058838
+1008,Construction & Building Materials,Startups,Medium orders,Air Freight,False,2024-12-10 13:48:23.058999
+1009,Petroleum & Energy,Small Businesses,Bulk orders,Air Freight,False,2025-01-31 13:48:23.059152
+1010,"Petroleum & Energy,Textiles & Garments,Handicrafts & Furniture",Small Businesses,Large orders,Air Freight,False,2024-10-28 13:48:23.059305
+1011,"Chemicals & Fertilizers,Textiles & Garments",Startups,Large orders,Land Transport,False,2024-11-12 13:48:23.059454
+1012,Petroleum & Energy,Small Businesses,Large orders,Sea Freight,True,2024-10-02 13:48:23.059607
+1013,Electronics,Medium Enterprises,Medium orders,Express Delivery,True,2024-12-19 13:48:23.059759
+1014,"Chemicals & Fertilizers,Textiles & Garments,Petroleum & Energy",Large Corporations,Large orders,Air Freight,True,2024-12-27 13:48:23.059913
+1015,Agriculture & Food,Medium Enterprises,Medium orders,Air Freight,False,2025-02-02 13:48:23.060063
+1016,"Textiles & Garments,Construction & Building Materials",Medium Enterprises,Small orders,Air Freight,True,2024-09-06 13:48:23.060215
+1017,"Petroleum & Energy,Handicrafts & Furniture",Medium Enterprises,Bulk orders,Land Transport,True,2024-08-02 13:48:23.060373
+1018,Textiles & Garments,Medium Enterprises,Bulk orders,Express Delivery,False,2024-10-26 13:48:23.060526
+1019,Chemicals & Fertilizers,Medium Enterprises,Large orders,Air Freight,True,2025-02-23 13:48:23.060679
+1020,Electronics,Small Businesses,Bulk orders,Air Freight,True,2025-02-10 13:48:23.060829
+1021,"Agriculture & Food,Chemicals & Fertilizers",Large Corporations,Bulk orders,Land Transport,True,2024-12-14 13:48:23.060986
+1022,"Electronics,Chemicals & Fertilizers,Petroleum & Energy",Medium Enterprises,Large orders,Land Transport,False,2025-01-23 13:48:23.061136
+1023,Handicrafts & Furniture,Startups,Bulk orders,Land Transport,False,2024-07-05 13:48:23.061283
+1024,"Agriculture & Food,Petroleum & Energy,Handicrafts & Furniture",Small Businesses,Small orders,Express Delivery,False,2025-05-08 13:48:23.061429
+1025,"Handicrafts & Furniture,Petroleum & Energy",Large Corporations,Large orders,Sea Freight,False,2025-03-09 13:48:23.061580
+1026,"Chemicals & Fertilizers,Handicrafts & Furniture,Textiles & Garments",Small Businesses,Bulk orders,Sea Freight,False,2025-05-10 13:48:23.061734
+1027,"Textiles & Garments,Petroleum & Energy,Construction & Building Materials",Startups,Large orders,Express Delivery,False,2025-04-23 13:48:23.061888
+1028,Textiles & Garments,Startups,Medium orders,Land Transport,False,2025-03-09 13:48:23.062034
+1029,Chemicals & Fertilizers,Startups,Small orders,Air Freight,False,2025-01-06 13:48:23.062184
+1030,Petroleum & Energy,Small Businesses,Bulk orders,Air Freight,False,2025-05-25 13:48:23.062337
+1031,"Agriculture & Food,Construction & Building Materials",Large Corporations,Large orders,Sea Freight,True,2024-09-03 13:48:23.062497
+1032,Chemicals & Fertilizers,Large Corporations,Bulk orders,Land Transport,False,2025-04-28 13:48:23.062648
+1033,Chemicals & Fertilizers,Large Corporations,Bulk orders,Air Freight,True,2024-09-09 13:48:23.062812
+1034,Electronics,Small Businesses,Bulk orders,Land Transport,True,2025-01-06 13:48:23.063007
+1035,"Handicrafts & Furniture,Construction & Building Materials,Textiles & Garments",Large Corporations,Bulk orders,Sea Freight,False,2025-02-22 13:48:23.063166
+1036,"Agriculture & Food,Textiles & Garments,Construction & Building Materials",Small Businesses,Bulk orders,Air Freight,True,2024-08-21 13:48:23.063315
+1037,"Construction & Building Materials,Agriculture & Food",Medium Enterprises,Small orders,Express Delivery,True,2024-08-04 13:48:23.063465
+1038,"Chemicals & Fertilizers,Petroleum & Energy",Startups,Medium orders,Express Delivery,False,2025-01-24 13:48:23.063614
+1039,"Textiles & Garments,Construction & Building Materials",Medium Enterprises,Small orders,Sea Freight,False,2025-04-19 13:48:23.063765
+1040,"Electronics,Handicrafts & Furniture",Large Corporations,Bulk orders,Air Freight,True,2024-09-25 13:48:23.063922
+1041,Textiles & Garments,Medium Enterprises,Small orders,Express Delivery,False,2024-07-01 13:48:23.064081
+1042,"Agriculture & Food,Electronics,Handicrafts & Furniture",Large Corporations,Small orders,Express Delivery,True,2024-09-14 13:48:23.064232
+1043,"Chemicals & Fertilizers,Construction & Building Materials",Large Corporations,Large orders,Air Freight,False,2025-02-07 13:48:23.064379
+1044,"Handicrafts & Furniture,Chemicals & Fertilizers",Startups,Small orders,Express Delivery,True,2024-09-17 13:48:23.064532
+1045,Agriculture & Food,Medium Enterprises,Bulk orders,Land Transport,True,2025-03-22 13:48:23.064682
+1046,Petroleum & Energy,Medium Enterprises,Medium orders,Sea Freight,False,2024-11-24 13:48:23.064828
+1047,"Handicrafts & Furniture,Chemicals & Fertilizers",Small Businesses,Large orders,Sea Freight,False,2024-10-13 13:48:23.064990
+1048,Agriculture & Food,Large Corporations,Medium orders,Express Delivery,True,2024-07-26 13:48:23.065143
+1049,Textiles & Garments,Startups,Bulk orders,Sea Freight,True,2025-05-14 13:48:23.065301
+1050,Petroleum & Energy,Small Businesses,Bulk orders,Sea Freight,True,2025-05-03 13:48:23.065463
+1051,Handicrafts & Furniture,Large Corporations,Large orders,Air Freight,False,2024-09-25 13:48:23.065621
+1052,Chemicals & Fertilizers,Small Businesses,Large orders,Express Delivery,False,2025-02-22 13:48:23.065778
+1053,Petroleum & Energy,Small Businesses,Bulk orders,Sea Freight,True,2024-12-06 13:48:23.065946
+1054,"Textiles & Garments,Handicrafts & Furniture,Electronics",Startups,Bulk orders,Land Transport,False,2024-11-04 13:48:23.066105
+1055,Petroleum & Energy,Small Businesses,Medium orders,Air Freight,True,2025-04-15 13:48:23.066252
+1056,Construction & Building Materials,Startups,Small orders,Air Freight,True,2025-04-01 13:48:23.066402
+1057,Textiles & Garments,Startups,Small orders,Air Freight,True,2025-05-22 13:48:23.066558
+1058,"Petroleum & Energy,Handicrafts & Furniture,Agriculture & Food",Small Businesses,Small orders,Sea Freight,False,2024-11-05 13:48:23.066708
+1059,"Agriculture & Food,Petroleum & Energy",Large Corporations,Bulk orders,Air Freight,False,2024-10-06 13:48:23.066857
+1060,"Chemicals & Fertilizers,Agriculture & Food",Medium Enterprises,Large orders,Sea Freight,False,2025-06-11 13:48:23.067462
+1061,Petroleum & Energy,Medium Enterprises,Bulk orders,Air Freight,True,2024-07-24 13:48:23.067633
+1062,Electronics,Small Businesses,Bulk orders,Sea Freight,True,2025-03-17 13:48:23.067794
+1063,"Textiles & Garments,Electronics",Startups,Medium orders,Sea Freight,False,2024-08-03 13:48:23.067953
+1064,"Textiles & Garments,Construction & Building Materials,Petroleum & Energy",Large Corporations,Bulk orders,Air Freight,True,2024-08-08 13:48:23.068104
+1065,Chemicals & Fertilizers,Small Businesses,Small orders,Land Transport,True,2025-03-28 13:48:23.068253
+1066,"Petroleum & Energy,Electronics",Startups,Small orders,Sea Freight,True,2024-10-26 13:48:23.068404
+1067,Chemicals & Fertilizers,Startups,Large orders,Air Freight,True,2025-06-04 13:48:23.068552
+1068,"Textiles & Garments,Chemicals & Fertilizers",Startups,Medium orders,Express Delivery,False,2024-08-04 13:48:23.068704
+1069,"Handicrafts & Furniture,Petroleum & Energy",Large Corporations,Small orders,Air Freight,True,2024-11-16 13:48:23.068852
+1070,Electronics,Medium Enterprises,Medium orders,Land Transport,False,2024-12-01 13:48:23.069013
+1071,"Electronics,Chemicals & Fertilizers,Textiles & Garments",Large Corporations,Small orders,Air Freight,True,2024-08-31 13:48:23.069177
+1072,"Construction & Building Materials,Handicrafts & Furniture",Large Corporations,Small orders,Sea Freight,True,2024-09-06 13:48:23.069337
+1073,Electronics,Small Businesses,Small orders,Express Delivery,True,2025-06-10 13:48:23.069501
+1074,Petroleum & Energy,Small Businesses,Small orders,Sea Freight,False,2025-03-25 13:48:23.069655
+1075,Construction & Building Materials,Small Businesses,Small orders,Express Delivery,False,2024-09-01 13:48:23.069814
+1076,"Agriculture & Food,Chemicals & Fertilizers",Large Corporations,Large orders,Sea Freight,False,2025-04-23 13:48:23.069978
+1077,Textiles & Garments,Large Corporations,Large orders,Land Transport,True,2024-10-30 13:48:23.070136
+1078,Agriculture & Food,Startups,Bulk orders,Sea Freight,False,2024-08-14 13:48:23.070292
+1079,"Agriculture & Food,Electronics",Startups,Small orders,Sea Freight,True,2024-07-16 13:48:23.070446
+1080,"Handicrafts & Furniture,Textiles & Garments",Startups,Medium orders,Express Delivery,True,2024-07-21 13:48:23.070597
+1081,Chemicals & Fertilizers,Medium Enterprises,Small orders,Sea Freight,True,2025-05-04 13:48:23.070746
+1082,"Construction & Building Materials,Textiles & Garments,Handicrafts & Furniture",Startups,Large orders,Land Transport,True,2025-01-07 13:48:23.070910
+1083,"Handicrafts & Furniture,Construction & Building Materials",Medium Enterprises,Bulk orders,Sea Freight,True,2025-05-25 13:48:23.071066
+1084,Construction & Building Materials,Medium Enterprises,Small orders,Sea Freight,False,2024-08-19 13:48:23.071213
+1085,"Construction & Building Materials,Handicrafts & Furniture,Textiles & Garments",Large Corporations,Bulk orders,Sea Freight,True,2024-08-01 13:48:23.071361
+1086,Handicrafts & Furniture,Small Businesses,Bulk orders,Land Transport,True,2025-02-09 13:48:23.071513
+1087,"Agriculture & Food,Textiles & Garments",Medium Enterprises,Small orders,Sea Freight,False,2024-12-11 13:48:23.071659
+1088,"Construction & Building Materials,Petroleum & Energy,Agriculture & Food",Medium Enterprises,Medium orders,Land Transport,True,2025-06-01 13:48:23.071810
+1089,Handicrafts & Furniture,Small Businesses,Large orders,Sea Freight,False,2025-02-10 13:48:23.071968
+1090,Chemicals & Fertilizers,Small Businesses,Small orders,Sea Freight,True,2024-10-31 13:48:23.072118
+1091,"Textiles & Garments,Electronics,Chemicals & Fertilizers",Small Businesses,Small orders,Sea Freight,False,2024-09-07 13:48:23.072266
+1092,"Construction & Building Materials,Handicrafts & Furniture",Small Businesses,Small orders,Sea Freight,True,2024-11-30 13:48:23.072414
+1093,"Agriculture & Food,Textiles & Garments",Large Corporations,Bulk orders,Land Transport,True,2024-10-12 13:48:23.072570
+1094,"Agriculture & Food,Petroleum & Energy,Electronics",Medium Enterprises,Bulk orders,Express Delivery,True,2025-06-12 13:48:23.072723
+1095,"Chemicals & Fertilizers,Textiles & Garments,Construction & Building Materials",Medium Enterprises,Small orders,Sea Freight,True,2024-11-25 13:48:23.072875
+1096,"Handicrafts & Furniture,Electronics",Medium Enterprises,Bulk orders,Land Transport,False,2024-11-03 13:48:23.073027
+1097,Chemicals & Fertilizers,Medium Enterprises,Large orders,Land Transport,False,2024-07-18 13:48:23.073189
+1098,"Electronics,Handicrafts & Furniture,Textiles & Garments",Large Corporations,Medium orders,Express Delivery,False,2025-06-03 13:48:23.073348
+1099,"Petroleum & Energy,Chemicals & Fertilizers",Large Corporations,Large orders,Express Delivery,False,2025-03-14 13:48:23.073515
+1100,"Electronics,Chemicals & Fertilizers,Petroleum & Energy",Small Businesses,Bulk orders,Land Transport,True,2025-04-01 13:48:23.073676
+1101,"Electronics,Petroleum & Energy,Handicrafts & Furniture",Large Corporations,Small orders,Air Freight,False,2024-08-04 13:48:23.073833
+1102,"Petroleum & Energy,Construction & Building Materials",Medium Enterprises,Medium orders,Sea Freight,False,2025-03-19 13:48:23.074000
+1103,Handicrafts & Furniture,Medium Enterprises,Bulk orders,Land Transport,True,2024-06-28 13:48:23.074158
+1104,"Petroleum & Energy,Chemicals & Fertilizers,Construction & Building Materials",Large Corporations,Medium orders,Sea Freight,True,2025-03-04 13:48:23.074315
+1105,"Agriculture & Food,Petroleum & Energy,Construction & Building Materials",Medium Enterprises,Bulk orders,Express Delivery,True,2025-02-25 13:48:23.074466
+1106,Textiles & Garments,Small Businesses,Small orders,Air Freight,True,2024-08-31 13:48:23.074616
+1107,"Electronics,Chemicals & Fertilizers",Medium Enterprises,Small orders,Sea Freight,False,2025-01-08 13:48:23.074787
+1108,"Petroleum & Energy,Agriculture & Food,Chemicals & Fertilizers",Startups,Small orders,Air Freight,True,2024-07-27 13:48:23.074945
+1109,Construction & Building Materials,Large Corporations,Small orders,Express Delivery,True,2024-10-05 13:48:23.075095
+1110,"Agriculture & Food,Construction & Building Materials",Medium Enterprises,Small orders,Express Delivery,False,2024-11-18 13:48:23.075253
+1111,Textiles & Garments,Small Businesses,Bulk orders,Land Transport,False,2025-03-16 13:48:23.075402
+1112,"Construction & Building Materials,Textiles & Garments,Electronics",Small Businesses,Medium orders,Land Transport,True,2024-10-02 13:48:23.075555
+1113,"Chemicals & Fertilizers,Agriculture & Food",Small Businesses,Small orders,Land Transport,False,2025-04-22 13:48:23.075706
+1114,"Chemicals & Fertilizers,Petroleum & Energy,Construction & Building Materials",Startups,Small orders,Air Freight,False,2024-08-29 13:48:23.075858
+1115,"Handicrafts & Furniture,Electronics,Textiles & Garments",Large Corporations,Medium orders,Land Transport,False,2024-07-04 13:48:23.076017
+1116,Agriculture & Food,Startups,Small orders,Land Transport,False,2024-11-30 13:48:23.076166
+1117,Handicrafts & Furniture,Medium Enterprises,Bulk orders,Sea Freight,True,2025-04-28 13:48:23.076314
+1118,"Handicrafts & Furniture,Chemicals & Fertilizers,Petroleum & Energy",Startups,Large orders,Air Freight,False,2025-04-28 13:48:23.076464
+1119,"Electronics,Petroleum & Energy,Construction & Building Materials",Startups,Medium orders,Air Freight,True,2024-09-03 13:48:23.076614
+1120,"Handicrafts & Furniture,Construction & Building Materials,Electronics",Medium Enterprises,Bulk orders,Air Freight,False,2024-11-06 13:48:23.076765
+1121,"Petroleum & Energy,Electronics",Large Corporations,Large orders,Express Delivery,False,2025-01-05 13:48:23.076922
+1122,Handicrafts & Furniture,Small Businesses,Small orders,Land Transport,True,2024-10-04 13:48:23.077082
+1123,Petroleum & Energy,Startups,Large orders,Express Delivery,False,2024-08-29 13:48:23.077241
+1124,"Electronics,Petroleum & Energy",Small Businesses,Medium orders,Land Transport,True,2025-06-09 13:48:23.077399
+1125,"Petroleum & Energy,Construction & Building Materials",Startups,Small orders,Express Delivery,False,2025-06-14 13:48:23.077551
+1126,Handicrafts & Furniture,Medium Enterprises,Large orders,Land Transport,True,2025-05-27 13:48:23.077713
+1127,Chemicals & Fertilizers,Large Corporations,Bulk orders,Sea Freight,False,2024-06-17 13:48:23.077865
+1128,Agriculture & Food,Startups,Small orders,Sea Freight,True,2024-11-19 13:48:23.078019
+1129,"Handicrafts & Furniture,Construction & Building Materials",Medium Enterprises,Medium orders,Land Transport,False,2025-06-12 13:48:23.078169
+1130,"Construction & Building Materials,Agriculture & Food",Large Corporations,Medium orders,Sea Freight,False,2024-07-10 13:48:23.078321
+1131,"Textiles & Garments,Chemicals & Fertilizers",Medium Enterprises,Medium orders,Express Delivery,True,2025-02-19 13:48:23.078471
+1132,"Construction & Building Materials,Petroleum & Energy",Large Corporations,Bulk orders,Sea Freight,False,2024-10-22 13:48:23.078621
+1133,Chemicals & Fertilizers,Startups,Medium orders,Sea Freight,False,2025-04-13 13:48:23.078769
+1134,"Petroleum & Energy,Electronics",Startups,Large orders,Sea Freight,True,2025-01-18 13:48:23.078932
+1135,"Textiles & Garments,Petroleum & Energy,Handicrafts & Furniture",Large Corporations,Medium orders,Sea Freight,True,2025-02-25 13:48:23.079122
+1136,"Electronics,Construction & Building Materials",Large Corporations,Large orders,Express Delivery,True,2024-07-14 13:48:23.079282
+1137,"Handicrafts & Furniture,Construction & Building Materials",Medium Enterprises,Small orders,Air Freight,True,2024-08-24 13:48:23.079437
+1138,Construction & Building Materials,Large Corporations,Large orders,Land Transport,False,2024-10-30 13:48:23.079586
+1139,"Textiles & Garments,Agriculture & Food,Chemicals & Fertilizers",Startups,Large orders,Land Transport,True,2025-05-30 13:48:23.079738
+1140,"Handicrafts & Furniture,Textiles & Garments",Large Corporations,Small orders,Air Freight,True,2024-11-30 13:48:23.079895
+1141,Handicrafts & Furniture,Small Businesses,Small orders,Sea Freight,True,2024-09-01 13:48:23.080045
+1142,"Construction & Building Materials,Chemicals & Fertilizers",Large Corporations,Medium orders,Land Transport,True,2025-06-09 13:48:23.080192
+1143,Construction & Building Materials,Large Corporations,Medium orders,Express Delivery,True,2025-03-05 13:48:23.080341
+1144,Electronics,Large Corporations,Small orders,Land Transport,False,2024-12-15 13:48:23.080489
+1145,"Chemicals & Fertilizers,Textiles & Garments,Petroleum & Energy",Small Businesses,Medium orders,Air Freight,False,2025-02-28 13:48:23.080636
+1146,"Handicrafts & Furniture,Agriculture & Food",Large Corporations,Small orders,Air Freight,False,2025-03-12 13:48:23.080783
+1147,"Electronics,Textiles & Garments,Petroleum & Energy",Small Businesses,Medium orders,Air Freight,False,2024-12-13 13:48:23.080957
+1148,"Textiles & Garments,Handicrafts & Furniture,Construction & Building Materials",Small Businesses,Small orders,Sea Freight,True,2025-06-13 13:48:23.081117
+1149,Agriculture & Food,Small Businesses,Small orders,Express Delivery,True,2025-04-04 13:48:23.081266
+1150,"Handicrafts & Furniture,Petroleum & Energy,Chemicals & Fertilizers",Small Businesses,Small orders,Air Freight,True,2024-11-30 13:48:23.081420
+1151,"Textiles & Garments,Construction & Building Materials,Agriculture & Food",Small Businesses,Large orders,Express Delivery,False,2025-04-18 13:48:23.081570
+1152,Construction & Building Materials,Medium Enterprises,Large orders,Sea Freight,True,2024-11-10 13:48:23.081725
+1153,Textiles & Garments,Small Businesses,Medium orders,Land Transport,True,2024-12-21 13:48:23.081909
+1154,Textiles & Garments,Medium Enterprises,Large orders,Sea Freight,False,2025-04-15 13:48:23.082108
+1155,Petroleum & Energy,Small Businesses,Small orders,Express Delivery,False,2024-06-24 13:48:23.082260
+1156,"Petroleum & Energy,Construction & Building Materials",Large Corporations,Small orders,Sea Freight,False,2024-12-28 13:48:23.082407
+1157,Handicrafts & Furniture,Startups,Bulk orders,Land Transport,False,2024-07-23 13:48:23.082555
+1158,"Chemicals & Fertilizers,Construction & Building Materials,Agriculture & Food",Startups,Small orders,Express Delivery,True,2025-03-27 13:48:23.082705
+1159,"Construction & Building Materials,Agriculture & Food",Startups,Bulk orders,Sea Freight,False,2024-07-04 13:48:23.082855
+1160,Petroleum & Energy,Large Corporations,Bulk orders,Air Freight,True,2024-06-18 13:48:23.083012
+1161,Handicrafts & Furniture,Medium Enterprises,Bulk orders,Land Transport,True,2024-10-24 13:48:23.083159
+1162,Handicrafts & Furniture,Medium Enterprises,Bulk orders,Land Transport,True,2025-01-09 13:48:23.083305
+1163,"Chemicals & Fertilizers,Agriculture & Food,Textiles & Garments",Small Businesses,Bulk orders,Land Transport,False,2024-11-04 13:48:23.083462
+1164,Electronics,Large Corporations,Medium orders,Express Delivery,False,2024-07-07 13:48:23.083616
+1165,Agriculture & Food,Small Businesses,Bulk orders,Sea Freight,True,2025-04-17 13:48:23.083767
+1166,"Agriculture & Food,Chemicals & Fertilizers,Construction & Building Materials",Large Corporations,Bulk orders,Air Freight,False,2024-12-05 13:48:23.083924
+1167,"Agriculture & Food,Handicrafts & Furniture",Large Corporations,Small orders,Express Delivery,False,2024-10-08 13:48:23.084078
+1168,"Petroleum & Energy,Handicrafts & Furniture,Agriculture & Food",Small Businesses,Medium orders,Land Transport,True,2025-04-19 13:48:23.084225
+1169,"Textiles & Garments,Chemicals & Fertilizers,Construction & Building Materials",Small Businesses,Small orders,Land Transport,True,2024-09-04 13:48:23.084375
+1170,Agriculture & Food,Medium Enterprises,Large orders,Land Transport,True,2024-07-14 13:48:23.084532
+1171,"Handicrafts & Furniture,Petroleum & Energy",Small Businesses,Large orders,Express Delivery,False,2025-01-20 13:48:23.084679
+1172,Construction & Building Materials,Medium Enterprises,Large orders,Sea Freight,True,2025-01-04 13:48:23.084829
+1173,Electronics,Startups,Medium orders,Air Freight,True,2025-03-15 13:48:23.084984
+1174,Textiles & Garments,Small Businesses,Bulk orders,Express Delivery,True,2025-05-23 13:48:23.085133
+1175,"Electronics,Textiles & Garments",Small Businesses,Medium orders,Express Delivery,False,2024-10-31 13:48:23.085285
+1176,Electronics,Small Businesses,Small orders,Sea Freight,False,2025-04-05 13:48:23.085440
+1177,"Handicrafts & Furniture,Chemicals & Fertilizers,Construction & Building Materials",Medium Enterprises,Medium orders,Land Transport,True,2025-01-01 13:48:23.085592
+1178,"Chemicals & Fertilizers,Electronics,Petroleum & Energy",Startups,Large orders,Sea Freight,True,2025-03-20 13:48:23.085743
+1179,Textiles & Garments,Medium Enterprises,Medium orders,Express Delivery,False,2025-01-06 13:48:23.085899
+1180,"Handicrafts & Furniture,Chemicals & Fertilizers",Small Businesses,Small orders,Sea Freight,True,2025-03-31 13:48:23.086050
+1181,"Agriculture & Food,Chemicals & Fertilizers",Large Corporations,Medium orders,Sea Freight,True,2024-08-15 13:48:23.086198
+1182,"Electronics,Construction & Building Materials,Agriculture & Food",Small Businesses,Large orders,Land Transport,False,2025-05-06 13:48:23.086470
+1183,"Chemicals & Fertilizers,Agriculture & Food",Large Corporations,Large orders,Land Transport,True,2025-03-24 13:48:23.086637
+1184,"Textiles & Garments,Agriculture & Food",Small Businesses,Bulk orders,Sea Freight,False,2025-06-04 13:48:23.087042
+1185,"Electronics,Petroleum & Energy,Chemicals & Fertilizers",Large Corporations,Large orders,Sea Freight,False,2024-12-25 13:48:23.087206
+1186,Agriculture & Food,Medium Enterprises,Large orders,Sea Freight,True,2024-06-29 13:48:23.087356
+1187,Textiles & Garments,Small Businesses,Small orders,Sea Freight,True,2024-11-21 13:48:23.087506
+1188,Handicrafts & Furniture,Medium Enterprises,Small orders,Express Delivery,False,2024-08-27 13:48:23.087655
+1189,"Handicrafts & Furniture,Textiles & Garments",Small Businesses,Bulk orders,Sea Freight,True,2024-06-27 13:48:23.087815
+1190,"Agriculture & Food,Textiles & Garments",Large Corporations,Large orders,Sea Freight,False,2025-02-11 13:48:23.087971
+1191,"Handicrafts & Furniture,Construction & Building Materials,Agriculture & Food",Medium Enterprises,Bulk orders,Express Delivery,False,2025-03-21 13:48:23.088128
+1192,"Textiles & Garments,Electronics",Medium Enterprises,Small orders,Air Freight,False,2024-08-04 13:48:23.088283
+1193,Chemicals & Fertilizers,Medium Enterprises,Small orders,Land Transport,True,2025-05-19 13:48:23.088439
+1194,"Construction & Building Materials,Petroleum & Energy",Startups,Bulk orders,Express Delivery,True,2024-08-17 13:48:23.088593
+1195,"Agriculture & Food,Textiles & Garments,Construction & Building Materials",Medium Enterprises,Small orders,Sea Freight,False,2024-07-01 13:48:23.088746
+1196,Electronics,Small Businesses,Small orders,Express Delivery,False,2024-09-05 13:48:23.088900
+1197,Petroleum & Energy,Small Businesses,Bulk orders,Express Delivery,False,2025-01-11 13:48:23.089046
+1198,"Textiles & Garments,Petroleum & Energy,Agriculture & Food",Medium Enterprises,Medium orders,Sea Freight,True,2024-08-27 13:48:23.089196
+1199,"Construction & Building Materials,Electronics",Large Corporations,Small orders,Air Freight,True,2024-12-19 13:48:23.089347
+1200,"Textiles & Garments,Chemicals & Fertilizers",Large Corporations,Large orders,Sea Freight,False,2024-11-11 13:48:23.089498
+1201,"Handicrafts & Furniture,Construction & Building Materials",Medium Enterprises,Bulk orders,Land Transport,False,2025-02-10 13:48:23.089650
+1202,Agriculture & Food,Medium Enterprises,Small orders,Air Freight,True,2024-09-25 13:48:23.089797
+1203,Electronics,Medium Enterprises,Large orders,Sea Freight,False,2025-02-22 13:48:23.089960
+1204,"Textiles & Garments,Handicrafts & Furniture",Small Businesses,Medium orders,Express Delivery,True,2025-06-15 13:48:23.090126
+1205,"Petroleum & Energy,Chemicals & Fertilizers,Agriculture & Food",Medium Enterprises,Medium orders,Express Delivery,False,2024-12-06 13:48:23.090282
+1206,"Chemicals & Fertilizers,Petroleum & Energy",Small Businesses,Small orders,Air Freight,True,2025-01-08 13:48:23.090433
+1207,Handicrafts & Furniture,Startups,Medium orders,Land Transport,False,2025-03-26 13:48:23.090582
+1208,Construction & Building Materials,Medium Enterprises,Medium orders,Land Transport,True,2024-11-15 13:48:23.090730
+1209,"Textiles & Garments,Electronics,Handicrafts & Furniture",Large Corporations,Bulk orders,Air Freight,True,2024-08-15 13:48:23.090885
+1210,Agriculture & Food,Medium Enterprises,Medium orders,Sea Freight,False,2024-09-24 13:48:23.091033
+1211,"Construction & Building Materials,Chemicals & Fertilizers,Agriculture & Food",Medium Enterprises,Small orders,Express Delivery,True,2024-08-16 13:48:23.091180
+1212,Agriculture & Food,Large Corporations,Medium orders,Sea Freight,False,2024-06-17 13:48:23.091328
+1213,"Petroleum & Energy,Agriculture & Food,Construction & Building Materials",Startups,Large orders,Air Freight,False,2024-09-08 13:48:23.091500
+1214,"Electronics,Handicrafts & Furniture,Petroleum & Energy",Medium Enterprises,Medium orders,Air Freight,False,2025-04-25 13:48:23.091651
+1215,"Agriculture & Food,Handicrafts & Furniture",Medium Enterprises,Medium orders,Sea Freight,True,2025-03-31 13:48:23.091812
+1216,"Electronics,Petroleum & Energy",Medium Enterprises,Large orders,Air Freight,True,2025-04-06 13:48:23.091971
+1217,"Chemicals & Fertilizers,Electronics,Construction & Building Materials",Medium Enterprises,Small orders,Express Delivery,False,2024-12-25 13:48:23.092125
+1218,"Agriculture & Food,Construction & Building Materials",Small Businesses,Medium orders,Express Delivery,True,2025-05-21 13:48:23.092273
+1219,Chemicals & Fertilizers,Startups,Bulk orders,Express Delivery,True,2025-01-13 13:48:23.092423
+1220,"Agriculture & Food,Electronics,Chemicals & Fertilizers",Startups,Large orders,Sea Freight,True,2025-01-21 13:48:23.092576
+1221,"Electronics,Textiles & Garments,Handicrafts & Furniture",Large Corporations,Small orders,Land Transport,False,2024-11-02 13:48:23.092726
+1222,Construction & Building Materials,Large Corporations,Bulk orders,Land Transport,False,2025-06-05 13:48:23.092879
+1223,"Chemicals & Fertilizers,Petroleum & Energy",Small Businesses,Medium orders,Express Delivery,True,2024-09-26 13:48:23.093027
+1224,Construction & Building Materials,Small Businesses,Small orders,Land Transport,True,2024-09-09 13:48:23.093174
+1225,"Agriculture & Food,Electronics",Large Corporations,Small orders,Sea Freight,False,2024-10-27 13:48:23.093320
+1226,Petroleum & Energy,Medium Enterprises,Small orders,Land Transport,False,2024-09-20 13:48:23.093466
+1227,Textiles & Garments,Small Businesses,Bulk orders,Sea Freight,False,2025-04-27 13:48:23.093616
+1228,"Agriculture & Food,Electronics,Chemicals & Fertilizers",Medium Enterprises,Medium orders,Land Transport,False,2024-10-01 13:48:23.093766
+1229,"Electronics,Construction & Building Materials",Startups,Medium orders,Express Delivery,False,2025-05-11 13:48:23.093925
+1230,Handicrafts & Furniture,Medium Enterprises,Small orders,Land Transport,False,2025-06-04 13:48:23.094077
+1231,Textiles & Garments,Large Corporations,Bulk orders,Land Transport,False,2025-02-18 13:48:23.094220
+1232,Chemicals & Fertilizers,Startups,Medium orders,Sea Freight,False,2024-10-28 13:48:23.094354
+1233,Chemicals & Fertilizers,Startups,Small orders,Land Transport,False,2024-10-22 13:48:23.094491
+1234,"Handicrafts & Furniture,Construction & Building Materials",Small Businesses,Large orders,Land Transport,False,2024-12-08 13:48:23.094629
+1235,"Handicrafts & Furniture,Agriculture & Food,Textiles & Garments",Medium Enterprises,Large orders,Land Transport,False,2024-08-04 13:48:23.094766
+1236,Textiles & Garments,Medium Enterprises,Medium orders,Air Freight,True,2025-01-09 13:48:23.094909
+1237,"Agriculture & Food,Petroleum & Energy",Medium Enterprises,Small orders,Land Transport,True,2025-01-04 13:48:23.095053
+1238,"Agriculture & Food,Textiles & Garments",Medium Enterprises,Bulk orders,Sea Freight,True,2024-09-08 13:48:23.095197
+1239,Textiles & Garments,Medium Enterprises,Bulk orders,Sea Freight,False,2025-05-22 13:48:23.095341
+1240,Construction & Building Materials,Startups,Small orders,Express Delivery,False,2024-09-01 13:48:23.095489
+1241,Chemicals & Fertilizers,Large Corporations,Medium orders,Express Delivery,True,2025-05-04 13:48:23.095634
+1242,"Electronics,Agriculture & Food",Large Corporations,Medium orders,Sea Freight,True,2025-02-06 13:48:23.095786
+1243,"Handicrafts & Furniture,Agriculture & Food",Large Corporations,Large orders,Air Freight,True,2025-01-18 13:48:23.095943
+1244,Electronics,Startups,Large orders,Express Delivery,True,2025-03-07 13:48:23.096091
+1245,"Chemicals & Fertilizers,Agriculture & Food,Petroleum & Energy",Medium Enterprises,Large orders,Air Freight,False,2024-12-07 13:48:23.096236
+1246,"Agriculture & Food,Electronics",Large Corporations,Small orders,Air Freight,False,2025-02-03 13:48:23.096385
+1247,"Construction & Building Materials,Textiles & Garments",Large Corporations,Small orders,Sea Freight,True,2024-08-06 13:48:23.096538
+1248,"Construction & Building Materials,Chemicals & Fertilizers,Petroleum & Energy",Small Businesses,Small orders,Air Freight,False,2024-12-25 13:48:23.096729
+1249,Petroleum & Energy,Startups,Bulk orders,Land Transport,True,2024-09-07 13:48:23.096887
+1250,"Agriculture & Food,Chemicals & Fertilizers",Large Corporations,Small orders,Air Freight,False,2025-05-05 13:48:23.097033
+1251,Chemicals & Fertilizers,Small Businesses,Small orders,Air Freight,False,2025-04-17 13:48:23.097188
+1252,Chemicals & Fertilizers,Large Corporations,Large orders,Sea Freight,False,2024-11-14 13:48:23.097336
+1253,Petroleum & Energy,Small Businesses,Bulk orders,Express Delivery,True,2025-03-21 13:48:23.097481
+1254,Petroleum & Energy,Startups,Large orders,Express Delivery,True,2025-02-03 13:48:23.097627
+1255,Electronics,Large Corporations,Large orders,Express Delivery,True,2024-09-28 13:48:23.097776
+1256,Agriculture & Food,Startups,Bulk orders,Air Freight,True,2025-01-31 13:48:23.097933
+1257,Construction & Building Materials,Medium Enterprises,Bulk orders,Sea Freight,True,2024-12-29 13:48:23.098089
+1258,Chemicals & Fertilizers,Startups,Large orders,Express Delivery,False,2024-09-20 13:48:23.098241
+1259,Handicrafts & Furniture,Small Businesses,Bulk orders,Sea Freight,True,2025-01-14 13:48:23.098388
+1260,"Electronics,Chemicals & Fertilizers,Textiles & Garments",Startups,Medium orders,Express Delivery,True,2024-12-26 13:48:23.098544
+1261,"Electronics,Construction & Building Materials,Petroleum & Energy",Medium Enterprises,Large orders,Land Transport,True,2024-09-21 13:48:23.098694
+1262,Chemicals & Fertilizers,Medium Enterprises,Bulk orders,Sea Freight,False,2024-10-21 13:48:23.098843
+1263,"Agriculture & Food,Textiles & Garments,Petroleum & Energy",Large Corporations,Small orders,Sea Freight,False,2024-09-04 13:48:23.098997
+1264,Construction & Building Materials,Large Corporations,Medium orders,Land Transport,True,2025-03-20 13:48:23.099147
+1265,Electronics,Large Corporations,Large orders,Sea Freight,True,2025-05-24 13:48:23.099296
+1266,Petroleum & Energy,Startups,Medium orders,Sea Freight,False,2025-04-05 13:48:23.099444
+1267,Electronics,Startups,Medium orders,Sea Freight,True,2025-06-06 13:48:23.099592
+1268,Textiles & Garments,Small Businesses,Small orders,Express Delivery,False,2025-03-22 13:48:23.099740
+1269,"Textiles & Garments,Chemicals & Fertilizers",Small Businesses,Medium orders,Air Freight,True,2025-05-27 13:48:23.099930
+1270,"Construction & Building Materials,Textiles & Garments,Petroleum & Energy",Large Corporations,Small orders,Express Delivery,False,2025-05-23 13:48:23.100132
+1271,"Electronics,Construction & Building Materials",Startups,Large orders,Air Freight,False,2025-05-09 13:48:23.100286
+1272,"Petroleum & Energy,Chemicals & Fertilizers",Large Corporations,Bulk orders,Air Freight,False,2025-06-13 13:48:23.100423
+1273,Agriculture & Food,Medium Enterprises,Medium orders,Sea Freight,True,2025-01-08 13:48:23.100559
+1274,"Textiles & Garments,Construction & Building Materials,Electronics",Medium Enterprises,Medium orders,Sea Freight,True,2024-06-25 13:48:23.100699
+1275,"Handicrafts & Furniture,Petroleum & Energy,Electronics",Large Corporations,Bulk orders,Air Freight,True,2024-10-08 13:48:23.100838
+1276,"Textiles & Garments,Electronics,Handicrafts & Furniture",Small Businesses,Medium orders,Express Delivery,False,2024-10-19 13:48:23.100987
+1277,"Petroleum & Energy,Agriculture & Food,Textiles & Garments",Medium Enterprises,Bulk orders,Air Freight,True,2025-04-16 13:48:23.101126
+1278,"Construction & Building Materials,Electronics",Medium Enterprises,Medium orders,Air Freight,False,2024-07-14 13:48:23.101266
+1279,"Construction & Building Materials,Agriculture & Food,Petroleum & Energy",Medium Enterprises,Medium orders,Land Transport,True,2024-07-02 13:48:23.101413
+1280,Chemicals & Fertilizers,Medium Enterprises,Medium orders,Express Delivery,False,2024-10-28 13:48:23.101550
+1281,"Handicrafts & Furniture,Electronics,Textiles & Garments",Medium Enterprises,Small orders,Sea Freight,False,2024-08-04 13:48:23.101689
+1282,Chemicals & Fertilizers,Startups,Bulk orders,Sea Freight,False,2024-07-09 13:48:23.101834
+1283,"Electronics,Agriculture & Food,Textiles & Garments",Medium Enterprises,Small orders,Air Freight,False,2025-05-03 13:48:23.101985
+1284,Agriculture & Food,Large Corporations,Small orders,Air Freight,False,2024-12-20 13:48:23.102124
+1285,Agriculture & Food,Startups,Large orders,Express Delivery,True,2025-01-13 13:48:23.102263
+1286,"Chemicals & Fertilizers,Construction & Building Materials",Large Corporations,Large orders,Sea Freight,True,2024-08-15 13:48:23.102400
+1287,"Petroleum & Energy,Electronics,Handicrafts & Furniture",Small Businesses,Small orders,Sea Freight,True,2024-12-02 13:48:23.102539
+1288,"Electronics,Chemicals & Fertilizers,Construction & Building Materials",Medium Enterprises,Bulk orders,Sea Freight,True,2024-12-29 13:48:23.102685
+1289,"Textiles & Garments,Chemicals & Fertilizers,Construction & Building Materials",Medium Enterprises,Medium orders,Air Freight,False,2024-07-10 13:48:23.102824
+1290,Textiles & Garments,Startups,Bulk orders,Land Transport,True,2024-12-31 13:48:23.102969
+1291,"Textiles & Garments,Agriculture & Food",Startups,Large orders,Land Transport,True,2025-05-15 13:48:23.103109
+1292,"Agriculture & Food,Handicrafts & Furniture,Electronics",Medium Enterprises,Large orders,Express Delivery,False,2024-11-15 13:48:23.103249
+1293,"Textiles & Garments,Agriculture & Food,Chemicals & Fertilizers",Small Businesses,Bulk orders,Sea Freight,False,2025-05-21 13:48:23.103388
+1294,Chemicals & Fertilizers,Startups,Bulk orders,Air Freight,False,2024-11-01 13:48:23.103525
+1295,"Handicrafts & Furniture,Textiles & Garments",Large Corporations,Small orders,Land Transport,True,2024-09-21 13:48:23.103666
+1296,"Petroleum & Energy,Chemicals & Fertilizers",Startups,Large orders,Air Freight,True,2024-10-21 13:48:23.103811
+1297,"Chemicals & Fertilizers,Agriculture & Food",Startups,Large orders,Air Freight,True,2024-09-06 13:48:23.103954
+1298,"Petroleum & Energy,Electronics",Startups,Bulk orders,Air Freight,False,2024-12-22 13:48:23.104092
+1299,"Electronics,Petroleum & Energy,Agriculture & Food",Large Corporations,Medium orders,Land Transport,False,2025-02-07 13:48:23.104232
+1300,"Chemicals & Fertilizers,Construction & Building Materials,Agriculture & Food",Startups,Bulk orders,Sea Freight,False,2024-11-05 13:48:23.104371
+1301,"Petroleum & Energy,Construction & Building Materials,Handicrafts & Furniture",Startups,Small orders,Express Delivery,False,2025-01-13 13:48:23.104511
+1302,"Petroleum & Energy,Electronics",Startups,Medium orders,Sea Freight,False,2024-11-17 13:48:23.104650
+1303,Handicrafts & Furniture,Startups,Medium orders,Sea Freight,True,2025-04-01 13:48:23.104789
+1304,"Agriculture & Food,Chemicals & Fertilizers",Small Businesses,Small orders,Land Transport,False,2025-05-13 13:48:23.104933
+1305,Textiles & Garments,Startups,Bulk orders,Sea Freight,True,2024-07-26 13:48:23.105072
+1306,"Textiles & Garments,Petroleum & Energy,Construction & Building Materials",Medium Enterprises,Medium orders,Land Transport,False,2024-10-11 13:48:23.105212
+1307,"Chemicals & Fertilizers,Petroleum & Energy,Textiles & Garments",Large Corporations,Large orders,Express Delivery,True,2025-04-10 13:48:23.105351
+1308,"Petroleum & Energy,Construction & Building Materials",Small Businesses,Medium orders,Express Delivery,False,2025-05-08 13:48:23.105489
+1309,Handicrafts & Furniture,Small Businesses,Medium orders,Land Transport,True,2025-03-17 13:48:23.105632
+1310,"Chemicals & Fertilizers,Textiles & Garments",Large Corporations,Medium orders,Land Transport,False,2025-03-24 13:48:23.105775
+1311,Electronics,Startups,Small orders,Land Transport,False,2024-09-14 13:48:23.105922
+1312,Handicrafts & Furniture,Small Businesses,Large orders,Express Delivery,True,2025-02-15 13:48:23.106064
+1313,"Chemicals & Fertilizers,Petroleum & Energy,Handicrafts & Furniture",Small Businesses,Bulk orders,Air Freight,False,2024-08-12 13:48:23.106204
+1314,Petroleum & Energy,Medium Enterprises,Medium orders,Air Freight,False,2025-04-09 13:48:23.106343
+1315,"Petroleum & Energy,Handicrafts & Furniture",Large Corporations,Bulk orders,Air Freight,False,2025-01-09 13:48:23.106484
+1316,"Textiles & Garments,Construction & Building Materials,Electronics",Small Businesses,Bulk orders,Express Delivery,True,2024-12-26 13:48:23.106622
+1317,Chemicals & Fertilizers,Large Corporations,Small orders,Sea Freight,False,2025-04-12 13:48:23.106764
+1318,Textiles & Garments,Small Businesses,Large orders,Sea Freight,False,2025-03-15 13:48:23.107124
+1319,"Petroleum & Energy,Handicrafts & Furniture",Startups,Large orders,Land Transport,False,2025-05-19 13:48:23.107418
+1320,"Agriculture & Food,Handicrafts & Furniture",Medium Enterprises,Large orders,Land Transport,True,2024-10-02 13:48:23.107571
+1321,"Construction & Building Materials,Chemicals & Fertilizers,Textiles & Garments",Startups,Medium orders,Sea Freight,True,2025-01-31 13:48:23.107719
+1322,"Handicrafts & Furniture,Chemicals & Fertilizers,Electronics",Small Businesses,Large orders,Express Delivery,False,2024-08-29 13:48:23.107880
+1323,Chemicals & Fertilizers,Medium Enterprises,Small orders,Sea Freight,False,2025-05-04 13:48:23.108098
+1324,Construction & Building Materials,Large Corporations,Medium orders,Sea Freight,True,2024-09-24 13:48:23.108248
+1325,Petroleum & Energy,Large Corporations,Large orders,Land Transport,True,2025-05-08 13:48:23.108385
+1326,Petroleum & Energy,Medium Enterprises,Small orders,Air Freight,False,2025-02-28 13:48:23.108526
+1327,"Chemicals & Fertilizers,Petroleum & Energy,Electronics",Small Businesses,Small orders,Sea Freight,True,2024-10-09 13:48:23.108678
+1328,Petroleum & Energy,Large Corporations,Bulk orders,Sea Freight,False,2024-07-27 13:48:23.108822
+1329,"Textiles & Garments,Handicrafts & Furniture",Startups,Bulk orders,Express Delivery,True,2024-11-03 13:48:23.108969
+1330,"Textiles & Garments,Construction & Building Materials",Medium Enterprises,Medium orders,Land Transport,True,2024-09-23 13:48:23.109110
+1331,"Construction & Building Materials,Electronics",Large Corporations,Bulk orders,Sea Freight,True,2025-02-19 13:48:23.109252
+1332,"Agriculture & Food,Electronics",Medium Enterprises,Small orders,Air Freight,False,2024-09-21 13:48:23.109391
+1333,"Construction & Building Materials,Handicrafts & Furniture,Petroleum & Energy",Small Businesses,Medium orders,Air Freight,True,2024-11-05 13:48:23.109542
+1334,Chemicals & Fertilizers,Medium Enterprises,Bulk orders,Land Transport,True,2025-04-04 13:48:23.109687
+1335,Agriculture & Food,Large Corporations,Large orders,Express Delivery,False,2024-07-16 13:48:23.109829
+1336,Construction & Building Materials,Startups,Bulk orders,Air Freight,False,2024-12-31 13:48:23.109987
+1337,"Petroleum & Energy,Chemicals & Fertilizers",Large Corporations,Bulk orders,Land Transport,True,2024-11-26 13:48:23.110136
+1338,"Petroleum & Energy,Agriculture & Food",Medium Enterprises,Large orders,Air Freight,True,2024-08-26 13:48:23.110285
+1339,Textiles & Garments,Startups,Small orders,Air Freight,False,2024-07-26 13:48:23.110436
+1340,"Textiles & Garments,Construction & Building Materials",Medium Enterprises,Medium orders,Land Transport,False,2024-10-25 13:48:23.110582
+1341,"Electronics,Construction & Building Materials,Textiles & Garments",Medium Enterprises,Medium orders,Air Freight,False,2025-02-11 13:48:23.110731
+1342,Agriculture & Food,Startups,Medium orders,Express Delivery,True,2024-09-04 13:48:23.110884
+1343,Electronics,Startups,Medium orders,Express Delivery,True,2025-01-02 13:48:23.111030
+1344,Chemicals & Fertilizers,Large Corporations,Large orders,Land Transport,True,2025-05-05 13:48:23.111178
+1345,"Handicrafts & Furniture,Electronics",Large Corporations,Bulk orders,Air Freight,False,2025-01-28 13:48:23.111320
+1346,"Textiles & Garments,Petroleum & Energy,Handicrafts & Furniture",Small Businesses,Large orders,Air Freight,True,2024-06-27 13:48:23.111458
+1347,"Electronics,Petroleum & Energy,Handicrafts & Furniture",Medium Enterprises,Bulk orders,Sea Freight,True,2025-01-15 13:48:23.111598
+1348,"Petroleum & Energy,Electronics",Small Businesses,Bulk orders,Sea Freight,True,2025-04-13 13:48:23.111742
+1349,"Construction & Building Materials,Electronics,Agriculture & Food",Startups,Medium orders,Air Freight,False,2025-06-11 13:48:23.111894
+1350,Chemicals & Fertilizers,Large Corporations,Large orders,Sea Freight,False,2025-02-28 13:48:23.112035
+1351,"Textiles & Garments,Agriculture & Food",Medium Enterprises,Bulk orders,Land Transport,True,2024-11-25 13:48:23.112174
+1352,Construction & Building Materials,Large Corporations,Medium orders,Express Delivery,True,2024-12-23 13:48:23.112314
+1353,"Petroleum & Energy,Agriculture & Food,Handicrafts & Furniture",Startups,Bulk orders,Air Freight,True,2024-07-14 13:48:23.112464
+1354,Petroleum & Energy,Large Corporations,Medium orders,Air Freight,True,2024-11-20 13:48:23.112631
+1355,"Agriculture & Food,Construction & Building Materials",Medium Enterprises,Bulk orders,Sea Freight,True,2024-11-24 13:48:23.112777
+1356,"Construction & Building Materials,Textiles & Garments",Large Corporations,Medium orders,Express Delivery,False,2025-02-23 13:48:23.112923
+1357,"Petroleum & Energy,Electronics,Textiles & Garments",Small Businesses,Large orders,Air Freight,True,2024-10-27 13:48:23.113062
+1358,Textiles & Garments,Large Corporations,Bulk orders,Land Transport,True,2024-08-30 13:48:23.113201
+1359,"Agriculture & Food,Petroleum & Energy",Startups,Small orders,Air Freight,False,2024-08-30 13:48:23.113337
+1360,Agriculture & Food,Small Businesses,Large orders,Sea Freight,False,2025-01-23 13:48:23.113474
+1361,"Chemicals & Fertilizers,Electronics",Large Corporations,Large orders,Express Delivery,False,2024-08-25 13:48:23.113621
+1362,"Construction & Building Materials,Textiles & Garments,Agriculture & Food",Small Businesses,Large orders,Air Freight,True,2024-10-26 13:48:23.113773
+1363,"Petroleum & Energy,Construction & Building Materials",Small Businesses,Small orders,Sea Freight,True,2024-07-14 13:48:23.113925
+1364,"Agriculture & Food,Chemicals & Fertilizers,Construction & Building Materials",Startups,Bulk orders,Sea Freight,False,2024-12-20 13:48:23.114077
+1365,"Petroleum & Energy,Handicrafts & Furniture",Startups,Medium orders,Express Delivery,True,2024-08-30 13:48:23.114225
+1366,"Electronics,Handicrafts & Furniture",Small Businesses,Large orders,Air Freight,False,2024-07-02 13:48:23.114374
+1367,"Textiles & Garments,Construction & Building Materials",Small Businesses,Medium orders,Air Freight,False,2024-07-31 13:48:23.114523
+1368,Petroleum & Energy,Small Businesses,Large orders,Sea Freight,False,2025-03-08 13:48:23.114669
+1369,"Construction & Building Materials,Petroleum & Energy",Startups,Bulk orders,Express Delivery,True,2024-12-12 13:48:23.114817
+1370,"Electronics,Handicrafts & Furniture,Chemicals & Fertilizers",Startups,Large orders,Sea Freight,True,2025-05-24 13:48:23.114972
+1371,Handicrafts & Furniture,Startups,Large orders,Air Freight,False,2024-09-08 13:48:23.115122
+1372,"Electronics,Petroleum & Energy",Small Businesses,Medium orders,Air Freight,True,2024-08-16 13:48:23.115271
+1373,"Handicrafts & Furniture,Electronics,Petroleum & Energy",Medium Enterprises,Large orders,Express Delivery,True,2025-06-03 13:48:23.115412
+1374,"Agriculture & Food,Handicrafts & Furniture",Small Businesses,Small orders,Sea Freight,True,2024-08-10 13:48:23.115552
+1375,"Petroleum & Energy,Handicrafts & Furniture",Medium Enterprises,Small orders,Express Delivery,False,2024-09-26 13:48:23.115706
+1376,"Electronics,Petroleum & Energy",Startups,Medium orders,Sea Freight,True,2024-06-25 13:48:23.115845
+1377,Petroleum & Energy,Medium Enterprises,Medium orders,Sea Freight,True,2025-05-03 13:48:23.116026
+1378,"Construction & Building Materials,Chemicals & Fertilizers,Handicrafts & Furniture",Medium Enterprises,Medium orders,Air Freight,False,2025-01-29 13:48:23.116216
+1379,"Textiles & Garments,Handicrafts & Furniture,Petroleum & Energy",Startups,Small orders,Land Transport,True,2024-10-31 13:48:23.116365
+1380,"Textiles & Garments,Handicrafts & Furniture",Startups,Large orders,Air Freight,False,2025-03-16 13:48:23.116511
+1381,"Electronics,Agriculture & Food",Medium Enterprises,Small orders,Sea Freight,True,2025-02-02 13:48:23.116657
+1382,"Construction & Building Materials,Electronics,Petroleum & Energy",Startups,Small orders,Sea Freight,False,2025-05-31 13:48:23.116816
+1383,"Petroleum & Energy,Agriculture & Food,Handicrafts & Furniture",Small Businesses,Bulk orders,Land Transport,False,2024-11-03 13:48:23.116972
+1384,"Petroleum & Energy,Electronics,Handicrafts & Furniture",Small Businesses,Small orders,Sea Freight,False,2024-11-23 13:48:23.117121
+1385,"Agriculture & Food,Chemicals & Fertilizers,Textiles & Garments",Small Businesses,Large orders,Air Freight,False,2025-03-12 13:48:23.117269
+1386,"Handicrafts & Furniture,Petroleum & Energy",Startups,Large orders,Sea Freight,True,2025-05-21 13:48:23.117413
+1387,Electronics,Small Businesses,Bulk orders,Express Delivery,False,2024-06-30 13:48:23.117559
+1388,"Textiles & Garments,Construction & Building Materials,Petroleum & Energy",Medium Enterprises,Bulk orders,Air Freight,True,2025-01-08 13:48:23.117719
+1389,Chemicals & Fertilizers,Startups,Bulk orders,Air Freight,True,2024-10-11 13:48:23.117872
+1390,"Electronics,Construction & Building Materials",Small Businesses,Medium orders,Air Freight,False,2024-08-26 13:48:23.118026
+1391,"Agriculture & Food,Chemicals & Fertilizers",Small Businesses,Large orders,Sea Freight,True,2025-06-10 13:48:23.118176
+1392,Petroleum & Energy,Startups,Large orders,Air Freight,False,2025-06-05 13:48:23.118325
+1393,"Textiles & Garments,Petroleum & Energy,Chemicals & Fertilizers",Startups,Bulk orders,Express Delivery,True,2025-03-18 13:48:23.118473
+1394,"Textiles & Garments,Petroleum & Energy",Large Corporations,Large orders,Land Transport,False,2025-01-13 13:48:23.118622
+1395,"Petroleum & Energy,Handicrafts & Furniture",Medium Enterprises,Small orders,Land Transport,True,2024-10-14 13:48:23.118769
+1396,"Agriculture & Food,Chemicals & Fertilizers",Startups,Large orders,Sea Freight,True,2025-05-08 13:48:23.118926
+1397,Electronics,Startups,Small orders,Air Freight,False,2025-05-11 13:48:23.119072
+1398,Textiles & Garments,Startups,Medium orders,Express Delivery,False,2024-07-29 13:48:23.119216
+1399,"Petroleum & Energy,Construction & Building Materials,Agriculture & Food",Large Corporations,Bulk orders,Air Freight,True,2025-06-06 13:48:23.119364
+1400,Construction & Building Materials,Small Businesses,Small orders,Land Transport,True,2024-07-28 13:48:23.119517
+1401,Petroleum & Energy,Medium Enterprises,Medium orders,Air Freight,False,2024-12-25 13:48:23.119669
+1402,Handicrafts & Furniture,Small Businesses,Medium orders,Sea Freight,True,2025-02-20 13:48:23.119818
+1403,"Electronics,Textiles & Garments,Construction & Building Materials",Medium Enterprises,Small orders,Air Freight,False,2024-06-27 13:48:23.119973
+1404,Handicrafts & Furniture,Large Corporations,Small orders,Land Transport,False,2024-09-07 13:48:23.120128
+1405,"Petroleum & Energy,Agriculture & Food,Handicrafts & Furniture",Large Corporations,Medium orders,Express Delivery,True,2025-02-04 13:48:23.120280
+1406,"Textiles & Garments,Chemicals & Fertilizers,Agriculture & Food",Startups,Small orders,Express Delivery,True,2025-02-24 13:48:23.120432
+1407,"Electronics,Textiles & Garments,Petroleum & Energy",Large Corporations,Small orders,Air Freight,True,2024-09-09 13:48:23.120575
+1408,"Chemicals & Fertilizers,Handicrafts & Furniture,Agriculture & Food",Startups,Medium orders,Express Delivery,True,2024-08-30 13:48:23.120715
+1409,Petroleum & Energy,Large Corporations,Medium orders,Air Freight,False,2024-12-29 13:48:23.120854
+1410,Chemicals & Fertilizers,Small Businesses,Medium orders,Express Delivery,True,2025-03-05 13:48:23.120998
+1411,"Agriculture & Food,Petroleum & Energy",Large Corporations,Bulk orders,Express Delivery,False,2025-05-09 13:48:23.121137
+1412,"Petroleum & Energy,Chemicals & Fertilizers,Handicrafts & Furniture",Medium Enterprises,Medium orders,Sea Freight,False,2024-06-24 13:48:23.121276
+1413,Construction & Building Materials,Medium Enterprises,Bulk orders,Land Transport,False,2025-05-25 13:48:23.121414
+1414,Petroleum & Energy,Large Corporations,Medium orders,Sea Freight,False,2025-01-05 13:48:23.121561
+1415,"Textiles & Garments,Construction & Building Materials,Petroleum & Energy",Small Businesses,Small orders,Express Delivery,False,2025-02-25 13:48:23.121706
+1416,Construction & Building Materials,Large Corporations,Small orders,Land Transport,False,2025-03-27 13:48:23.121846
+1417,Construction & Building Materials,Large Corporations,Medium orders,Land Transport,True,2025-02-10 13:48:23.121997
+1418,Handicrafts & Furniture,Small Businesses,Medium orders,Sea Freight,False,2024-08-12 13:48:23.122135
+1419,Petroleum & Energy,Large Corporations,Bulk orders,Air Freight,True,2024-09-18 13:48:23.122272
+1420,"Electronics,Petroleum & Energy",Medium Enterprises,Medium orders,Air Freight,False,2025-01-05 13:48:23.122411
+1421,Handicrafts & Furniture,Small Businesses,Small orders,Air Freight,False,2024-07-12 13:48:23.122550
+1422,Electronics,Small Businesses,Bulk orders,Express Delivery,False,2025-01-20 13:48:23.122690
+1423,"Textiles & Garments,Handicrafts & Furniture,Electronics",Startups,Large orders,Sea Freight,False,2025-05-25 13:48:23.122832
+1424,"Construction & Building Materials,Electronics,Handicrafts & Furniture",Large Corporations,Medium orders,Express Delivery,False,2024-07-23 13:48:23.122981
+1425,Petroleum & Energy,Startups,Small orders,Sea Freight,True,2025-06-11 13:48:23.123123
+1426,Electronics,Medium Enterprises,Medium orders,Express Delivery,True,2025-05-28 13:48:23.123264
+1427,"Construction & Building Materials,Agriculture & Food",Startups,Small orders,Air Freight,False,2024-12-16 13:48:23.123406
+1428,"Textiles & Garments,Agriculture & Food,Petroleum & Energy",Startups,Bulk orders,Air Freight,False,2024-07-13 13:48:23.123551
+1429,"Textiles & Garments,Chemicals & Fertilizers,Electronics",Small Businesses,Medium orders,Air Freight,False,2025-06-10 13:48:23.123691
+1430,"Handicrafts & Furniture,Chemicals & Fertilizers",Startups,Small orders,Air Freight,True,2024-12-21 13:48:23.123831
+1431,"Construction & Building Materials,Handicrafts & Furniture,Agriculture & Food",Startups,Medium orders,Express Delivery,False,2025-04-03 13:48:23.123976
+1432,"Electronics,Agriculture & Food",Small Businesses,Large orders,Sea Freight,False,2025-05-06 13:48:23.124117
+1433,"Petroleum & Energy,Agriculture & Food",Medium Enterprises,Medium orders,Air Freight,False,2024-07-28 13:48:23.124264
+1434,"Handicrafts & Furniture,Textiles & Garments",Startups,Medium orders,Air Freight,True,2025-03-08 13:48:23.124415
+1435,"Handicrafts & Furniture,Chemicals & Fertilizers,Agriculture & Food",Medium Enterprises,Small orders,Sea Freight,True,2025-03-29 13:48:23.124564
+1436,"Agriculture & Food,Construction & Building Materials,Petroleum & Energy",Medium Enterprises,Medium orders,Air Freight,True,2024-09-05 13:48:23.124726
+1437,Petroleum & Energy,Startups,Large orders,Air Freight,False,2025-04-04 13:48:23.124878
+1438,Chemicals & Fertilizers,Medium Enterprises,Medium orders,Land Transport,False,2024-07-10 13:48:23.125028
+1439,"Petroleum & Energy,Textiles & Garments,Chemicals & Fertilizers",Large Corporations,Medium orders,Land Transport,False,2024-07-03 13:48:23.125173
+1440,Textiles & Garments,Small Businesses,Bulk orders,Land Transport,True,2024-10-14 13:48:23.125327
+1441,"Chemicals & Fertilizers,Handicrafts & Furniture,Petroleum & Energy",Large Corporations,Bulk orders,Sea Freight,False,2024-11-25 13:48:23.125484
+1442,Construction & Building Materials,Medium Enterprises,Medium orders,Express Delivery,True,2025-01-29 13:48:23.125621
+1443,"Petroleum & Energy,Agriculture & Food",Startups,Medium orders,Land Transport,False,2024-06-23 13:48:23.125760
+1444,Textiles & Garments,Small Businesses,Small orders,Sea Freight,True,2024-07-06 13:48:23.125908
+1445,"Chemicals & Fertilizers,Textiles & Garments,Petroleum & Energy",Small Businesses,Medium orders,Express Delivery,True,2024-07-10 13:48:23.126049
+1446,"Agriculture & Food,Construction & Building Materials",Startups,Bulk orders,Sea Freight,False,2025-03-01 13:48:23.126186
+1447,Agriculture & Food,Startups,Large orders,Sea Freight,True,2024-11-23 13:48:23.126323
+1448,"Construction & Building Materials,Agriculture & Food",Large Corporations,Large orders,Sea Freight,False,2024-10-17 13:48:23.126461
+1449,Petroleum & Energy,Small Businesses,Medium orders,Express Delivery,True,2024-10-17 13:48:23.126598
+1450,"Agriculture & Food,Petroleum & Energy,Handicrafts & Furniture",Small Businesses,Small orders,Express Delivery,False,2024-09-06 13:48:23.126736
+1451,"Construction & Building Materials,Petroleum & Energy",Startups,Bulk orders,Air Freight,True,2024-08-09 13:48:23.126878
+1452,"Chemicals & Fertilizers,Agriculture & Food",Medium Enterprises,Medium orders,Land Transport,False,2025-03-11 13:48:23.127016
+1453,Construction & Building Materials,Large Corporations,Large orders,Sea Freight,True,2025-02-18 13:48:23.127272
+1454,Handicrafts & Furniture,Small Businesses,Large orders,Sea Freight,True,2024-09-04 13:48:23.127460
+1455,"Petroleum & Energy,Agriculture & Food,Handicrafts & Furniture",Small Businesses,Large orders,Express Delivery,True,2025-02-02 13:48:23.127636
+1456,"Chemicals & Fertilizers,Construction & Building Materials",Large Corporations,Bulk orders,Sea Freight,True,2025-02-14 13:48:23.127824
+1457,"Textiles & Garments,Agriculture & Food",Medium Enterprises,Bulk orders,Land Transport,False,2024-12-31 13:48:23.127973
+1458,"Agriculture & Food,Construction & Building Materials,Textiles & Garments",Startups,Bulk orders,Express Delivery,True,2025-01-30 13:48:23.128112
+1459,"Textiles & Garments,Petroleum & Energy,Construction & Building Materials",Startups,Large orders,Sea Freight,True,2024-06-27 13:48:23.128261
+1460,"Chemicals & Fertilizers,Construction & Building Materials,Electronics",Large Corporations,Small orders,Express Delivery,True,2024-10-14 13:48:23.128409
+1461,Handicrafts & Furniture,Medium Enterprises,Small orders,Land Transport,True,2024-08-06 13:48:23.128557
+1462,Chemicals & Fertilizers,Large Corporations,Small orders,Land Transport,True,2024-11-21 13:48:23.128703
+1463,Handicrafts & Furniture,Startups,Small orders,Express Delivery,False,2024-07-30 13:48:23.128846
+1464,Textiles & Garments,Small Businesses,Large orders,Sea Freight,True,2024-07-12 13:48:23.128998
+1465,"Electronics,Handicrafts & Furniture,Construction & Building Materials",Small Businesses,Medium orders,Sea Freight,True,2024-10-27 13:48:23.129155
+1466,"Textiles & Garments,Handicrafts & Furniture",Startups,Large orders,Express Delivery,False,2024-08-07 13:48:23.129293
+1467,Chemicals & Fertilizers,Large Corporations,Bulk orders,Express Delivery,True,2025-02-13 13:48:23.129440
+1468,"Agriculture & Food,Construction & Building Materials",Startups,Bulk orders,Land Transport,True,2025-04-15 13:48:23.129586
+1469,"Handicrafts & Furniture,Agriculture & Food,Textiles & Garments",Startups,Large orders,Sea Freight,True,2025-04-15 13:48:23.129727
+1470,Chemicals & Fertilizers,Large Corporations,Bulk orders,Air Freight,False,2025-01-31 13:48:23.129862
+1471,Chemicals & Fertilizers,Large Corporations,Bulk orders,Sea Freight,False,2024-11-19 13:48:23.130010
+1472,"Petroleum & Energy,Electronics,Handicrafts & Furniture",Startups,Small orders,Land Transport,False,2024-11-13 13:48:23.130163
+1473,"Electronics,Agriculture & Food,Handicrafts & Furniture",Small Businesses,Medium orders,Sea Freight,False,2024-07-19 13:48:23.130303
+1474,"Construction & Building Materials,Agriculture & Food",Startups,Small orders,Land Transport,False,2025-03-14 13:48:23.130442
+1475,"Agriculture & Food,Handicrafts & Furniture",Small Businesses,Medium orders,Sea Freight,False,2024-07-05 13:48:23.130581
+1476,"Textiles & Garments,Chemicals & Fertilizers,Electronics",Small Businesses,Large orders,Land Transport,False,2024-11-06 13:48:23.130724
+1477,Chemicals & Fertilizers,Medium Enterprises,Small orders,Land Transport,False,2024-09-11 13:48:23.130863
+1478,"Petroleum & Energy,Agriculture & Food",Medium Enterprises,Bulk orders,Express Delivery,False,2024-06-24 13:48:23.131011
+1479,Handicrafts & Furniture,Small Businesses,Small orders,Express Delivery,True,2025-03-29 13:48:23.131152
+1480,Chemicals & Fertilizers,Startups,Medium orders,Land Transport,False,2024-10-27 13:48:23.131297
+1481,"Construction & Building Materials,Agriculture & Food,Chemicals & Fertilizers",Medium Enterprises,Small orders,Express Delivery,False,2024-12-22 13:48:23.131442
+1482,"Petroleum & Energy,Handicrafts & Furniture,Textiles & Garments",Startups,Small orders,Sea Freight,True,2024-07-04 13:48:23.131583
+1483,"Construction & Building Materials,Petroleum & Energy,Chemicals & Fertilizers",Large Corporations,Large orders,Air Freight,True,2024-08-16 13:48:23.131723
+1484,Textiles & Garments,Startups,Large orders,Sea Freight,True,2025-06-13 13:48:23.131862
+1485,Construction & Building Materials,Small Businesses,Small orders,Land Transport,True,2024-12-27 13:48:23.132010
+1486,"Electronics,Construction & Building Materials",Startups,Large orders,Sea Freight,False,2024-12-15 13:48:23.132159
+1487,Construction & Building Materials,Medium Enterprises,Bulk orders,Sea Freight,True,2024-12-28 13:48:23.132302
+1488,"Petroleum & Energy,Electronics",Medium Enterprises,Large orders,Land Transport,False,2024-11-18 13:48:23.132449
+1489,"Petroleum & Energy,Handicrafts & Furniture,Electronics",Large Corporations,Large orders,Air Freight,True,2024-12-16 13:48:23.132608
+1490,"Textiles & Garments,Petroleum & Energy",Small Businesses,Large orders,Express Delivery,False,2024-11-14 13:48:23.132756
+1491,"Handicrafts & Furniture,Chemicals & Fertilizers",Startups,Medium orders,Express Delivery,True,2025-04-18 13:48:23.132914
+1492,"Chemicals & Fertilizers,Agriculture & Food,Textiles & Garments",Startups,Bulk orders,Sea Freight,False,2025-06-03 13:48:23.133106
+1493,Handicrafts & Furniture,Medium Enterprises,Medium orders,Land Transport,False,2024-06-17 13:48:23.133258
+1494,"Agriculture & Food,Chemicals & Fertilizers,Petroleum & Energy",Small Businesses,Bulk orders,Express Delivery,False,2025-01-23 13:48:23.133413
+1495,"Agriculture & Food,Petroleum & Energy",Startups,Large orders,Air Freight,True,2025-03-20 13:48:23.133559
+1496,"Textiles & Garments,Petroleum & Energy,Electronics",Small Businesses,Large orders,Land Transport,True,2024-08-07 13:48:23.133713
+1497,"Petroleum & Energy,Agriculture & Food,Chemicals & Fertilizers",Large Corporations,Bulk orders,Air Freight,True,2025-04-13 13:48:23.133862
+1498,"Agriculture & Food,Construction & Building Materials",Medium Enterprises,Large orders,Express Delivery,False,2024-08-30 13:48:23.134015
+1499,"Textiles & Garments,Agriculture & Food,Chemicals & Fertilizers",Startups,Large orders,Air Freight,False,2024-08-24 13:48:23.134164
+1500,"Electronics,Agriculture & Food,Construction & Building Materials",Startups,Small orders,Express Delivery,True,2025-06-03 13:48:23.134313
+1501,Agriculture & Food,Medium Enterprises,Large orders,Express Delivery,True,2024-09-11 13:48:23.134470
+1502,"Handicrafts & Furniture,Agriculture & Food",Startups,Medium orders,Sea Freight,False,2025-02-08 13:48:23.134622
+1503,"Textiles & Garments,Agriculture & Food",Small Businesses,Large orders,Land Transport,True,2024-08-07 13:48:23.134772
+1504,"Chemicals & Fertilizers,Construction & Building Materials,Handicrafts & Furniture",Small Businesses,Bulk orders,Sea Freight,True,2025-03-02 13:48:23.134926
+1505,"Chemicals & Fertilizers,Petroleum & Energy,Handicrafts & Furniture",Startups,Medium orders,Land Transport,True,2025-03-26 13:48:23.135078
+1506,Electronics,Large Corporations,Small orders,Land Transport,False,2025-05-29 13:48:23.135229
+1507,"Handicrafts & Furniture,Textiles & Garments,Petroleum & Energy",Small Businesses,Small orders,Air Freight,True,2024-10-30 13:48:23.135377
+1508,"Handicrafts & Furniture,Electronics",Large Corporations,Medium orders,Express Delivery,False,2025-05-08 13:48:23.135517
+1509,Handicrafts & Furniture,Startups,Large orders,Air Freight,False,2024-11-02 13:48:23.135658
+1510,"Electronics,Chemicals & Fertilizers",Large Corporations,Medium orders,Land Transport,False,2024-12-11 13:48:23.135801
+1511,Construction & Building Materials,Small Businesses,Large orders,Sea Freight,True,2024-10-09 13:48:23.135969
+1512,"Petroleum & Energy,Chemicals & Fertilizers,Textiles & Garments",Medium Enterprises,Medium orders,Air Freight,False,2024-11-23 13:48:23.136155
+1513,Petroleum & Energy,Small Businesses,Bulk orders,Sea Freight,False,2024-11-09 13:48:23.136300
+1514,Construction & Building Materials,Small Businesses,Large orders,Air Freight,True,2025-01-11 13:48:23.136447
+1515,Construction & Building Materials,Large Corporations,Small orders,Express Delivery,False,2024-11-07 13:48:23.136590
+1516,"Construction & Building Materials,Electronics",Small Businesses,Bulk orders,Land Transport,True,2025-02-20 13:48:23.136731
+1517,"Textiles & Garments,Electronics,Chemicals & Fertilizers",Large Corporations,Bulk orders,Express Delivery,False,2024-08-07 13:48:23.136881
+1518,Electronics,Startups,Small orders,Express Delivery,True,2025-01-27 13:48:23.137030
+1519,Construction & Building Materials,Startups,Small orders,Land Transport,False,2025-05-05 13:48:23.137174
+1520,"Petroleum & Energy,Construction & Building Materials",Startups,Medium orders,Air Freight,True,2024-07-10 13:48:23.137316
+1521,"Construction & Building Materials,Chemicals & Fertilizers,Agriculture & Food",Startups,Large orders,Sea Freight,False,2024-10-26 13:48:23.137464
+1522,Petroleum & Energy,Large Corporations,Medium orders,Land Transport,False,2024-07-12 13:48:23.137607
+1523,"Textiles & Garments,Electronics,Handicrafts & Furniture",Medium Enterprises,Bulk orders,Sea Freight,False,2025-02-17 13:48:23.137750
+1524,Electronics,Large Corporations,Bulk orders,Sea Freight,True,2024-08-12 13:48:23.137897
+1525,"Textiles & Garments,Handicrafts & Furniture",Medium Enterprises,Bulk orders,Land Transport,False,2024-06-21 13:48:23.138039
+1526,"Electronics,Chemicals & Fertilizers,Handicrafts & Furniture",Startups,Bulk orders,Express Delivery,False,2025-01-30 13:48:23.138212
+1527,"Electronics,Petroleum & Energy,Chemicals & Fertilizers",Large Corporations,Medium orders,Express Delivery,False,2025-02-18 13:48:23.138358
+1528,"Chemicals & Fertilizers,Electronics",Large Corporations,Bulk orders,Air Freight,True,2024-09-06 13:48:23.138497
+1529,Handicrafts & Furniture,Medium Enterprises,Large orders,Sea Freight,True,2024-06-30 13:48:23.138638
+1530,"Agriculture & Food,Petroleum & Energy",Small Businesses,Medium orders,Air Freight,False,2025-01-09 13:48:23.138788
+1531,"Chemicals & Fertilizers,Electronics,Handicrafts & Furniture",Medium Enterprises,Small orders,Sea Freight,True,2024-08-26 13:48:23.138940
+1532,Agriculture & Food,Small Businesses,Small orders,Express Delivery,True,2025-04-07 13:48:23.139081
+1533,Textiles & Garments,Startups,Large orders,Sea Freight,False,2025-01-16 13:48:23.139226
+1534,"Chemicals & Fertilizers,Handicrafts & Furniture,Textiles & Garments",Large Corporations,Large orders,Air Freight,False,2025-06-11 13:48:23.139377
+1535,"Petroleum & Energy,Agriculture & Food",Medium Enterprises,Small orders,Air Freight,True,2025-04-18 13:48:23.139525
+1536,"Electronics,Handicrafts & Furniture",Startups,Bulk orders,Land Transport,False,2024-11-23 13:48:23.139671
+1537,"Agriculture & Food,Chemicals & Fertilizers,Construction & Building Materials",Small Businesses,Large orders,Land Transport,False,2024-12-14 13:48:23.139817
+1538,"Electronics,Chemicals & Fertilizers,Textiles & Garments",Medium Enterprises,Bulk orders,Air Freight,True,2024-07-30 13:48:23.139972
+1539,Textiles & Garments,Medium Enterprises,Medium orders,Land Transport,True,2024-11-20 13:48:23.140118
+1540,"Chemicals & Fertilizers,Textiles & Garments",Small Businesses,Medium orders,Air Freight,False,2025-03-30 13:48:23.140261
+1541,Construction & Building Materials,Large Corporations,Small orders,Air Freight,True,2024-10-14 13:48:23.140402
+1542,"Chemicals & Fertilizers,Agriculture & Food,Electronics",Large Corporations,Small orders,Sea Freight,False,2024-08-17 13:48:23.140542
+1543,Agriculture & Food,Startups,Small orders,Air Freight,False,2025-06-03 13:48:23.140685
+1544,"Petroleum & Energy,Agriculture & Food,Electronics",Large Corporations,Large orders,Express Delivery,False,2025-01-04 13:48:23.140827
+1545,"Petroleum & Energy,Electronics",Medium Enterprises,Small orders,Land Transport,False,2025-01-03 13:48:23.140973
+1546,Electronics,Medium Enterprises,Bulk orders,Express Delivery,True,2024-11-20 13:48:23.141110
+1547,"Chemicals & Fertilizers,Handicrafts & Furniture",Large Corporations,Large orders,Sea Freight,False,2024-09-09 13:48:23.141253
+1548,"Handicrafts & Furniture,Construction & Building Materials,Electronics",Startups,Large orders,Land Transport,False,2025-02-11 13:48:23.141410
+1549,Agriculture & Food,Small Businesses,Small orders,Air Freight,True,2025-04-17 13:48:23.141548
+1550,"Construction & Building Materials,Petroleum & Energy",Medium Enterprises,Bulk orders,Sea Freight,True,2025-02-28 13:48:23.141687
+1551,Agriculture & Food,Medium Enterprises,Bulk orders,Air Freight,True,2024-11-26 13:48:23.141825
+1552,"Textiles & Garments,Agriculture & Food",Startups,Bulk orders,Land Transport,False,2024-07-14 13:48:23.141971
+1553,Handicrafts & Furniture,Medium Enterprises,Bulk orders,Land Transport,True,2024-10-08 13:48:23.142110
+1554,"Handicrafts & Furniture,Petroleum & Energy",Small Businesses,Medium orders,Air Freight,True,2024-10-26 13:48:23.142248
+1555,Handicrafts & Furniture,Large Corporations,Bulk orders,Express Delivery,True,2025-05-17 13:48:23.142388
+1556,Handicrafts & Furniture,Medium Enterprises,Medium orders,Sea Freight,True,2024-08-06 13:48:23.142526
+1557,"Textiles & Garments,Construction & Building Materials",Startups,Medium orders,Sea Freight,True,2025-06-05 13:48:23.142675
+1558,Petroleum & Energy,Startups,Medium orders,Express Delivery,False,2024-07-19 13:48:23.142813
+1559,Handicrafts & Furniture,Medium Enterprises,Large orders,Air Freight,True,2024-07-05 13:48:23.142962
+1560,"Electronics,Petroleum & Energy",Medium Enterprises,Bulk orders,Express Delivery,True,2024-10-13 13:48:23.143107
+1561,"Electronics,Agriculture & Food",Startups,Large orders,Land Transport,True,2025-04-14 13:48:23.143246
+1562,Petroleum & Energy,Startups,Bulk orders,Air Freight,False,2024-07-26 13:48:23.143385
+1563,"Handicrafts & Furniture,Petroleum & Energy",Large Corporations,Bulk orders,Sea Freight,False,2025-04-06 13:48:23.143523
+1564,Petroleum & Energy,Large Corporations,Bulk orders,Land Transport,False,2024-09-14 13:48:23.143663
+1565,Agriculture & Food,Small Businesses,Bulk orders,Air Freight,False,2024-08-01 13:48:23.143803
+1566,"Chemicals & Fertilizers,Agriculture & Food",Large Corporations,Large orders,Sea Freight,True,2024-08-02 13:48:23.143947
+1567,"Agriculture & Food,Petroleum & Energy",Small Businesses,Large orders,Land Transport,True,2025-05-09 13:48:23.144087
+1568,"Textiles & Garments,Chemicals & Fertilizers",Small Businesses,Bulk orders,Land Transport,False,2025-04-02 13:48:23.144227
+1569,Chemicals & Fertilizers,Medium Enterprises,Small orders,Sea Freight,True,2025-02-01 13:48:23.144366
+1570,"Electronics,Textiles & Garments,Construction & Building Materials",Large Corporations,Large orders,Land Transport,True,2024-09-01 13:48:23.144514
+1571,"Agriculture & Food,Electronics",Startups,Small orders,Express Delivery,False,2025-05-31 13:48:23.144657
+1572,"Petroleum & Energy,Handicrafts & Furniture",Large Corporations,Small orders,Express Delivery,True,2024-08-14 13:48:23.144798
+1573,"Petroleum & Energy,Textiles & Garments,Handicrafts & Furniture",Startups,Small orders,Sea Freight,True,2025-03-02 13:48:23.144948
+1574,"Textiles & Garments,Agriculture & Food,Construction & Building Materials",Large Corporations,Bulk orders,Land Transport,False,2024-09-06 13:48:23.145096
+1575,Textiles & Garments,Medium Enterprises,Medium orders,Express Delivery,False,2024-09-05 13:48:23.145236
+1576,Electronics,Startups,Small orders,Sea Freight,False,2024-08-17 13:48:23.145375
+1577,Chemicals & Fertilizers,Large Corporations,Small orders,Express Delivery,False,2025-01-07 13:48:23.145521
+1578,"Chemicals & Fertilizers,Handicrafts & Furniture",Medium Enterprises,Small orders,Sea Freight,False,2024-11-02 13:48:23.145663
+1579,"Electronics,Textiles & Garments,Handicrafts & Furniture",Medium Enterprises,Large orders,Air Freight,False,2024-12-04 13:48:23.145806
+1580,Petroleum & Energy,Startups,Small orders,Sea Freight,False,2024-07-17 13:48:23.145953
+1581,Agriculture & Food,Medium Enterprises,Bulk orders,Sea Freight,False,2024-12-25 13:48:23.146130
+1582,"Chemicals & Fertilizers,Petroleum & Energy",Small Businesses,Small orders,Express Delivery,False,2025-05-29 13:48:23.146271
+1583,"Petroleum & Energy,Agriculture & Food",Startups,Small orders,Express Delivery,True,2024-10-28 13:48:23.146416
+1584,"Petroleum & Energy,Chemicals & Fertilizers,Agriculture & Food",Large Corporations,Medium orders,Air Freight,True,2025-05-01 13:48:23.146560
+1585,"Textiles & Garments,Electronics,Chemicals & Fertilizers",Medium Enterprises,Small orders,Air Freight,True,2024-07-08 13:48:23.146801
+1586,"Petroleum & Energy,Construction & Building Materials,Electronics",Small Businesses,Bulk orders,Land Transport,False,2024-12-08 13:48:23.147023
+1587,"Petroleum & Energy,Electronics,Agriculture & Food",Small Businesses,Medium orders,Land Transport,True,2025-03-13 13:48:23.147221
+1588,"Electronics,Agriculture & Food",Startups,Large orders,Air Freight,False,2024-07-08 13:48:23.147376
+1589,"Construction & Building Materials,Textiles & Garments,Petroleum & Energy",Startups,Large orders,Express Delivery,False,2024-12-05 13:48:23.147520
+1590,"Chemicals & Fertilizers,Construction & Building Materials,Electronics",Startups,Medium orders,Express Delivery,True,2025-02-24 13:48:23.147662
+1591,"Petroleum & Energy,Textiles & Garments,Electronics",Startups,Bulk orders,Express Delivery,True,2024-09-13 13:48:23.147805
+1592,Agriculture & Food,Large Corporations,Small orders,Land Transport,True,2024-12-10 13:48:23.147953
+1593,Petroleum & Energy,Medium Enterprises,Large orders,Land Transport,False,2024-11-28 13:48:23.148094
+1594,"Textiles & Garments,Agriculture & Food",Startups,Small orders,Express Delivery,False,2024-11-17 13:48:23.148236
+1595,"Textiles & Garments,Agriculture & Food,Handicrafts & Furniture",Large Corporations,Medium orders,Sea Freight,True,2024-09-14 13:48:23.148376
+1596,"Electronics,Chemicals & Fertilizers",Startups,Bulk orders,Land Transport,False,2024-09-26 13:48:23.148525
+1597,"Handicrafts & Furniture,Chemicals & Fertilizers,Petroleum & Energy",Medium Enterprises,Bulk orders,Land Transport,True,2025-02-19 13:48:23.148668
+1598,Petroleum & Energy,Medium Enterprises,Medium orders,Air Freight,False,2025-02-18 13:48:23.148807
+1599,"Construction & Building Materials,Electronics,Textiles & Garments",Large Corporations,Small orders,Land Transport,False,2025-05-19 13:48:23.148953
+1600,"Chemicals & Fertilizers,Construction & Building Materials,Textiles & Garments",Large Corporations,Small orders,Express Delivery,False,2024-07-17 13:48:23.149097
+1601,"Textiles & Garments,Electronics,Petroleum & Energy",Startups,Small orders,Air Freight,True,2025-02-26 13:48:23.149241
+1602,Textiles & Garments,Startups,Medium orders,Express Delivery,False,2024-07-31 13:48:23.149380
+1603,"Construction & Building Materials,Chemicals & Fertilizers,Textiles & Garments",Medium Enterprises,Medium orders,Air Freight,True,2024-08-14 13:48:23.149522
+1604,"Electronics,Petroleum & Energy",Medium Enterprises,Bulk orders,Air Freight,False,2024-11-10 13:48:23.149662
+1605,Textiles & Garments,Startups,Small orders,Express Delivery,True,2024-08-28 13:48:23.149802
+1606,"Electronics,Agriculture & Food",Medium Enterprises,Bulk orders,Express Delivery,True,2025-05-31 13:48:23.149975
+1607,"Petroleum & Energy,Construction & Building Materials,Agriculture & Food",Large Corporations,Bulk orders,Sea Freight,False,2025-05-08 13:48:23.150163
+1608,Agriculture & Food,Medium Enterprises,Medium orders,Air Freight,True,2024-10-06 13:48:23.150305
+1609,Construction & Building Materials,Medium Enterprises,Medium orders,Express Delivery,False,2025-01-15 13:48:23.150444
+1610,"Construction & Building Materials,Agriculture & Food",Medium Enterprises,Small orders,Sea Freight,True,2024-10-30 13:48:23.150591
+1611,"Electronics,Construction & Building Materials",Large Corporations,Small orders,Air Freight,True,2024-12-08 13:48:23.150730
+1612,Textiles & Garments,Medium Enterprises,Medium orders,Land Transport,True,2024-12-27 13:48:23.150883
+1613,"Chemicals & Fertilizers,Electronics",Large Corporations,Large orders,Sea Freight,True,2025-04-09 13:48:23.151028
+1614,"Chemicals & Fertilizers,Handicrafts & Furniture,Textiles & Garments",Medium Enterprises,Medium orders,Express Delivery,True,2025-02-02 13:48:23.151168
+1615,"Handicrafts & Furniture,Petroleum & Energy",Large Corporations,Medium orders,Land Transport,False,2024-11-04 13:48:23.151307
+1616,"Chemicals & Fertilizers,Construction & Building Materials,Textiles & Garments",Startups,Small orders,Land Transport,True,2025-05-05 13:48:23.151448
+1617,Construction & Building Materials,Large Corporations,Small orders,Land Transport,True,2024-07-12 13:48:23.151589
+1618,"Agriculture & Food,Electronics",Small Businesses,Small orders,Land Transport,True,2025-06-08 13:48:23.151729
+1619,"Electronics,Textiles & Garments,Agriculture & Food",Small Businesses,Bulk orders,Land Transport,False,2024-07-18 13:48:23.151873
+1620,"Petroleum & Energy,Chemicals & Fertilizers,Handicrafts & Furniture",Large Corporations,Large orders,Sea Freight,False,2024-09-11 13:48:23.152022
+1621,Electronics,Medium Enterprises,Bulk orders,Express Delivery,True,2024-08-14 13:48:23.152165
+1622,Chemicals & Fertilizers,Startups,Small orders,Land Transport,True,2025-02-02 13:48:23.152305
+1623,"Handicrafts & Furniture,Electronics,Construction & Building Materials",Large Corporations,Medium orders,Express Delivery,False,2024-08-05 13:48:23.152456
+1624,"Electronics,Petroleum & Energy,Textiles & Garments",Large Corporations,Small orders,Express Delivery,False,2024-11-08 13:48:23.152601
+1625,Textiles & Garments,Startups,Medium orders,Express Delivery,False,2025-03-14 13:48:23.152740
+1626,Handicrafts & Furniture,Large Corporations,Medium orders,Sea Freight,False,2024-08-19 13:48:23.152884
+1627,"Handicrafts & Furniture,Agriculture & Food",Large Corporations,Large orders,Land Transport,True,2024-08-11 13:48:23.153031
+1628,"Petroleum & Energy,Chemicals & Fertilizers",Large Corporations,Large orders,Land Transport,False,2025-01-16 13:48:23.153168
+1629,"Handicrafts & Furniture,Agriculture & Food",Large Corporations,Bulk orders,Land Transport,False,2024-10-06 13:48:23.153306
+1630,"Construction & Building Materials,Electronics",Large Corporations,Bulk orders,Express Delivery,False,2024-07-18 13:48:23.153448
+1631,"Agriculture & Food,Petroleum & Energy",Small Businesses,Medium orders,Express Delivery,False,2024-11-14 13:48:23.153587
+1632,Chemicals & Fertilizers,Large Corporations,Large orders,Express Delivery,True,2024-06-18 13:48:23.153727
+1633,"Construction & Building Materials,Agriculture & Food,Electronics",Small Businesses,Small orders,Air Freight,True,2024-07-04 13:48:23.153874
+1634,Agriculture & Food,Large Corporations,Medium orders,Express Delivery,False,2024-07-04 13:48:23.154020
+1635,"Petroleum & Energy,Electronics",Small Businesses,Medium orders,Express Delivery,False,2024-08-19 13:48:23.154166
+1636,Chemicals & Fertilizers,Small Businesses,Bulk orders,Air Freight,False,2025-05-22 13:48:23.154312
+1637,"Textiles & Garments,Electronics",Medium Enterprises,Small orders,Land Transport,False,2024-07-29 13:48:23.154451
+1638,"Construction & Building Materials,Petroleum & Energy,Handicrafts & Furniture",Startups,Small orders,Express Delivery,True,2024-07-07 13:48:23.154594
+1639,Petroleum & Energy,Small Businesses,Bulk orders,Sea Freight,True,2024-07-06 13:48:23.154743
+1640,"Electronics,Construction & Building Materials",Small Businesses,Small orders,Sea Freight,True,2024-07-15 13:48:23.154898
+1641,"Chemicals & Fertilizers,Handicrafts & Furniture,Construction & Building Materials",Small Businesses,Medium orders,Sea Freight,False,2024-06-20 13:48:23.155043
+1642,"Chemicals & Fertilizers,Construction & Building Materials,Agriculture & Food",Medium Enterprises,Bulk orders,Express Delivery,False,2024-07-22 13:48:23.155186
+1643,"Chemicals & Fertilizers,Petroleum & Energy,Handicrafts & Furniture",Startups,Small orders,Express Delivery,True,2025-03-09 13:48:23.155328
+1644,Agriculture & Food,Large Corporations,Medium orders,Air Freight,True,2024-09-29 13:48:23.155467
+1645,"Construction & Building Materials,Handicrafts & Furniture",Large Corporations,Bulk orders,Land Transport,False,2024-10-03 13:48:23.155605
+1646,Petroleum & Energy,Medium Enterprises,Small orders,Express Delivery,False,2025-01-26 13:48:23.155745
+1647,Textiles & Garments,Medium Enterprises,Bulk orders,Express Delivery,True,2025-03-05 13:48:23.155892
+1648,"Handicrafts & Furniture,Construction & Building Materials,Agriculture & Food",Large Corporations,Small orders,Land Transport,False,2024-09-13 13:48:23.156037
+1649,"Chemicals & Fertilizers,Handicrafts & Furniture,Construction & Building Materials",Large Corporations,Bulk orders,Sea Freight,True,2025-04-07 13:48:23.156182
+1650,"Agriculture & Food,Construction & Building Materials,Textiles & Garments",Startups,Small orders,Land Transport,False,2024-08-05 13:48:23.156323
+1651,"Petroleum & Energy,Textiles & Garments,Chemicals & Fertilizers",Startups,Large orders,Land Transport,True,2024-09-19 13:48:23.156476
+1652,Textiles & Garments,Small Businesses,Small orders,Express Delivery,True,2024-10-27 13:48:23.156614
+1653,"Textiles & Garments,Agriculture & Food,Electronics",Large Corporations,Small orders,Air Freight,True,2025-01-12 13:48:23.156761
+1654,"Chemicals & Fertilizers,Textiles & Garments",Medium Enterprises,Small orders,Sea Freight,True,2024-07-14 13:48:23.156906
+1655,"Agriculture & Food,Textiles & Garments",Large Corporations,Large orders,Sea Freight,True,2025-03-30 13:48:23.157048
+1656,"Agriculture & Food,Electronics,Handicrafts & Furniture",Startups,Bulk orders,Sea Freight,True,2024-07-24 13:48:23.157188
+1657,Handicrafts & Furniture,Large Corporations,Large orders,Land Transport,False,2024-10-22 13:48:23.157327
+1658,"Textiles & Garments,Handicrafts & Furniture,Petroleum & Energy",Startups,Large orders,Air Freight,True,2024-07-20 13:48:23.157468
+1659,"Electronics,Construction & Building Materials",Large Corporations,Large orders,Air Freight,True,2025-04-29 13:48:23.157607
+1660,"Textiles & Garments,Agriculture & Food,Petroleum & Energy",Startups,Small orders,Air Freight,True,2025-03-13 13:48:23.157746
+1661,Agriculture & Food,Medium Enterprises,Large orders,Land Transport,False,2025-05-20 13:48:23.157890
+1662,"Handicrafts & Furniture,Agriculture & Food,Textiles & Garments",Small Businesses,Medium orders,Express Delivery,False,2024-06-29 13:48:23.158052
+1663,Chemicals & Fertilizers,Medium Enterprises,Large orders,Express Delivery,False,2024-07-02 13:48:23.158196
+1664,"Agriculture & Food,Electronics",Small Businesses,Small orders,Sea Freight,False,2024-07-04 13:48:23.158334
+1665,"Chemicals & Fertilizers,Construction & Building Materials",Medium Enterprises,Small orders,Express Delivery,True,2024-10-14 13:48:23.158474
+1666,"Construction & Building Materials,Electronics",Small Businesses,Bulk orders,Sea Freight,True,2025-02-06 13:48:23.158692
+1667,Handicrafts & Furniture,Small Businesses,Bulk orders,Express Delivery,False,2024-08-13 13:48:23.158835
+1668,Chemicals & Fertilizers,Small Businesses,Large orders,Express Delivery,False,2024-07-31 13:48:23.158981
+1669,"Agriculture & Food,Construction & Building Materials",Small Businesses,Medium orders,Land Transport,True,2025-03-11 13:48:23.159121
+1670,Handicrafts & Furniture,Large Corporations,Bulk orders,Air Freight,False,2025-03-02 13:48:23.159261
+1671,Agriculture & Food,Medium Enterprises,Large orders,Sea Freight,False,2025-04-21 13:48:23.159397
+1672,Handicrafts & Furniture,Large Corporations,Small orders,Sea Freight,True,2025-03-29 13:48:23.159536
+1673,"Agriculture & Food,Textiles & Garments",Medium Enterprises,Bulk orders,Land Transport,True,2024-10-11 13:48:23.159683
+1674,"Chemicals & Fertilizers,Construction & Building Materials",Startups,Medium orders,Land Transport,True,2024-07-17 13:48:23.159824
+1675,Agriculture & Food,Startups,Bulk orders,Express Delivery,True,2024-07-23 13:48:23.159966
+1676,Petroleum & Energy,Large Corporations,Medium orders,Land Transport,True,2024-08-04 13:48:23.160115
+1677,"Agriculture & Food,Construction & Building Materials,Chemicals & Fertilizers",Medium Enterprises,Small orders,Land Transport,True,2025-05-05 13:48:23.160257
+1678,"Construction & Building Materials,Electronics",Medium Enterprises,Medium orders,Land Transport,True,2024-11-21 13:48:23.160397
+1679,"Textiles & Garments,Construction & Building Materials",Medium Enterprises,Small orders,Air Freight,False,2024-07-10 13:48:23.160537
+1680,Petroleum & Energy,Small Businesses,Small orders,Express Delivery,False,2025-04-16 13:48:23.160680
+1681,"Textiles & Garments,Chemicals & Fertilizers",Large Corporations,Small orders,Air Freight,True,2025-05-24 13:48:23.160819
+1682,"Agriculture & Food,Handicrafts & Furniture,Petroleum & Energy",Small Businesses,Bulk orders,Sea Freight,False,2025-05-31 13:48:23.160965
+1683,"Construction & Building Materials,Electronics,Agriculture & Food",Small Businesses,Bulk orders,Sea Freight,False,2024-09-01 13:48:23.161105
+1684,Chemicals & Fertilizers,Medium Enterprises,Medium orders,Air Freight,True,2024-09-10 13:48:23.161246
+1685,"Handicrafts & Furniture,Agriculture & Food,Electronics",Large Corporations,Bulk orders,Air Freight,True,2024-12-06 13:48:23.161386
+1686,"Electronics,Construction & Building Materials,Chemicals & Fertilizers",Small Businesses,Bulk orders,Land Transport,False,2025-02-17 13:48:23.161524
+1687,"Handicrafts & Furniture,Agriculture & Food",Small Businesses,Medium orders,Air Freight,True,2024-12-29 13:48:23.161665
+1688,"Agriculture & Food,Textiles & Garments,Handicrafts & Furniture",Large Corporations,Large orders,Air Freight,True,2025-04-16 13:48:23.161809
+1689,"Agriculture & Food,Electronics",Medium Enterprises,Bulk orders,Air Freight,False,2024-11-19 13:48:23.161959
+1690,Construction & Building Materials,Large Corporations,Medium orders,Land Transport,False,2024-11-19 13:48:23.162098
+1691,"Agriculture & Food,Construction & Building Materials",Medium Enterprises,Large orders,Air Freight,True,2025-03-19 13:48:23.162248
+1692,"Electronics,Textiles & Garments,Chemicals & Fertilizers",Small Businesses,Small orders,Express Delivery,True,2025-02-19 13:48:23.162391
+1693,"Petroleum & Energy,Chemicals & Fertilizers",Medium Enterprises,Bulk orders,Air Freight,False,2024-08-02 13:48:23.162541
+1694,Electronics,Medium Enterprises,Bulk orders,Sea Freight,True,2024-07-10 13:48:23.162720
+1695,Chemicals & Fertilizers,Medium Enterprises,Bulk orders,Express Delivery,True,2025-05-02 13:48:23.162877
+1696,"Construction & Building Materials,Petroleum & Energy",Medium Enterprises,Large orders,Express Delivery,False,2025-04-30 13:48:23.163018
+1697,"Petroleum & Energy,Handicrafts & Furniture,Electronics",Startups,Small orders,Land Transport,True,2024-07-05 13:48:23.163159
+1698,"Chemicals & Fertilizers,Construction & Building Materials",Startups,Small orders,Land Transport,False,2024-08-22 13:48:23.163298
+1699,"Chemicals & Fertilizers,Petroleum & Energy,Textiles & Garments",Large Corporations,Large orders,Land Transport,True,2025-04-22 13:48:23.163437
+1700,"Electronics,Textiles & Garments",Medium Enterprises,Medium orders,Express Delivery,False,2024-12-09 13:48:23.163578
+1701,"Construction & Building Materials,Chemicals & Fertilizers",Startups,Bulk orders,Sea Freight,False,2025-01-10 13:48:23.163717
+1702,"Petroleum & Energy,Agriculture & Food,Chemicals & Fertilizers",Medium Enterprises,Large orders,Sea Freight,False,2024-07-17 13:48:23.163862
+1703,"Handicrafts & Furniture,Construction & Building Materials,Chemicals & Fertilizers",Startups,Bulk orders,Air Freight,False,2025-06-14 13:48:23.164012
+1704,"Textiles & Garments,Chemicals & Fertilizers",Small Businesses,Small orders,Sea Freight,False,2025-03-10 13:48:23.164150
+1705,"Agriculture & Food,Chemicals & Fertilizers",Small Businesses,Large orders,Land Transport,True,2024-09-10 13:48:23.164288
+1706,Agriculture & Food,Large Corporations,Large orders,Express Delivery,False,2024-07-29 13:48:23.164430
+1707,"Textiles & Garments,Electronics",Small Businesses,Bulk orders,Express Delivery,False,2025-05-29 13:48:23.164571
+1708,"Agriculture & Food,Petroleum & Energy,Construction & Building Materials",Startups,Large orders,Sea Freight,False,2025-01-12 13:48:23.164711
+1709,Petroleum & Energy,Startups,Large orders,Sea Freight,True,2025-05-24 13:48:23.164847
+1710,Electronics,Medium Enterprises,Small orders,Express Delivery,True,2024-09-22 13:48:23.164994
+1711,"Construction & Building Materials,Agriculture & Food",Medium Enterprises,Medium orders,Express Delivery,False,2024-06-17 13:48:23.165135
+1712,"Chemicals & Fertilizers,Textiles & Garments,Construction & Building Materials",Small Businesses,Large orders,Sea Freight,True,2024-10-02 13:48:23.165276
+1713,"Chemicals & Fertilizers,Agriculture & Food,Electronics",Medium Enterprises,Small orders,Express Delivery,False,2024-12-01 13:48:23.165416
+1714,"Textiles & Garments,Chemicals & Fertilizers,Handicrafts & Furniture",Startups,Small orders,Land Transport,True,2025-01-27 13:48:23.165557
+1715,Textiles & Garments,Medium Enterprises,Small orders,Express Delivery,False,2025-06-08 13:48:23.165696
+1716,Agriculture & Food,Small Businesses,Medium orders,Air Freight,False,2024-08-14 13:48:23.165839
+1717,"Handicrafts & Furniture,Chemicals & Fertilizers",Medium Enterprises,Medium orders,Air Freight,False,2025-03-22 13:48:23.166048
+1718,"Construction & Building Materials,Chemicals & Fertilizers",Medium Enterprises,Medium orders,Express Delivery,True,2024-09-23 13:48:23.166194
+1719,Electronics,Small Businesses,Large orders,Sea Freight,False,2024-11-08 13:48:23.166341
+1720,Agriculture & Food,Small Businesses,Bulk orders,Sea Freight,False,2024-10-25 13:48:23.166481
+1721,"Handicrafts & Furniture,Construction & Building Materials",Small Businesses,Large orders,Express Delivery,True,2024-10-27 13:48:23.166621
+1722,Electronics,Medium Enterprises,Bulk orders,Land Transport,True,2024-10-13 13:48:23.166758
+1723,"Chemicals & Fertilizers,Construction & Building Materials",Large Corporations,Bulk orders,Air Freight,True,2024-12-04 13:48:23.166917
+1724,"Handicrafts & Furniture,Electronics",Small Businesses,Bulk orders,Sea Freight,True,2024-11-18 13:48:23.167058
+1725,Agriculture & Food,Startups,Small orders,Express Delivery,False,2025-05-13 13:48:23.167310
+1726,Chemicals & Fertilizers,Medium Enterprises,Medium orders,Air Freight,True,2024-09-04 13:48:23.167491
+1727,"Agriculture & Food,Construction & Building Materials,Handicrafts & Furniture",Medium Enterprises,Large orders,Express Delivery,False,2025-03-26 13:48:23.167669
+1728,Electronics,Large Corporations,Medium orders,Sea Freight,False,2024-11-24 13:48:23.167849
+1729,"Petroleum & Energy,Textiles & Garments,Chemicals & Fertilizers",Small Businesses,Small orders,Land Transport,False,2024-08-12 13:48:23.168007
+1730,Electronics,Large Corporations,Large orders,Express Delivery,False,2024-06-26 13:48:23.168150
+1731,"Chemicals & Fertilizers,Handicrafts & Furniture,Agriculture & Food",Large Corporations,Bulk orders,Sea Freight,True,2025-01-16 13:48:23.168293
+1732,Petroleum & Energy,Startups,Small orders,Land Transport,True,2025-01-23 13:48:23.168432
+1733,"Chemicals & Fertilizers,Handicrafts & Furniture",Startups,Medium orders,Air Freight,False,2024-06-28 13:48:23.168578
+1734,Handicrafts & Furniture,Medium Enterprises,Medium orders,Sea Freight,True,2025-03-05 13:48:23.168722
+1735,"Agriculture & Food,Electronics",Small Businesses,Small orders,Land Transport,False,2025-03-03 13:48:23.168864
+1736,Construction & Building Materials,Large Corporations,Small orders,Air Freight,True,2024-12-16 13:48:23.169010
+1737,"Agriculture & Food,Textiles & Garments,Electronics",Startups,Bulk orders,Air Freight,True,2025-03-10 13:48:23.169150
+1738,Electronics,Large Corporations,Medium orders,Land Transport,True,2024-11-02 13:48:23.169297
+1739,Petroleum & Energy,Medium Enterprises,Large orders,Express Delivery,False,2024-07-15 13:48:23.169439
+1740,Construction & Building Materials,Startups,Large orders,Land Transport,False,2024-12-24 13:48:23.169578
+1741,"Chemicals & Fertilizers,Textiles & Garments",Medium Enterprises,Bulk orders,Air Freight,True,2024-07-27 13:48:23.169717
+1742,"Textiles & Garments,Handicrafts & Furniture,Chemicals & Fertilizers",Large Corporations,Large orders,Land Transport,True,2024-12-30 13:48:23.169861
+1743,"Textiles & Garments,Electronics,Handicrafts & Furniture",Small Businesses,Large orders,Air Freight,True,2025-05-20 13:48:23.170007
+1744,"Textiles & Garments,Agriculture & Food",Medium Enterprises,Medium orders,Air Freight,False,2025-02-12 13:48:23.170147
+1745,Agriculture & Food,Large Corporations,Medium orders,Air Freight,False,2024-11-21 13:48:23.170285
+1746,"Electronics,Petroleum & Energy,Agriculture & Food",Small Businesses,Small orders,Land Transport,False,2025-05-02 13:48:23.170434
+1747,"Petroleum & Energy,Agriculture & Food",Startups,Large orders,Air Freight,False,2025-02-19 13:48:23.170572
+1748,"Agriculture & Food,Construction & Building Materials,Handicrafts & Furniture",Medium Enterprises,Small orders,Air Freight,True,2025-06-06 13:48:23.170710
+1749,"Textiles & Garments,Petroleum & Energy",Small Businesses,Large orders,Sea Freight,True,2025-05-17 13:48:23.170849
+1750,Chemicals & Fertilizers,Medium Enterprises,Large orders,Express Delivery,True,2024-08-24 13:48:23.170993
+1751,"Textiles & Garments,Handicrafts & Furniture",Medium Enterprises,Bulk orders,Air Freight,False,2024-11-07 13:48:23.171138
+1752,"Chemicals & Fertilizers,Electronics,Textiles & Garments",Medium Enterprises,Small orders,Air Freight,True,2024-11-09 13:48:23.171281
+1753,Agriculture & Food,Small Businesses,Bulk orders,Air Freight,False,2024-09-12 13:48:23.171418
+1754,"Construction & Building Materials,Petroleum & Energy",Small Businesses,Small orders,Air Freight,True,2024-09-12 13:48:23.171563
+1755,"Construction & Building Materials,Petroleum & Energy,Textiles & Garments",Small Businesses,Large orders,Express Delivery,False,2024-12-26 13:48:23.171705
+1756,Electronics,Large Corporations,Small orders,Air Freight,True,2024-07-29 13:48:23.171842
+1757,"Agriculture & Food,Construction & Building Materials,Electronics",Small Businesses,Small orders,Land Transport,True,2024-10-01 13:48:23.171989
+1758,"Petroleum & Energy,Textiles & Garments,Electronics",Medium Enterprises,Small orders,Sea Freight,True,2025-03-27 13:48:23.172129
+1759,"Handicrafts & Furniture,Chemicals & Fertilizers,Agriculture & Food",Medium Enterprises,Bulk orders,Express Delivery,False,2024-09-04 13:48:23.172273
+1760,Handicrafts & Furniture,Large Corporations,Bulk orders,Sea Freight,True,2024-09-03 13:48:23.172414
+1761,"Petroleum & Energy,Construction & Building Materials,Textiles & Garments",Startups,Bulk orders,Express Delivery,True,2024-11-14 13:48:23.172555
+1762,"Petroleum & Energy,Electronics,Agriculture & Food",Small Businesses,Small orders,Air Freight,False,2025-04-30 13:48:23.172694
+1763,"Agriculture & Food,Electronics,Textiles & Garments",Medium Enterprises,Bulk orders,Land Transport,False,2025-05-29 13:48:23.172831
+1764,"Chemicals & Fertilizers,Handicrafts & Furniture,Construction & Building Materials",Medium Enterprises,Medium orders,Land Transport,False,2025-05-09 13:48:23.172976
+1765,"Construction & Building Materials,Textiles & Garments,Petroleum & Energy",Large Corporations,Large orders,Land Transport,False,2024-11-08 13:48:23.173113
+1766,"Chemicals & Fertilizers,Textiles & Garments",Medium Enterprises,Medium orders,Land Transport,True,2024-08-16 13:48:23.173252
+1767,Petroleum & Energy,Large Corporations,Bulk orders,Sea Freight,True,2025-02-28 13:48:23.173388
+1768,"Agriculture & Food,Electronics",Medium Enterprises,Medium orders,Land Transport,False,2025-02-28 13:48:23.173526
+1769,"Textiles & Garments,Petroleum & Energy",Large Corporations,Large orders,Land Transport,True,2025-01-05 13:48:23.173667
+1770,"Agriculture & Food,Construction & Building Materials",Medium Enterprises,Bulk orders,Land Transport,False,2024-07-25 13:48:23.173806
+1771,"Agriculture & Food,Construction & Building Materials",Medium Enterprises,Large orders,Land Transport,True,2024-07-19 13:48:23.173956
+1772,Chemicals & Fertilizers,Startups,Small orders,Express Delivery,False,2024-11-17 13:48:23.174100
+1773,Electronics,Startups,Medium orders,Express Delivery,False,2024-09-30 13:48:23.174241
+1774,Construction & Building Materials,Small Businesses,Bulk orders,Sea Freight,False,2025-01-26 13:48:23.174378
+1775,"Petroleum & Energy,Chemicals & Fertilizers,Electronics",Small Businesses,Small orders,Sea Freight,True,2025-03-31 13:48:23.174515
+1776,"Agriculture & Food,Handicrafts & Furniture",Large Corporations,Large orders,Land Transport,True,2024-11-01 13:48:23.174676
+1777,"Petroleum & Energy,Agriculture & Food",Small Businesses,Small orders,Air Freight,True,2024-09-21 13:48:23.174819
+1778,Textiles & Garments,Startups,Small orders,Land Transport,True,2025-06-11 13:48:23.174969
+1779,"Agriculture & Food,Electronics",Startups,Medium orders,Land Transport,False,2025-05-16 13:48:23.175107
+1780,"Construction & Building Materials,Chemicals & Fertilizers,Agriculture & Food",Startups,Bulk orders,Air Freight,False,2024-11-29 13:48:23.175247
+1781,"Construction & Building Materials,Handicrafts & Furniture,Electronics",Large Corporations,Medium orders,Sea Freight,False,2025-02-06 13:48:23.175386
+1782,"Chemicals & Fertilizers,Petroleum & Energy",Small Businesses,Small orders,Express Delivery,True,2024-09-11 13:48:23.175531
+1783,"Chemicals & Fertilizers,Agriculture & Food",Small Businesses,Medium orders,Land Transport,True,2024-07-31 13:48:23.175672
+1784,"Textiles & Garments,Agriculture & Food",Small Businesses,Bulk orders,Sea Freight,False,2025-01-04 13:48:23.175813
+1785,"Handicrafts & Furniture,Electronics",Large Corporations,Bulk orders,Air Freight,True,2024-08-19 13:48:23.175959
+1786,Construction & Building Materials,Startups,Large orders,Sea Freight,True,2025-04-24 13:48:23.176104
+1787,"Electronics,Chemicals & Fertilizers,Agriculture & Food",Startups,Medium orders,Express Delivery,True,2025-01-20 13:48:23.176246
+1788,Construction & Building Materials,Startups,Medium orders,Land Transport,False,2025-04-13 13:48:23.176386
+1789,Handicrafts & Furniture,Large Corporations,Small orders,Air Freight,True,2024-11-05 13:48:23.176524
+1790,"Electronics,Agriculture & Food",Medium Enterprises,Large orders,Air Freight,True,2025-03-09 13:48:23.176661
+1791,"Handicrafts & Furniture,Petroleum & Energy,Chemicals & Fertilizers",Startups,Large orders,Land Transport,True,2024-11-18 13:48:23.176800
+1792,"Chemicals & Fertilizers,Handicrafts & Furniture",Medium Enterprises,Bulk orders,Sea Freight,True,2025-06-06 13:48:23.176951
+1793,"Handicrafts & Furniture,Petroleum & Energy",Startups,Small orders,Land Transport,False,2024-11-10 13:48:23.177093
+1794,Agriculture & Food,Medium Enterprises,Bulk orders,Air Freight,False,2024-09-18 13:48:23.177233
+1795,"Petroleum & Energy,Electronics,Handicrafts & Furniture",Small Businesses,Bulk orders,Express Delivery,True,2024-10-24 13:48:23.177372
+1796,Agriculture & Food,Medium Enterprises,Large orders,Sea Freight,False,2024-11-11 13:48:23.177511
+1797,"Electronics,Petroleum & Energy,Chemicals & Fertilizers",Large Corporations,Small orders,Express Delivery,False,2024-09-13 13:48:23.177652
+1798,"Electronics,Chemicals & Fertilizers",Medium Enterprises,Medium orders,Sea Freight,True,2025-03-28 13:48:23.177790
+1799,Chemicals & Fertilizers,Medium Enterprises,Bulk orders,Express Delivery,False,2025-01-08 13:48:23.177941
+1800,"Petroleum & Energy,Chemicals & Fertilizers",Large Corporations,Bulk orders,Air Freight,False,2025-05-18 13:48:23.178082
+1801,"Petroleum & Energy,Electronics,Handicrafts & Furniture",Small Businesses,Medium orders,Land Transport,False,2025-01-03 13:48:23.178222
+1802,Textiles & Garments,Large Corporations,Small orders,Land Transport,False,2025-01-14 13:48:23.178361
+1803,"Handicrafts & Furniture,Agriculture & Food",Medium Enterprises,Medium orders,Sea Freight,False,2025-03-21 13:48:23.178500
+1804,"Agriculture & Food,Petroleum & Energy",Startups,Bulk orders,Air Freight,True,2024-11-19 13:48:23.178639
+1805,"Chemicals & Fertilizers,Handicrafts & Furniture,Petroleum & Energy",Large Corporations,Large orders,Sea Freight,True,2024-07-20 13:48:23.178778
+1806,"Chemicals & Fertilizers,Handicrafts & Furniture",Large Corporations,Medium orders,Land Transport,False,2025-05-19 13:48:23.178941
+1807,"Construction & Building Materials,Textiles & Garments,Handicrafts & Furniture",Large Corporations,Medium orders,Land Transport,False,2024-08-21 13:48:23.179115
+1808,Agriculture & Food,Large Corporations,Small orders,Sea Freight,False,2024-11-13 13:48:23.179258
+1809,"Textiles & Garments,Petroleum & Energy,Agriculture & Food",Small Businesses,Small orders,Express Delivery,True,2025-06-14 13:48:23.179395
+1810,Chemicals & Fertilizers,Startups,Bulk orders,Air Freight,True,2024-12-10 13:48:23.179533
+1811,"Petroleum & Energy,Textiles & Garments,Chemicals & Fertilizers",Startups,Medium orders,Land Transport,True,2024-07-26 13:48:23.179674
+1812,"Petroleum & Energy,Electronics,Agriculture & Food",Startups,Bulk orders,Express Delivery,False,2024-12-18 13:48:23.179817
+1813,Textiles & Garments,Small Businesses,Bulk orders,Express Delivery,False,2025-03-05 13:48:23.179963
+1814,"Chemicals & Fertilizers,Handicrafts & Furniture,Construction & Building Materials",Startups,Large orders,Land Transport,True,2025-04-28 13:48:23.180101
+1815,Handicrafts & Furniture,Large Corporations,Medium orders,Land Transport,True,2025-06-14 13:48:23.180237
+1816,"Construction & Building Materials,Textiles & Garments,Petroleum & Energy",Startups,Bulk orders,Air Freight,True,2024-09-19 13:48:23.180376
+1817,"Electronics,Handicrafts & Furniture,Petroleum & Energy",Startups,Medium orders,Land Transport,True,2025-04-08 13:48:23.180514
+1818,Chemicals & Fertilizers,Medium Enterprises,Small orders,Air Freight,True,2025-02-22 13:48:23.180653
+1819,"Textiles & Garments,Construction & Building Materials",Startups,Medium orders,Sea Freight,True,2024-12-26 13:48:23.180789
+1820,"Agriculture & Food,Construction & Building Materials,Petroleum & Energy",Medium Enterprises,Bulk orders,Sea Freight,True,2024-06-19 13:48:23.180937
+1821,"Textiles & Garments,Chemicals & Fertilizers",Medium Enterprises,Small orders,Express Delivery,True,2024-06-28 13:48:23.181078
+1822,Chemicals & Fertilizers,Large Corporations,Small orders,Air Freight,False,2025-05-15 13:48:23.181217
+1823,Textiles & Garments,Medium Enterprises,Small orders,Air Freight,False,2025-04-15 13:48:23.181355
+1824,"Petroleum & Energy,Electronics,Textiles & Garments",Startups,Large orders,Land Transport,True,2025-02-06 13:48:23.181503
+1825,Electronics,Large Corporations,Medium orders,Express Delivery,False,2024-07-18 13:48:23.181647
+1826,"Agriculture & Food,Chemicals & Fertilizers",Startups,Large orders,Land Transport,True,2025-01-05 13:48:23.181786
+1827,Construction & Building Materials,Small Businesses,Medium orders,Express Delivery,True,2024-11-30 13:48:23.181931
+1828,"Chemicals & Fertilizers,Electronics,Textiles & Garments",Medium Enterprises,Large orders,Land Transport,False,2025-01-21 13:48:23.182072
+1829,Textiles & Garments,Medium Enterprises,Medium orders,Land Transport,True,2025-05-17 13:48:23.182211
+1830,"Petroleum & Energy,Textiles & Garments",Small Businesses,Large orders,Land Transport,False,2024-07-23 13:48:23.182351
+1831,"Construction & Building Materials,Agriculture & Food,Textiles & Garments",Startups,Medium orders,Sea Freight,True,2024-12-31 13:48:23.182489
+1832,Petroleum & Energy,Startups,Large orders,Land Transport,False,2024-06-29 13:48:23.182626
+1833,Chemicals & Fertilizers,Small Businesses,Medium orders,Land Transport,True,2025-01-06 13:48:23.182774
+1834,"Textiles & Garments,Handicrafts & Furniture,Construction & Building Materials",Medium Enterprises,Medium orders,Express Delivery,True,2025-05-08 13:48:23.182944
+1835,Chemicals & Fertilizers,Medium Enterprises,Medium orders,Sea Freight,False,2025-03-02 13:48:23.183130
+1836,"Textiles & Garments,Electronics",Medium Enterprises,Small orders,Sea Freight,False,2025-01-17 13:48:23.183273
+1837,"Agriculture & Food,Textiles & Garments",Large Corporations,Large orders,Express Delivery,True,2025-03-04 13:48:23.183413
+1838,"Chemicals & Fertilizers,Construction & Building Materials",Large Corporations,Large orders,Air Freight,True,2025-04-25 13:48:23.183551
+1839,"Electronics,Construction & Building Materials",Large Corporations,Medium orders,Land Transport,True,2025-02-16 13:48:23.183694
+1840,"Construction & Building Materials,Electronics,Petroleum & Energy",Small Businesses,Bulk orders,Express Delivery,True,2024-07-28 13:48:23.183834
+1841,"Petroleum & Energy,Chemicals & Fertilizers,Textiles & Garments",Startups,Large orders,Air Freight,False,2025-06-04 13:48:23.183980
+1842,Construction & Building Materials,Startups,Large orders,Land Transport,False,2024-12-24 13:48:23.184120
+1843,Textiles & Garments,Large Corporations,Bulk orders,Sea Freight,True,2024-12-06 13:48:23.184258
+1844,"Textiles & Garments,Agriculture & Food,Handicrafts & Furniture",Large Corporations,Medium orders,Sea Freight,False,2024-09-08 13:48:23.184396
+1845,Handicrafts & Furniture,Large Corporations,Small orders,Air Freight,True,2024-09-06 13:48:23.184532
+1846,"Petroleum & Energy,Electronics",Large Corporations,Large orders,Express Delivery,False,2024-10-15 13:48:23.184677
+1847,"Agriculture & Food,Chemicals & Fertilizers,Textiles & Garments",Large Corporations,Medium orders,Air Freight,True,2025-03-23 13:48:23.184816
+1848,"Construction & Building Materials,Electronics,Petroleum & Energy",Large Corporations,Small orders,Land Transport,False,2024-12-24 13:48:23.184962
+1849,Petroleum & Energy,Small Businesses,Medium orders,Express Delivery,True,2025-05-20 13:48:23.185099
+1850,"Chemicals & Fertilizers,Construction & Building Materials,Agriculture & Food",Small Businesses,Small orders,Air Freight,False,2024-10-04 13:48:23.185238
+1851,Chemicals & Fertilizers,Startups,Medium orders,Sea Freight,True,2024-07-28 13:48:23.185377
+1852,Construction & Building Materials,Startups,Small orders,Air Freight,True,2024-08-29 13:48:23.185521
+1853,"Construction & Building Materials,Handicrafts & Furniture",Large Corporations,Bulk orders,Air Freight,False,2025-04-08 13:48:23.185663
+1854,"Electronics,Chemicals & Fertilizers",Startups,Small orders,Air Freight,False,2025-05-08 13:48:23.185801
+1855,Chemicals & Fertilizers,Startups,Medium orders,Air Freight,False,2025-06-01 13:48:23.185958
+1856,Chemicals & Fertilizers,Medium Enterprises,Large orders,Express Delivery,False,2025-04-17 13:48:23.186100
+1857,"Textiles & Garments,Construction & Building Materials,Electronics",Medium Enterprises,Large orders,Air Freight,True,2025-01-14 13:48:23.186240
+1858,Construction & Building Materials,Small Businesses,Bulk orders,Sea Freight,True,2024-12-17 13:48:23.186380
+1859,"Construction & Building Materials,Electronics,Handicrafts & Furniture",Small Businesses,Bulk orders,Air Freight,False,2025-05-30 13:48:23.186523
+1860,"Textiles & Garments,Petroleum & Energy,Agriculture & Food",Startups,Small orders,Express Delivery,False,2024-11-26 13:48:23.186667
+1861,Handicrafts & Furniture,Large Corporations,Small orders,Express Delivery,True,2024-09-17 13:48:23.186925
+1862,"Electronics,Textiles & Garments,Agriculture & Food",Medium Enterprises,Large orders,Express Delivery,False,2024-09-16 13:48:23.187110
+1863,Electronics,Startups,Small orders,Air Freight,False,2024-09-30 13:48:23.187327
+1864,"Chemicals & Fertilizers,Construction & Building Materials",Medium Enterprises,Large orders,Land Transport,True,2025-05-21 13:48:23.187472
+1865,Textiles & Garments,Small Businesses,Medium orders,Express Delivery,True,2024-10-27 13:48:23.187620
+1866,"Construction & Building Materials,Petroleum & Energy",Startups,Medium orders,Sea Freight,False,2025-05-10 13:48:23.187761
+1867,"Electronics,Textiles & Garments",Medium Enterprises,Large orders,Sea Freight,True,2024-07-03 13:48:23.187907
+1868,"Textiles & Garments,Petroleum & Energy,Handicrafts & Furniture",Medium Enterprises,Large orders,Land Transport,False,2025-06-01 13:48:23.188047
+1869,"Construction & Building Materials,Petroleum & Energy,Agriculture & Food",Large Corporations,Medium orders,Express Delivery,False,2025-03-24 13:48:23.188187
+1870,"Handicrafts & Furniture,Agriculture & Food,Chemicals & Fertilizers",Medium Enterprises,Large orders,Land Transport,False,2024-12-04 13:48:23.188327
+1871,"Agriculture & Food,Construction & Building Materials,Handicrafts & Furniture",Medium Enterprises,Medium orders,Sea Freight,False,2024-12-07 13:48:23.188468
+1872,"Petroleum & Energy,Agriculture & Food,Electronics",Small Businesses,Medium orders,Land Transport,True,2024-11-17 13:48:23.188609
+1873,"Chemicals & Fertilizers,Agriculture & Food",Small Businesses,Small orders,Express Delivery,False,2024-07-17 13:48:23.188751
+1874,Textiles & Garments,Medium Enterprises,Small orders,Express Delivery,True,2024-10-18 13:48:23.188897
+1875,Textiles & Garments,Medium Enterprises,Large orders,Land Transport,True,2024-07-14 13:48:23.189034
+1876,"Chemicals & Fertilizers,Textiles & Garments,Agriculture & Food",Medium Enterprises,Medium orders,Land Transport,False,2024-09-27 13:48:23.189176
+1877,"Handicrafts & Furniture,Agriculture & Food,Chemicals & Fertilizers",Large Corporations,Medium orders,Sea Freight,False,2024-07-30 13:48:23.189315
+1878,"Petroleum & Energy,Textiles & Garments",Small Businesses,Medium orders,Land Transport,False,2024-10-25 13:48:23.189456
+1879,"Agriculture & Food,Handicrafts & Furniture,Chemicals & Fertilizers",Medium Enterprises,Medium orders,Express Delivery,False,2025-01-31 13:48:23.189597
+1880,"Agriculture & Food,Petroleum & Energy",Small Businesses,Small orders,Air Freight,False,2024-09-03 13:48:23.189736
+1881,"Chemicals & Fertilizers,Construction & Building Materials,Handicrafts & Furniture",Large Corporations,Bulk orders,Express Delivery,True,2024-12-08 13:48:23.189880
+1882,"Agriculture & Food,Chemicals & Fertilizers,Electronics",Medium Enterprises,Medium orders,Express Delivery,False,2025-06-09 13:48:23.190021
+1883,"Petroleum & Energy,Agriculture & Food",Medium Enterprises,Medium orders,Express Delivery,True,2024-10-19 13:48:23.190166
+1884,"Agriculture & Food,Construction & Building Materials,Electronics",Small Businesses,Bulk orders,Land Transport,False,2025-05-06 13:48:23.190308
+1885,Textiles & Garments,Large Corporations,Large orders,Land Transport,False,2025-05-20 13:48:23.190452
+1886,"Agriculture & Food,Petroleum & Energy",Small Businesses,Large orders,Land Transport,False,2024-10-19 13:48:23.190604
+1887,"Textiles & Garments,Petroleum & Energy",Large Corporations,Bulk orders,Sea Freight,False,2024-08-10 13:48:23.190748
+1888,"Textiles & Garments,Petroleum & Energy",Medium Enterprises,Small orders,Land Transport,False,2024-07-02 13:48:23.190893
+1889,Textiles & Garments,Startups,Small orders,Land Transport,False,2024-10-23 13:48:23.191033
+1890,"Construction & Building Materials,Petroleum & Energy,Electronics",Small Businesses,Medium orders,Express Delivery,False,2024-12-01 13:48:23.191174
+1891,Chemicals & Fertilizers,Large Corporations,Large orders,Sea Freight,True,2024-08-10 13:48:23.191331
+1892,"Electronics,Textiles & Garments",Startups,Medium orders,Sea Freight,False,2025-01-28 13:48:23.191477
+1893,"Textiles & Garments,Handicrafts & Furniture,Construction & Building Materials",Medium Enterprises,Small orders,Land Transport,False,2024-08-24 13:48:23.191618
+1894,"Handicrafts & Furniture,Petroleum & Energy",Startups,Medium orders,Express Delivery,True,2025-06-07 13:48:23.191757
+1895,Chemicals & Fertilizers,Small Businesses,Small orders,Sea Freight,False,2024-10-11 13:48:23.191900
+1896,"Petroleum & Energy,Chemicals & Fertilizers,Handicrafts & Furniture",Medium Enterprises,Bulk orders,Sea Freight,True,2024-10-26 13:48:23.192041
+1897,"Textiles & Garments,Electronics,Handicrafts & Furniture",Small Businesses,Large orders,Sea Freight,False,2025-01-03 13:48:23.192181
+1898,"Electronics,Chemicals & Fertilizers,Handicrafts & Furniture",Small Businesses,Medium orders,Express Delivery,False,2024-08-29 13:48:23.192322
+1899,Agriculture & Food,Small Businesses,Large orders,Express Delivery,True,2025-04-19 13:48:23.192466
+1900,Agriculture & Food,Medium Enterprises,Bulk orders,Sea Freight,False,2024-10-26 13:48:23.192606
+1901,"Chemicals & Fertilizers,Petroleum & Energy",Small Businesses,Large orders,Air Freight,False,2024-09-05 13:48:23.192745
+1902,"Textiles & Garments,Chemicals & Fertilizers,Handicrafts & Furniture",Large Corporations,Bulk orders,Express Delivery,False,2024-09-19 13:48:23.192887
+1903,"Petroleum & Energy,Construction & Building Materials,Chemicals & Fertilizers",Startups,Medium orders,Land Transport,False,2025-01-26 13:48:23.193028
+1904,"Petroleum & Energy,Electronics,Construction & Building Materials",Medium Enterprises,Bulk orders,Land Transport,False,2025-02-27 13:48:23.193169
+1905,"Handicrafts & Furniture,Electronics,Chemicals & Fertilizers",Medium Enterprises,Small orders,Sea Freight,False,2024-10-21 13:48:23.193315
+1906,"Electronics,Textiles & Garments",Large Corporations,Medium orders,Air Freight,False,2025-05-27 13:48:23.193456
+1907,Electronics,Medium Enterprises,Large orders,Express Delivery,False,2024-07-19 13:48:23.193596
+1908,"Textiles & Garments,Chemicals & Fertilizers,Handicrafts & Furniture",Medium Enterprises,Large orders,Express Delivery,False,2025-02-14 13:48:23.193734
+1909,"Handicrafts & Furniture,Agriculture & Food,Electronics",Medium Enterprises,Small orders,Sea Freight,False,2024-07-06 13:48:23.193879
+1910,"Textiles & Garments,Handicrafts & Furniture",Small Businesses,Bulk orders,Sea Freight,True,2025-02-03 13:48:23.194026
+1911,"Construction & Building Materials,Textiles & Garments,Handicrafts & Furniture",Medium Enterprises,Bulk orders,Express Delivery,True,2024-09-13 13:48:23.194168
+1912,"Agriculture & Food,Construction & Building Materials,Chemicals & Fertilizers",Startups,Small orders,Land Transport,True,2025-04-23 13:48:23.194311
+1913,"Chemicals & Fertilizers,Textiles & Garments",Medium Enterprises,Bulk orders,Land Transport,False,2024-12-09 13:48:23.194455
+1914,"Electronics,Textiles & Garments,Agriculture & Food",Startups,Bulk orders,Sea Freight,True,2024-08-05 13:48:23.194594
+1915,"Textiles & Garments,Handicrafts & Furniture",Medium Enterprises,Large orders,Air Freight,False,2024-12-07 13:48:23.194731
+1916,"Textiles & Garments,Construction & Building Materials,Electronics",Medium Enterprises,Bulk orders,Air Freight,True,2024-10-27 13:48:23.194875
+1917,"Electronics,Agriculture & Food",Large Corporations,Bulk orders,Land Transport,True,2024-09-27 13:48:23.195013
+1918,"Handicrafts & Furniture,Petroleum & Energy",Large Corporations,Medium orders,Land Transport,True,2025-04-28 13:48:23.195162
+1919,Electronics,Small Businesses,Small orders,Sea Freight,True,2024-11-03 13:48:23.195302
+1920,"Electronics,Textiles & Garments,Handicrafts & Furniture",Startups,Bulk orders,Express Delivery,True,2025-01-26 13:48:23.195443
+1921,"Construction & Building Materials,Handicrafts & Furniture,Agriculture & Food",Medium Enterprises,Large orders,Land Transport,True,2025-02-08 13:48:23.195619
+1922,"Construction & Building Materials,Electronics",Startups,Large orders,Air Freight,False,2025-05-31 13:48:23.195766
+1923,"Petroleum & Energy,Construction & Building Materials,Chemicals & Fertilizers",Medium Enterprises,Bulk orders,Air Freight,True,2024-08-23 13:48:23.195913
+1924,"Construction & Building Materials,Agriculture & Food",Large Corporations,Large orders,Sea Freight,True,2025-01-10 13:48:23.196053
+1925,"Agriculture & Food,Textiles & Garments,Handicrafts & Furniture",Small Businesses,Small orders,Air Freight,True,2025-03-16 13:48:23.196199
+1926,"Petroleum & Energy,Construction & Building Materials",Large Corporations,Medium orders,Sea Freight,False,2025-03-16 13:48:23.196339
+1927,"Chemicals & Fertilizers,Petroleum & Energy,Construction & Building Materials",Large Corporations,Medium orders,Air Freight,False,2024-09-02 13:48:23.196480
+1928,"Chemicals & Fertilizers,Petroleum & Energy,Electronics",Small Businesses,Small orders,Sea Freight,True,2025-01-14 13:48:23.196622
+1929,"Agriculture & Food,Chemicals & Fertilizers",Small Businesses,Small orders,Sea Freight,True,2025-03-19 13:48:23.196762
+1930,"Handicrafts & Furniture,Chemicals & Fertilizers",Medium Enterprises,Bulk orders,Sea Freight,False,2025-02-16 13:48:23.196906
+1931,Electronics,Large Corporations,Medium orders,Express Delivery,False,2025-01-17 13:48:23.197051
+1932,"Handicrafts & Furniture,Petroleum & Energy",Small Businesses,Large orders,Air Freight,False,2024-07-17 13:48:23.197190
+1933,"Textiles & Garments,Construction & Building Materials,Handicrafts & Furniture",Large Corporations,Medium orders,Express Delivery,False,2024-12-26 13:48:23.197331
+1934,Petroleum & Energy,Startups,Bulk orders,Land Transport,True,2025-02-15 13:48:23.197476
+1935,"Agriculture & Food,Textiles & Garments",Startups,Bulk orders,Land Transport,True,2025-05-24 13:48:23.197614
+1936,"Chemicals & Fertilizers,Construction & Building Materials,Electronics",Medium Enterprises,Medium orders,Sea Freight,True,2025-03-20 13:48:23.197755
+1937,Electronics,Medium Enterprises,Medium orders,Land Transport,False,2024-12-05 13:48:23.197901
+1938,"Agriculture & Food,Textiles & Garments",Medium Enterprises,Medium orders,Land Transport,True,2025-01-28 13:48:23.198048
+1939,"Construction & Building Materials,Chemicals & Fertilizers,Handicrafts & Furniture",Startups,Small orders,Express Delivery,True,2024-08-09 13:48:23.198191
+1940,Chemicals & Fertilizers,Large Corporations,Large orders,Land Transport,False,2024-07-28 13:48:23.198332
+1941,"Agriculture & Food,Electronics,Petroleum & Energy",Large Corporations,Small orders,Sea Freight,False,2025-04-06 13:48:23.198480
+1942,"Textiles & Garments,Chemicals & Fertilizers,Handicrafts & Furniture",Startups,Medium orders,Land Transport,False,2024-07-24 13:48:23.198621
+1943,"Construction & Building Materials,Electronics",Startups,Small orders,Land Transport,False,2024-11-15 13:48:23.198763
+1944,Agriculture & Food,Medium Enterprises,Small orders,Sea Freight,False,2024-06-28 13:48:23.198930
+1945,"Petroleum & Energy,Agriculture & Food",Small Businesses,Bulk orders,Express Delivery,True,2025-01-15 13:48:23.199119
+1946,"Handicrafts & Furniture,Construction & Building Materials",Large Corporations,Large orders,Air Freight,True,2024-07-14 13:48:23.199267
+1947,"Electronics,Textiles & Garments",Startups,Medium orders,Land Transport,False,2024-11-24 13:48:23.199409
+1948,"Chemicals & Fertilizers,Agriculture & Food,Textiles & Garments",Small Businesses,Bulk orders,Air Freight,False,2025-03-02 13:48:23.199559
+1949,"Textiles & Garments,Petroleum & Energy",Medium Enterprises,Medium orders,Air Freight,True,2025-04-04 13:48:23.199700
+1950,Electronics,Small Businesses,Small orders,Express Delivery,False,2025-01-21 13:48:23.199839
+1951,"Textiles & Garments,Handicrafts & Furniture",Large Corporations,Bulk orders,Air Freight,False,2025-05-10 13:48:23.199990
+1952,"Electronics,Petroleum & Energy,Construction & Building Materials",Medium Enterprises,Medium orders,Sea Freight,False,2025-01-06 13:48:23.200132
+1953,"Textiles & Garments,Agriculture & Food",Medium Enterprises,Bulk orders,Express Delivery,False,2025-05-10 13:48:23.200272
+1954,Construction & Building Materials,Medium Enterprises,Bulk orders,Air Freight,False,2024-11-27 13:48:23.200410
+1955,"Chemicals & Fertilizers,Construction & Building Materials,Handicrafts & Furniture",Small Businesses,Bulk orders,Land Transport,True,2024-07-26 13:48:23.200550
+1956,Textiles & Garments,Large Corporations,Bulk orders,Air Freight,True,2025-03-03 13:48:23.200687
+1957,"Handicrafts & Furniture,Chemicals & Fertilizers",Small Businesses,Large orders,Express Delivery,False,2024-08-27 13:48:23.200825
+1958,"Handicrafts & Furniture,Chemicals & Fertilizers,Construction & Building Materials",Startups,Small orders,Land Transport,False,2025-01-13 13:48:23.200974
+1959,Agriculture & Food,Medium Enterprises,Medium orders,Air Freight,True,2025-02-09 13:48:23.201117
+1960,"Textiles & Garments,Construction & Building Materials",Small Businesses,Large orders,Express Delivery,False,2024-08-03 13:48:23.201258
+1961,"Handicrafts & Furniture,Chemicals & Fertilizers",Small Businesses,Medium orders,Land Transport,True,2024-09-23 13:48:23.201398
+1962,"Chemicals & Fertilizers,Petroleum & Energy",Large Corporations,Small orders,Express Delivery,True,2025-05-24 13:48:23.201539
+1963,Electronics,Large Corporations,Bulk orders,Sea Freight,False,2025-03-09 13:48:23.201686
+1964,Construction & Building Materials,Large Corporations,Medium orders,Air Freight,False,2025-05-17 13:48:23.201828
+1965,"Handicrafts & Furniture,Petroleum & Energy,Electronics",Small Businesses,Small orders,Express Delivery,False,2025-04-23 13:48:23.201972
+1966,"Textiles & Garments,Construction & Building Materials",Medium Enterprises,Medium orders,Land Transport,False,2024-07-01 13:48:23.202112
+1967,"Agriculture & Food,Chemicals & Fertilizers",Medium Enterprises,Bulk orders,Express Delivery,True,2024-10-14 13:48:23.202250
+1968,"Agriculture & Food,Chemicals & Fertilizers",Small Businesses,Medium orders,Land Transport,True,2025-01-01 13:48:23.202390
+1969,"Handicrafts & Furniture,Petroleum & Energy,Agriculture & Food",Small Businesses,Medium orders,Sea Freight,False,2025-01-13 13:48:23.202529
+1970,"Construction & Building Materials,Electronics",Startups,Small orders,Air Freight,False,2024-07-17 13:48:23.202669
+1971,"Petroleum & Energy,Construction & Building Materials",Medium Enterprises,Large orders,Air Freight,True,2025-01-14 13:48:23.202813
+1972,"Textiles & Garments,Handicrafts & Furniture,Construction & Building Materials",Medium Enterprises,Small orders,Express Delivery,True,2025-04-30 13:48:23.202962
+1973,Chemicals & Fertilizers,Small Businesses,Large orders,Air Freight,True,2024-09-02 13:48:23.203101
+1974,Construction & Building Materials,Startups,Medium orders,Express Delivery,False,2025-01-11 13:48:23.203241
+1975,Textiles & Garments,Large Corporations,Medium orders,Sea Freight,True,2024-07-20 13:48:23.203385
+1976,"Electronics,Petroleum & Energy",Large Corporations,Small orders,Air Freight,True,2024-09-04 13:48:23.203526
+1977,"Chemicals & Fertilizers,Electronics",Medium Enterprises,Bulk orders,Sea Freight,False,2025-02-08 13:48:23.203664
+1978,"Petroleum & Energy,Electronics",Large Corporations,Bulk orders,Land Transport,False,2024-10-31 13:48:23.203804
+1979,Electronics,Startups,Small orders,Express Delivery,True,2024-09-13 13:48:23.203957
+1980,"Agriculture & Food,Petroleum & Energy,Electronics",Startups,Medium orders,Land Transport,False,2025-04-29 13:48:23.204100
+1981,"Petroleum & Energy,Agriculture & Food,Chemicals & Fertilizers",Small Businesses,Small orders,Express Delivery,False,2024-07-22 13:48:23.204241
+1982,Construction & Building Materials,Medium Enterprises,Large orders,Express Delivery,True,2025-03-31 13:48:23.204380
+1983,Agriculture & Food,Medium Enterprises,Small orders,Sea Freight,True,2024-11-03 13:48:23.204520
+1984,"Handicrafts & Furniture,Chemicals & Fertilizers",Small Businesses,Medium orders,Land Transport,True,2025-02-24 13:48:23.204664
+1985,"Textiles & Garments,Petroleum & Energy",Startups,Bulk orders,Sea Freight,False,2025-04-18 13:48:23.204804
+1986,Construction & Building Materials,Small Businesses,Medium orders,Land Transport,False,2025-06-01 13:48:23.204947
+1987,"Chemicals & Fertilizers,Handicrafts & Furniture",Large Corporations,Large orders,Express Delivery,False,2025-05-01 13:48:23.205086
+1988,"Petroleum & Energy,Textiles & Garments",Medium Enterprises,Small orders,Express Delivery,False,2025-03-20 13:48:23.205228
+1989,Electronics,Small Businesses,Medium orders,Air Freight,True,2025-02-03 13:48:23.205365
+1990,"Petroleum & Energy,Chemicals & Fertilizers,Handicrafts & Furniture",Small Businesses,Medium orders,Land Transport,False,2024-08-10 13:48:23.205506
+1991,"Textiles & Garments,Electronics",Small Businesses,Large orders,Land Transport,True,2024-11-09 13:48:23.205648
+1992,Petroleum & Energy,Small Businesses,Bulk orders,Air Freight,True,2025-02-25 13:48:23.205788
+1993,Petroleum & Energy,Medium Enterprises,Small orders,Land Transport,False,2025-02-06 13:48:23.205935
+1994,"Petroleum & Energy,Handicrafts & Furniture,Agriculture & Food",Startups,Large orders,Land Transport,False,2025-04-25 13:48:23.206077
+1995,Electronics,Small Businesses,Small orders,Express Delivery,True,2025-02-27 13:48:23.206215
+1996,"Textiles & Garments,Petroleum & Energy,Electronics",Small Businesses,Medium orders,Express Delivery,False,2024-06-17 13:48:23.206355
+1997,"Electronics,Chemicals & Fertilizers,Agriculture & Food",Startups,Small orders,Express Delivery,True,2024-09-08 13:48:23.206495
+1998,"Construction & Building Materials,Electronics,Chemicals & Fertilizers",Large Corporations,Bulk orders,Express Delivery,True,2025-06-02 13:48:23.206638
+1999,Petroleum & Energy,Small Businesses,Large orders,Land Transport,True,2025-06-07 13:48:23.206778
